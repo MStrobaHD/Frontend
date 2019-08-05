@@ -1,0 +1,43 @@
+<mat-nav-list>
+  <mat-toolbar fxLayout fxLayoutGap="5px">
+      <img src="../../../../../assets/user-login.png" alt="logo">
+      <p>Username</p>
+  </mat-toolbar>
+    <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/" (click)="onClose()">
+    <mat-icon>home</mat-icon>
+    <span> Strona głowna</span>
+  </a>
+  <a mat-list-item routerLink="/login" (click)="onClose()">
+    <mat-icon>person</mat-icon>
+    <span> Zaloguj</span>
+  </a>
+  <a mat-list-item routerLink="/register" (click)="onClose()">
+    <mat-icon>person_add</mat-icon>Zarejestruj
+  </a>
+  <a mat-list-item routerLink="/users" (click)="onClose()">
+    <mat-icon>person_outline</mat-icon>
+    <span> Informacje</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="" (click)="onClose()">
+    <mat-icon>edit</mat-icon>
+    <span> Dostępny egzaminy</span>
+  </a>
+  <a mat-list-item routerLink="/flashcard_exam" (click)="onClose()">
+    <mat-icon>swap_horiz</mat-icon>
+    <span> Dostępne zestawy</span>
+  </a>
+  <a mat-list-item routerLink="/courses" (click)="onClose()">
+    <mat-icon>school</mat-icon>
+    <span> Kursy</span>
+  </a>
+
+  <mat-list-item>
+    <button mat-icon-button>
+      <mat-icon>directions_run</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-list-item>
+
+</mat-nav-list>

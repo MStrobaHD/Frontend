@@ -1,0 +1,84 @@
+<mat-toolbar color="primary">
+    <div fxHide.gt-sm>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <section fxFlex fxLayoutAlign="center center">
+        <div fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+
+            <!-- <div fxLayoutAlign="flex-start" fxHide.sm fxHide.xs>
+                <img src="../../../../../assets/logo.PNG" alt="logo">
+            </div>
+
+            <div fxFlex fxLayout fxLayoutAlign="center" fxHide.gt-sm>
+                <img src="../../../../../assets/logo.PNG">
+            </div> -->
+
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs fxHide.sm class="toolbar-content">
+                <ul fxLayout fxLayoutGap="5px">
+                    <!-- <li>
+                        <a routerLink="/login">
+                            <mat-icon>person</mat-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/register">
+                            <mat-icon>person_add</mat-icon>
+                        </a>
+                    </li>-->
+                    <li>
+                        <a routerLink="/landing-page">
+                            <img mat-card-avatar src="../../../../../assets/settings.png" alt="settings menu icon">
+                        </a>
+                    </li> 
+                    <li>
+                        <a [matMenuTriggerFor]="menu"  matBadge="11" matBadgeSize="medium" matBadgeColor="warn">
+                            <img mat-card-avatar src="../../../../../assets/user_menu.png" alt="user menu icon">
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a>
+                            <mat-icon>directions_run</mat-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/login">
+                            <mat-icon>person_outline</mat-icon>
+                        </a>
+                    </li> -->
+
+
+
+
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+    <mat-toolbar class="user-menu-toolbar--section">Powiadomienia</mat-toolbar>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [routerLink]="['/users']">
+        <mat-icon>person</mat-icon>
+        <span>Moje konto</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/flashcard_exam']">
+        <mat-icon>settings</mat-icon>
+        <span>Ustawienia</span>
+    </button>
+    <mat-toolbar class="user-menu-toolbar--section">Menu</mat-toolbar>
+    <a mat-menu-item [routerLink]="['/courses']">
+        <mat-icon>group</mat-icon>
+        <span>Dostępne kursy</span>
+    </a>
+    <button mat-menu-item routerLink="/courses/course_panel">
+        <mat-icon>folder_shared</mat-icon>
+        <span>Materiały szkoleniowe</span>
+    </button>
+
+</mat-menu>

@@ -1,0 +1,167 @@
+<section fxLayout fxLayoutAlign="center center">
+
+    <mat-card fxFlex.xs="100%" fxFlex="55rem" class="card-center">
+        <mat-card-title fxLayoutAlign="center">
+            <!-- <mat-icon class="icon-space" fxLayout fxLayoutAlign="center">
+                person
+            </mat-icon> -->
+            <img src="../../../../assets/user_register.png">
+        </mat-card-title>
+        <!-- <mat-card-content fxLayoutAlign="center"> -->
+        <form class="container">
+
+            <!-- <mat-form-field >
+                <input type="text" matInput placeholder="Imię" class="form-cotrol"
+                   >
+                <mat-error class="isValid-feedback">Imię</mat-error>
+                <mat-label>
+                    <mat-icon>account_circle</mat-icon> Imię
+                </mat-label>
+            </mat-form-field>
+
+            <mat-form-field >
+                <input type="text" matInput placeholder="Nazwisko"  class="form-cotrol"
+                    >
+
+                <mat-error class="isValid-feedback">Wprowadz nazwisko</mat-error>
+                <mat-label>
+                    <mat-icon>account_circle</mat-icon> Nazwisko
+                </mat-label>
+            </mat-form-field> -->
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Nazwa użytkownika" class="form-cotrol">
+
+                <mat-error class="isValid-feedback">Wprowadz nazwę uzytkownika</mat-error>
+                <mat-label>
+                    <mat-icon>person</mat-icon> Nazwa użytkownika
+                </mat-label>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="At least 10 character">
+                <input type="password" class="form-cotrol" matInput placeholder="Hasło">
+
+                <mat-error class="isValid-feedback">
+                    Hasło jest wymagane
+                </mat-error>
+
+                <mat-error class="isValid-feedback">
+                    Minimalna długość hasła to 4 znaki
+                </mat-error>
+
+                <mat-error class="isValid-feedback">
+                    Maksymalna długość hasła to 10 znakow
+                </mat-error>
+                <mat-label>
+                    <mat-icon>vpn_key</mat-icon> Hasło
+                </mat-label>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="At least 10 character">
+
+                <input type="password" matInput placeholder="Potwierdź hasło" class="form-cotrol">
+
+                <mat-error class="isValid-feedback">
+                    Hasło jest wymagane
+                </mat-error>
+
+                <mat-error class="isValid-feedback">
+                    Hasła muszą być takie same
+                </mat-error>
+                <mat-label>
+                    <mat-icon>vpn_key</mat-icon> Potwierdż hasło
+                </mat-label>
+            </mat-form-field>
+
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Adres Email" class="form-cotrol">
+
+                <mat-error class="isValid-feedback">Wprowadz nazwisko</mat-error>
+                <mat-label>
+                    <mat-icon>email</mat-icon> Adres Email
+                </mat-label>
+            </mat-form-field>
+
+            <!-- <mat-form-field *ngIf="full_register.checked">
+                <input type="text"
+                 matInput placeholder="Miasto"
+                 formControlName="city"
+                 class="form-cotrol"
+                 [ngClass]="{'isValid': registerForm.get('city').errors
+                && registerForm.get('city').touched}">
+      
+                <mat-error class="isValid-feedback">Wprowadz nazwę uzytkownika</mat-error>
+                <mat-label>
+                  <mat-icon>location_city</mat-icon> Imię
+                </mat-label>
+              </mat-form-field> -->
+
+            <mat-form-field>
+                <mat-select placeholder="Rodzaj konta" class="form-cotrol">
+                    <mat-option value="Student">Student</mat-option>
+                    <mat-option value="Nauczyciel">Nauczyciel</mat-option>
+                    <mat-option value="Administrator">Administrator</mat-option>
+                </mat-select>
+
+                <mat-error class="isValid-feedback">Rola użytkownika</mat-error>
+                <mat-label>
+                    <mat-icon>person</mat-icon> Uprawnienia
+                </mat-label>
+            </mat-form-field>
+            <!-- 
+                <mat-form-field>
+                    <input type="date"
+                     matInput placeholder="Rodzaj konta"
+                     formControlName="dateOfBirth"
+                     class="form-cotrol"
+                     [ngClass]="{'isValid': registerForm.get('dateOfBirth').errors
+                    && registerForm.get('dateOfBirth').touched}">
+          
+                    <mat-error class="isValid-feedback">Wprowadz nazwę uzytkownika</mat-error>
+          
+                  </mat-form-field> -->
+
+            <!-- <mat-form-field *ngIf="full_register.checked">
+                    <input matInput [matDatepicker]="picker"  
+                    placeholder="Choose a date"
+                    formControlName="dateOfBirth"
+                    class="form-cotrol"
+                    [ngClass]="{'isValid': registerForm.get('dateOfBirth').errors
+                   && registerForm.get('dateOfBirth').touched}">
+      
+                    <mat-datepicker-toggle matSuffix [for]="picker">Data urodzenia</mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error class="isValid-feedback">Data urodzenia</mat-error>
+                    <mat-label>
+                      <mat-icon>date_range</mat-icon> Imię
+                    </mat-label>
+                  </mat-form-field> -->
+
+            <!-- <mat-radio-group  *ngIf="full_register.checked">
+                    <input type="radio" value="mężczyzna" formControlName="gender" >Mężczyzna
+                    <input type="radio"  value="kobieta" formControlName="gender" >Kobieta
+                  </mat-radio-group> -->
+
+            <!-- <mat-form-field>
+                <mat-label>
+                    <mat-icon>lock</mat-icon> Admin password
+                </mat-label>
+                <input #adminSecurity type="password" matInput>
+            </mat-form-field> -->
+
+            <!-- <mat-checkbox #full_register>Pełna rejestracja</mat-checkbox> -->
+            <mat-card-actions fxLayout fxLayoutAlign="center center">
+                <button type="submit" mat-raised-button color="primary">
+                    <mat-icon>enter</mat-icon>Submit
+                </button>
+                <button mat-raised-button color="warn" type="button" routerLink="/">
+                    <mat-icon>cancel</mat-icon>Cancel</button>
+            </mat-card-actions>
+        </form>
+        <!-- </mat-card-content> -->
+    </mat-card>
+</section>
+
+<!-- <p>form value : {{registerForm.value | json}}</p>
+<p>form value : {{registerForm.status | json}}</p> -->

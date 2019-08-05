@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  font-family: "Raleway", sans-serif;
+  height: 100%;
+  font-size: 62.5%;
+}
+* {
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+a:hover,
+a:active {
+  color: black;
+}
+img {
+  height: 5rem;
+}
+
+

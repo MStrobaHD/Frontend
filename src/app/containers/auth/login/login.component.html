@@ -1,0 +1,40 @@
+<section fxLayout fxLayoutAlign="center center">
+
+  <mat-card fxFlex.xs="100%" fxFlex="55rem" class="card-center">
+
+    <mat-card-title fxLayoutAlign="center">
+      <!-- <mat-icon class="icon-space" fxLayout fxLayoutAlign="center">
+        person
+      </mat-icon> -->
+      <img src="../../../../assets/user_login.png">
+    </mat-card-title>
+
+    <form  class="container">
+
+      <mat-form-field hintLabel="Nazwa użytkownika powinna zawierać minimum 4 znaki oraz maksymalnie 10 znaków">
+        <input type="text" matInput placeholder="Your Login" name="username" placeholder="Username" login required>
+        <mat-label>
+          <mat-icon>account_circle</mat-icon> Nazwa użytkownika
+        </mat-label>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Hasło powinno zawierać minimum 4 znaki oraz maksymalnie 10 znaków">
+        <input type="password" matInput placeholder="Your password" name="password" placeholder="Password" minlength="4"
+          maxlength="10" required>
+        <mat-label>
+          <mat-icon>vpn_key</mat-icon> Hasło
+        </mat-label>
+      </mat-form-field>
+
+      <mat-card-actions fxLayout fxLayoutAlign="center">
+        <button class="login-button" type="submit" mat-raised-button color="primary">Submit</button>
+      </mat-card-actions>
+
+    </form>
+
+  </mat-card>
+
+</section>
+
+<!-- <p>form value : {{registerForm.value | json}}</p>
+<p>form value : {{registerForm.status | json}}</p> -->

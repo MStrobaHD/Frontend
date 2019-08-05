@@ -1,0 +1,33 @@
+mat-icon {
+  margin: 0;
+}
+mat-toolbar {
+  height: 4.5rem;
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.34);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.34);
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.34);
+}
+ul {
+  list-style: none;
+}
+img {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+.toolbar-content {
+  margin-top: 0.7rem;
+  a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+}
+.user-menu-toolbar--section{
+  font-size: 1.5rem;
+  font-family: inherit;
+  height: 2.5rem;;
+}
+// .toolbar-content-left{
+//   margin-left:15%;
+// }
+

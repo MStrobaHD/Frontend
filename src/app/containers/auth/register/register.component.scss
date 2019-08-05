@@ -1,0 +1,33 @@
+mat-form-field {
+  width: 30rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+button {
+  width: 15rem;
+}
+mat-icon,
+mat-checkbox {
+  font-size: 1.5rem;
+}
+mat-card-actions {
+  margin: 0;
+  padding: 0;
+}
+img {
+  height: 8rem;
+}
+.card-center {
+  margin-top: 5rem;
+  position: relative;
+}
+
+.icon-space {
+  color: gray;
+  margin-bottom: 7rem;
+  font-size: 10rem;
+}
+
+.container > * {
+  width: 100%;
+}
