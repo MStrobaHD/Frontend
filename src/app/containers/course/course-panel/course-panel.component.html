@@ -1,76 +1,25 @@
 <section fxFlex fxLayoutAlign="center center">
 
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
-        <mat-toolbar>
-            <img src="../../../../assets/course.png">npm i ngx-extended-pdf-viewer
-            Lesson List
-            <div *ngIf="!isLessonListVisible" fxFlex fxLayout fxLayoutAlign="flex-end">
-                <mat-icon (click)="expandLessonList()">expand_more</mat-icon>
-            </div>
-            <div *ngIf="isLessonListVisible" fxFlex fxLayout fxLayoutAlign="flex-end">
-                <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="hideLessonList()">expand_less</mat-icon>
-            </div>
-        </mat-toolbar>
+        <mat-tab-group>
+            <mat-tab label="Lesson panel">
+                <ng-template matTabContent>
+                    <app-lesson></app-lesson>
+                </ng-template>
+            </mat-tab>
+            <mat-tab label="Exam panel">
+                <ng-template matTabContent>
 
-        <mat-card>
-
-            <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" matSort *ngIf="isLessonListVisible">
-
-                    <!-- ID Column -->
-                    <ng-container matColumnDef="id">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-                    </ng-container>
-
-                    <!-- Progress Column -->
-                    <ng-container matColumnDef="progress">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-                        <td mat-cell *matCellDef="let row">
-                            <mat-progress-bar mode="determinate" value=" {{row.progress}} "
-                                matTooltip="{{row.progress}} %" aria-label="Progress bar that inform about progress">
-                            </mat-progress-bar>
-                        </td>
-                    </ng-container>
-
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-                    </ng-container>
-
-                    <!-- Color Column -->
-                    <ng-container matColumnDef="color">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
-                        <td mat-cell *matCellDef="let row" [style.color]="row.color">
-                            <mat-icon class="icon-add">add_circle</mat-icon>
-                            <mat-icon color="warn">delete</mat-icon>
-                        </td>
-                    </ng-container>
-
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                    </tr>
-                </table>
-
-                <mat-paginator [pageSize]="5"></mat-paginator>
-            </div>
-
-        </mat-card>
-        <mat-card>
-            <mat-toolbar>
-                <img src="../../../../assets/course.png">
-                Lesson content
-                <div fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap=".5rem">
-                    <mat-icon>movie</mat-icon>
-                    <mat-icon>picture_as_pdf</mat-icon>
-                </div>
-
-            </mat-toolbar>
-            <mat-card-content>
-                <app-video-content></app-video-content>
-            </mat-card-content>
-        </mat-card>
+                </ng-template>
+            </mat-tab>
+            <mat-tab label="Exam List">
+                <ng-template matTabContent>
+                </ng-template>
+            </mat-tab>
+            <mat-tab label="Lesson List">
+                <ng-template matTabContent>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
     </mat-card>
 </section>

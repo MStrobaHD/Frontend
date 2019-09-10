@@ -33,7 +33,7 @@
                         </a>
                     </li> 
                     <li>
-                        <a [matMenuTriggerFor]="menu"  matBadge="11" matBadgeSize="medium" matBadgeColor="warn">
+                        <a [matMenuTriggerFor]="menu"  matBadge="11" matBadgeSize="small" matBadgeColor="warn">
                             <img mat-card-avatar src="../../../../../assets/user_menu.png" alt="user menu icon">
                         </a>
                     </li>
@@ -74,11 +74,19 @@
     <mat-toolbar class="user-menu-toolbar--section">Menu</mat-toolbar>
     <a mat-menu-item [routerLink]="['/courses']">
         <mat-icon>group</mat-icon>
-        <span>Dostępne kursy</span>
+        <span>Kursy</span>
     </a>
     <button mat-menu-item routerLink="/courses/course_panel">
         <mat-icon>folder_shared</mat-icon>
         <span>Materiały szkoleniowe</span>
+    </button>
+    <a mat-menu-item [routerLink]="['/courses']">
+        <mat-icon>group</mat-icon>
+        <span>Materiały szkoleniowe</span>
+    </a>
+    <button mat-menu-item routerLink="/courses/course_panel">
+        <mat-icon>folder_shared</mat-icon>
+        <span>Zadania algorytmiczne</span>
     </button>
 
 </mat-menu>

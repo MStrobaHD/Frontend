@@ -1,22 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { CourseService } from 'src/app/core/services/education/course-service/course.service';
+import { CourseModel } from 'src/app/core/models/education/course/course.model';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 
 @Component({
   selector: 'app-course-panel',
@@ -24,26 +10,34 @@ const NAMES: string[] = [
   styleUrls: ['./course-panel.component.scss']
 })
 export class CoursePanelComponent implements OnInit {
-  isLessonListVisible = false;
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  isLessonListVisible = true;
+  displayedColumns: string[] = [ 'courseIconUrl','name', 'description', 'date', 'action'];
+  // dataSource: MatTableDataSource<UserData>;
+  dataSource = new MatTableDataSource();
+
+  courses: CourseModel[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  constructor( private courseService: CourseService) {
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+
+    this.courseService.getCourses()
+    .subscribe(result => {
+
+      this.courses = result;
+      this.dataSource = new MatTableDataSource(this.courses);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+    console.log(this.courses);
+
   }
-  hideLessonList(){
+  hideLessonList() { 
     this.isLessonListVisible = false;
   }
   expandLessonList(){
@@ -56,19 +50,6 @@ export class CoursePanelComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
 }
 
 
