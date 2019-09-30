@@ -1,1 +1,54 @@
-<p>code-editor works!</p>
+<section fxFlex fxLayoutAlign="center center">
+    <mat-card class="editor-wrapper" fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+
+        <mat-toolbar>Edytor kodu</mat-toolbar>
+        <mat-toolbar id="menu">
+            <div>
+                <mat-form-field>
+                    <mat-label>Motyw edytora</mat-label>
+                    <mat-select selected="">
+                        <mat-option value="Dark theme">
+                            Dark theme
+                        </mat-option>
+                        <mat-option value="Light theme">
+                            Light theme
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Język programowania</mat-label>
+                    <mat-select>
+                        <mat-option value="C Sharp">
+                            C Sharp
+                        </mat-option>
+                        <mat-option value="Cpp">
+                            Cpp
+                        </mat-option>
+                        <mat-option value="Java">
+                            Java
+                        </mat-option>
+                        <mat-option value="Groovy">
+                            Groovy
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button class="menu-button"><img src="../../../../assets/var_icon.png"></button>
+                <button mat-raised-button class="menu-button"><mat-icon>cloud_upload</mat-icon></button>
+                <button mat-raised-button class="menu-button"><mat-icon>cloud_download</mat-icon></button>
+            </div>
+        </mat-toolbar>
+        <mat-card>
+            <div style="height: 500px">
+                <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+            </div>
+        </mat-card>
+        <mat-toolbar id="menu">
+            <div class="example-button-row" fxFlex fxLayoutAlign="flex-end center">
+                <button mat-raised-button class="menu-button"><mat-icon>translate</mat-icon></button>
+                <button mat-raised-button class="menu-button"><mat-icon>play_circle_filled</mat-icon></button>
+                <button mat-raised-button class="menu-button">Kompiluj i uruchom</button>
+            </div>
+        </mat-toolbar>
+    </mat-card>
+</section>

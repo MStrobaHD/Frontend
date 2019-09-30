@@ -1,0 +1,58 @@
+section {
+  margin-top: 2rem;
+  mat-card {
+    mat-toolbar {
+      height: 4rem;
+      text-emphasis: none;
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-family: "Raleway", sans-serif;
+      border-radius: 0.2rem;
+      // border: 1px solid rgb(62, 151, 253);
+      margin-bottom: 3rem;
+      -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+      -moz-box-shadow: 2px 2px 5px 0px #00000057;
+      box-shadow: 2px 2px 5px 0px #00000057;
+    }
+  }
+}
+.my-code-editor {
+  .editor-container {
+    height: 50rem;
+  }
+}
+.editor-wrapper {
+  background-color: #f3f3f3;
+}
+#menu {
+  background-color: white;
+  height: 6rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+mat-form-field {
+  font-size: 1.3rem;
+  margin-right: 1rem;
+  margin-top: 2rem;
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+div {
+  img {
+    height: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  mat-icon {
+    margin-bottom: 1rem;
+  }
+}
+.menu-button {
+  background-color: #78909c;
+  align-content: center;
+  height: 3rem;
+ 
+  margin-right: 1rem;
+  color: white;
+}

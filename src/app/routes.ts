@@ -18,5 +18,9 @@ export const appRoutes: Routes = [
     path: 'courses',
     loadChildren: () => import('./containers/course/course.module').then(mod => mod.CourseModule)
   },
+  {
+    path: 'algorithms',
+    loadChildren: () => import('./containers/judge/judge.module').then(mod => mod.JudgeModule)
+  },
 
 ];

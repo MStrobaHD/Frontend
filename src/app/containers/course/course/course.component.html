@@ -3,7 +3,7 @@
   <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
     <mat-toolbar>
       <img src="../../../../assets/course.png">
-      Available courses
+      Kursy szkoleniowe
       <div fxFlex fxLayout fxLayoutAlign="flex-end">
         <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showCourseForm()">add_circle</mat-icon>
       </div>
@@ -33,8 +33,7 @@
           <ng-container matColumnDef="progress">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
             <td mat-cell *matCellDef="let row">
-              <mat-progress-bar mode="determinate" value=" {{row.courseName}} " matTooltip="{{row.progress}} %"
-                aria-label="Progress bar that inform about progress">
+              <mat-progress-bar mode="determinate" value=" {{row.courseName}} " matTooltip="{{row.progress}} %" aria-label="Progress bar that inform about progress">
               </mat-progress-bar>
             </td>
           </ng-container>
@@ -55,7 +54,7 @@
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
             <td mat-cell *matCellDef="let row" [style.color]="row.color">
-                <mat-icon class="icon-add neutral" (click)="editCourse(row)">edit</mat-icon>
+              <mat-icon class="icon-add neutral" (click)="editCourse(row)">edit</mat-icon>
               <mat-icon class="icon-add positive" (click)="openCourse(row)">play_circle_filled</mat-icon>
               <mat-icon color="warn" (click)="deleteCourse(row)">delete</mat-icon>
             </td>
@@ -71,15 +70,14 @@
       </div>
 
       <mat-toolbar *ngIf="isVisibleCourseForm">
-          <img src="../../../../assets/course.png">
+        <img src="../../../../assets/course.png">
         Add new course
       </mat-toolbar>
 
       <div mat-elevation-z8 *ngIf="isVisibleCourseForm">
         <mat-card fxFlex.md="100%" fxFlex.lt-md="100%">
 
-          <form class="container" [formGroup]="addCourseForm" (ngSubmit)="addCourse()" autocomplete="on"
-            fxLayoutGap="2rem">
+          <form class="container" [formGroup]="addCourseForm" (ngSubmit)="addCourse()" autocomplete="on" fxLayoutGap="2rem">
 
             <mat-form-field>
               <input formControlName="courseName" type="text" matInput placeholder="CourseName" class="form-cotrol">
@@ -101,15 +99,14 @@
 
 
             <mat-form-field>
-              <input formControlName="courseIconUrl" type="text" matInput placeholder="Course icon url"
-                class="form-cotrol">
+              <input formControlName="courseIconUrl" type="text" matInput placeholder="Course icon url" class="form-cotrol">
               <mat-error class="isValid-feedback">Enter a valid url</mat-error>
               <mat-label>
                 <mat-icon>image</mat-icon> Course icon url
               </mat-label>
             </mat-form-field>
 
-            <mat-form-field hintLabel="At least 10 character" >
+            <mat-form-field hintLabel="At least 10 character">
               <input formControlName="description" type="text" class="form-cotrol" matInput placeholder="Description">
               <mat-error class="isValid-feedback">
                 Enter a valid description
@@ -119,17 +116,17 @@
               </mat-label>
             </mat-form-field>
 
-            <mat-form-field hintLabel="At least 10 character" >
-                <mat-select formControlName="categoryId" >
-                    <mat-option *ngFor="let category of categories" value='{{category.id}}'>{{category.categoryName}}</mat-option>
-                  </mat-select>
-                <mat-error class="isValid-feedback">
-                  Select category
-                </mat-error>
-                <mat-label>
-                  <mat-icon>category</mat-icon> Category
-                </mat-label>
-              </mat-form-field>
+            <mat-form-field hintLabel="At least 10 character">
+              <mat-select formControlName="categoryId">
+                <mat-option *ngFor="let category of categories" value='{{category.id}}'>{{category.categoryName}}</mat-option>
+              </mat-select>
+              <mat-error class="isValid-feedback">
+                Select category
+              </mat-error>
+              <mat-label>
+                <mat-icon>category</mat-icon> Category
+              </mat-label>
+            </mat-form-field>
 
             <mat-card-actions fxLayout fxLayoutAlign="center center">
               <button type="submit" mat-raised-button color="primary">

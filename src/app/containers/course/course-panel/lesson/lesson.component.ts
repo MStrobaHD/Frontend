@@ -10,7 +10,13 @@ import { CourseService } from 'src/app/core/services/education/course-service/co
 })
 export class LessonComponent implements OnInit {
   isLessonListVisible = true;
-  displayedColumns: string[] = [ 'courseIconUrl','name', 'description', 'date', 'action'];
+  displayedColumns: string[] = [ 'isWatched', 
+                                 'courseIconUrl',
+                                 'name',
+                                 'description',
+                                 'date',
+                                 'action',
+                                 ];
   // dataSource: MatTableDataSource<UserData>;
   dataSource = new MatTableDataSource();
 

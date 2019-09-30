@@ -2,21 +2,20 @@ mat-form-field {
   width: 100%;
 }
 
-
-  mat-toolbar {
-    height: 4rem;
-    text-emphasis: none;
-    text-decoration: none;
-    margin-top: 1rem;
-    font-size: 1.8rem;
-    font-family: "Raleway", sans-serif;
-    border-radius: 0.2rem;
-    // border: 1px solid rgb(62, 151, 253);
-    margin-bottom: 3rem;
-    -webkit-box-shadow: 2px 2px 5px 0px #00000057;
-    -moz-box-shadow: 2px 2px 5px 0px #00000057;
-    box-shadow: 2px 2px 5px 0px #00000057;
-  }
+mat-toolbar {
+  height: 4rem;
+  text-emphasis: none;
+  text-decoration: none;
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-family: "Raleway", sans-serif;
+  border-radius: 0.2rem;
+  // border: 1px solid rgb(62, 151, 253);
+  margin-bottom: 3rem;
+  -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+  -moz-box-shadow: 2px 2px 5px 0px #00000057;
+  box-shadow: 2px 2px 5px 0px #00000057;
+}
 
 table {
   width: 100%;
@@ -55,4 +54,12 @@ table {
 }
 .icon-add {
   color: #00e676;
+}
+mat-expansion-panel {
+  margin-top: 1rem;
+  background-color: #f3f3f3;
+  img {
+    height: 2rem;
+    margin-right: 1rem;
+  }
 }
