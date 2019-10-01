@@ -151,12 +151,12 @@
             </mat-form-field> -->
 
             <!-- <mat-checkbox #full_register>Pełna rejestracja</mat-checkbox> -->
-            <mat-card-actions fxLayout fxLayoutAlign="center center">
-                <button type="submit" mat-raised-button color="primary">
-                    <mat-icon>enter</mat-icon>Submit
+            <mat-card-actions fxLayout fxLayoutAlign="center">
+                <button class="register-button" type="submit" mat-raised-button color="primary">Zarejestruj
                 </button>
-                <button mat-raised-button color="warn" type="button" routerLink="/">
-                    <mat-icon>cancel</mat-icon>Cancel</button>
+                <button [routerLink]="['/login']" type="submit" class="login-button" mat-raised-button color="accent">
+                    <img src="../../../../assets/login-rounded-right--v1.png">
+                </button>
             </mat-card-actions>
         </form>
         <!-- </mat-card-content> -->

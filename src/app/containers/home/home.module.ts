@@ -12,7 +12,10 @@ import { HomeRoutingModule } from './home-routing.module';
   imports: [
     MaterialModule,
     FormsModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    MaterialModule,
+    FormsModule,
+    CommonModule
   ]
 })
 export class HomeModule {

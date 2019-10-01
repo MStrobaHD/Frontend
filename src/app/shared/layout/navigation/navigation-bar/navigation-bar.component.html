@@ -61,15 +61,19 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
-    <mat-toolbar class="user-menu-toolbar--section">Powiadomienia</mat-toolbar>
+    <mat-toolbar class="user-menu-toolbar--section">Ogólne</mat-toolbar>
     <mat-divider></mat-divider>
     <button mat-menu-item [routerLink]="['/users']">
         <mat-icon>person</mat-icon>
-        <span>Moje konto</span>
+        <span>Informacje</span>
     </button>
     <button mat-menu-item [routerLink]="['/flashcard_exam']">
-        <mat-icon>settings</mat-icon>
-        <span>Ustawienia</span>
+        <mat-icon>directions_run</mat-icon>
+        <span>Wyloguj</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/login']">
+        <mat-icon>person</mat-icon>
+        <span>Zaloguj</span>
     </button>
     <mat-toolbar class="user-menu-toolbar--section">Menu</mat-toolbar>
     <a mat-menu-item [routerLink]="['/courses']">
