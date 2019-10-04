@@ -1,21 +1,39 @@
 <section fxFlex fxLayoutAlign="center center">
     <mat-card class="editor-wrapper" fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
-        <mat-toolbar>Edytor kodu</mat-toolbar>
+        <mat-toolbar>
+            <mat-icon [routerLink]="[ '/algorithms']">
+                keyboard_arrow_left
+
+            </mat-icon> Edytor kodu
+        </mat-toolbar>
+        <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Nazwa algorytmu
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Rozwiń aby zobaczyć treść zadania oraz parametry potrzebne do poprawnego rozwiązania zadania
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+              
+                 
+                </mat-expansion-panel>
+                </mat-accordion>
         <mat-toolbar id="menu">
             <div>
                 <mat-form-field>
                     <mat-label>Motyw edytora</mat-label>
-                    <mat-select selected="">
-                        <mat-option value="Dark theme">
+                    <mat-select selected="" [(ngModel)]="mode">
+                        <mat-option value="vs-dark">
                             Dark theme
                         </mat-option>
-                        <mat-option value="Light theme">
+                        <mat-option value="vs">
                             Light theme
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
                 <mat-form-field>
                     <mat-label>Język programowania</mat-label>
                     <mat-select>
@@ -34,8 +52,12 @@
                     </mat-select>
                 </mat-form-field>
                 <button mat-raised-button class="menu-button"><img src="../../../../assets/var_icon.png"></button>
-                <button mat-raised-button class="menu-button"><mat-icon>cloud_upload</mat-icon></button>
-                <button mat-raised-button class="menu-button"><mat-icon>cloud_download</mat-icon></button>
+                <button mat-raised-button class="menu-button">
+                    <mat-icon>cloud_upload</mat-icon>
+                </button>
+                <button mat-raised-button class="menu-button">
+                    <mat-icon>cloud_download</mat-icon>
+                </button>
             </div>
         </mat-toolbar>
         <mat-card>
@@ -45,9 +67,13 @@
         </mat-card>
         <mat-toolbar id="menu">
             <div class="example-button-row" fxFlex fxLayoutAlign="flex-end center">
-                <button mat-raised-button class="menu-button"><mat-icon>translate</mat-icon></button>
-                <button mat-raised-button class="menu-button"><mat-icon>play_circle_filled</mat-icon></button>
-                <button mat-raised-button class="menu-button">Kompiluj i uruchom</button>
+                <button mat-raised-button class="menu-button">
+                    <mat-icon>translate</mat-icon>
+                </button>
+                <button mat-raised-button class="menu-button">
+                    <mat-icon>play_circle_filled</mat-icon>
+                </button>
+                <button mat-raised-button class="compile-execute-button">Kompiluj i uruchom</button>
             </div>
         </mat-toolbar>
     </mat-card>

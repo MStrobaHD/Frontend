@@ -31,9 +31,9 @@
                         <a routerLink="/landing-page">
                             <img mat-card-avatar src="../../../../../assets/settings.png" alt="settings menu icon">
                         </a>
-                    </li> 
+                    </li>
                     <li>
-                        <a [matMenuTriggerFor]="menu"  matBadge="11" matBadgeSize="small" matBadgeColor="warn">
+                        <a [matMenuTriggerFor]="menu" matBadge="11" matBadgeSize="small" matBadgeColor="warn">
                             <img mat-card-avatar src="../../../../../assets/user_menu.png" alt="user menu icon">
                         </a>
                     </li>
@@ -77,20 +77,21 @@
     </button>
     <mat-toolbar class="user-menu-toolbar--section">Menu</mat-toolbar>
     <a mat-menu-item [routerLink]="['/courses']">
-        <mat-icon>group</mat-icon>
+        <mat-icon>view_list</mat-icon>
         <span>Kursy</span>
     </a>
+    <button mat-menu-item routerLink="/courses/course_panel">
+        <mat-icon>view_list</mat-icon>
+        <span>Egzaminy</span>
+    </button>
     <button mat-menu-item routerLink="/algorithms">
-        <mat-icon>folder_shared</mat-icon>
+        <mat-icon>view_list</mat-icon>
         <span>Algorytmy</span>
     </button>
     <a mat-menu-item [routerLink]="['/courses']">
-        <mat-icon>group</mat-icon>
+        <mat-icon>picture_as_pdf</mat-icon>
         <span>Materiały szkoleniowe</span>
     </a>
-    <button mat-menu-item routerLink="/courses/course_panel">
-        <mat-icon>folder_shared</mat-icon>
-        <span>Zadania algorytmiczne</span>
-    </button>
+
 
 </mat-menu>

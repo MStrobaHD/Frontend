@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./judge-panel.component.scss']
 })
 export class JudgePanelComponent implements OnInit {
+  step = 0;
 
+  
   constructor() { }
 
   ngOnInit() {

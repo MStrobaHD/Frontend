@@ -8,17 +8,17 @@ import { Observable, of } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
 import { CourseModel } from 'src/app/core/models/education/course/course.model';
-import { CourseService } from 'src/app/core/services/education/course-service/course.service';
+import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task-service/algorithm-task.service';
 
 @Injectable()
 export class JudgePanelResolver implements Resolve<CourseModel[]> {
 
-    constructor(private courseService: CourseService,
+    constructor(private algorithmTaskService: AlgorithmTaskService,
                 private router: Router,
                 private alertify: AlertifyService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<CourseModel[]> {
-        return this.courseService.getCourses().pipe(
+        return this.algorithmTaskService.getAlgorithmTaskForListAsync().pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving data');
                 this.router.navigate(['/home']);

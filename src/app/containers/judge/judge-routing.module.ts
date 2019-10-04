@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     runGuardsAndResolvers: 'always',
-    path: 'editor',
+    path: 'editor/:id',
     component: CodeEditorComponent
   },
   // {

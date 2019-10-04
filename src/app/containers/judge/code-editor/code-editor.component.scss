@@ -2,17 +2,21 @@ section {
   margin-top: 2rem;
   mat-card {
     mat-toolbar {
-      height: 4rem;
+      height: 3.5rem;
       text-emphasis: none;
       text-decoration: none;
       font-size: 1.8rem;
       font-family: "Raleway", sans-serif;
       border-radius: 0.2rem;
       // border: 1px solid rgb(62, 151, 253);
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
       -webkit-box-shadow: 2px 2px 5px 0px #00000057;
       -moz-box-shadow: 2px 2px 5px 0px #00000057;
       box-shadow: 2px 2px 5px 0px #00000057;
+      
+      mat-icon{
+        cursor: pointer;
+      }
     }
   }
 }
@@ -27,8 +31,8 @@ section {
 #menu {
   background-color: white;
   height: 6rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 mat-form-field {
   font-size: 1.3rem;
@@ -54,5 +58,11 @@ div {
   height: 3rem;
  
   margin-right: 1rem;
+  color: white;
+}
+.compile-execute-button{
+  background-color: #78909c;
+  align-content: center;
+  height: 3rem;
   color: white;
 }

@@ -12,6 +12,7 @@ import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JudgePanelResolver } from 'src/app/core/resolvers/judge/judge-panel/judge-panel.resolver';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task-service/algorithm-task.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,6 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
             FormsModule,
             MonacoEditorModule],
 
-            providers: [JudgePanelResolver,]
+            providers: [JudgePanelResolver, AlgorithmTaskService]
 })
 export class JudgeModule {}

@@ -56,10 +56,11 @@ table {
   color: #00e676;
 }
 mat-expansion-panel {
-  margin-top: 1rem;
   background-color: #f3f3f3;
-  img {
-    height: 2rem;
-    margin-right: 1rem;
+  span {
+    // height: 2rem;
+    margin-top: .3rem;
+    margin-left: .3rem;
+    font-size: 1.6rem;
   }
 }

@@ -2,15 +2,64 @@
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
         <mat-toolbar>
-            Code Editor
+            <img src="../../../../assets/course.png">
+            Algorytmy
         </mat-toolbar>
 
-        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
-                <mat-tab label="Wszystkie algorytmy"> Content 1 </mat-tab>
-                <mat-tab label="Rekomendowane algorytmy"> Lista rekomendowanych algorytmów </mat-tab>
-                <mat-tab label="Rozwiązane algorytmy"> Content 3 </mat-tab>
-                <mat-tab label="Algorytmy nauczyciela"> Content 3 </mat-tab>
-              </mat-tab-group>
-              
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel [expanded]="step === 0" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Wszystkie Algorytmy
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Zawiera wszystkie dostępne algorytmy
+                        <mat-icon>view_list</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-algorithm-list></app-algorithm-list>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Polecane Algorytmy
+                    </mat-panel-title>
+                    <mat-panel-description>
+                            Algorytmy dopasowane do twoich preferencji
+                        <mat-icon>star</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <!-- <app-algorithm-list></app-algorithm-list> -->
+            </mat-expansion-panel>
+
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Zadania Domowe
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Algorytmy zlecone do wykonania
+                        <mat-icon>home_work</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <!-- <app-algorithm-list></app-algorithm-list> -->
+            </mat-expansion-panel>
+
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Rozwiązane algorytmy
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Poprawnie rozwiązane algorytmy
+                        <mat-icon>insert_drive_file</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <!-- <app-algorithm-list></app-algorithm-list> -->
+            </mat-expansion-panel>
+
+        </mat-accordion>
+
     </mat-card>
 </section>

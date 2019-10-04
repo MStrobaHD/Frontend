@@ -10,15 +10,17 @@
 </mat-toolbar> -->
 
 <mat-card>
+    <mat-accordion>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <img src="../../../../../assets/list_icon.png">Lista dostępnych lekcji
+               <mat-icon>view_list</mat-icon> 
+               <span>Lista Lekcji</span>
             </mat-panel-title>
             <mat-panel-description>
             </mat-panel-description>
         </mat-expansion-panel-header>
-
+   
 
         <mat-card>
             <table mat-table [dataSource]="dataSource" matSort *ngIf="isLessonListVisible">
@@ -76,9 +78,10 @@
 
         </mat-card>
     </mat-expansion-panel>
-</mat-card>
+</mat-accordion>
 
-<mat-card>
+
+
     <mat-toolbar>
         <img src="../../../../assets/course.png">
         Lesson content
@@ -91,4 +94,5 @@
     <mat-card-content>
         <app-video-content></app-video-content>
     </mat-card-content>
+
 </mat-card>

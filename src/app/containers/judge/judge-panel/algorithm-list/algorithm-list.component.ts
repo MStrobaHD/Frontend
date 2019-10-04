@@ -1,45 +1,49 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Router } from '@angular/router';
+import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task-service/algorithm-task.service';
+import { AlgorithmTaskListModel } from 'src/app/core/models/judge/algorithm-task.model';
+import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
 @Component({
   selector: 'app-algorithm-list',
   templateUrl: './algorithm-list.component.html',
-  styleUrls: ['./algorithm-list.component.scss']
+  styleUrls: ['./algorithm-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class AlgorithmListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = [
+    'expand',
+    'name',
+    'category',
+    'level',
+    'action'
+  ];
+  dataSource = new MatTableDataSource();
+  algorithmTask: AlgorithmTaskListModel[];
+  expandedElement: AlgorithmTaskListModel | null;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
+  constructor(
+    private router: Router,
+    private algorithmTaskService: AlgorithmTaskService,
+    private alertify: AlertifyService
+  ) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.getAlgorithmTask();
   }
 
   applyFilter(filterValue: string) {
@@ -49,17 +53,21 @@ export class AlgorithmListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+  solveAlgorithm(row) {
+    console.log(row);
+    this.router.navigate(['/algorithms/editor/', row.id]);
+  }
+  getAlgorithmTask() {
+    this.algorithmTaskService
+      .getAlgorithmTaskForListAsync()
+      .subscribe(result => {
+        this.algorithmTask = result;
+        this.dataSource = new MatTableDataSource(this.algorithmTask);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.alertify.success('Data loaded correctly');
+      });
+  }
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}

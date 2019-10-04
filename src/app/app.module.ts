@@ -19,6 +19,7 @@ import { ErrorInterceptorProvider } from './core/interceptors/error.interceptor'
 import { AlertifyService } from './core/services/shared/alertify/alertify.service';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { FloatingButtonComponent } from './shared/layout/floating-button/floating-button.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
     LoginComponent,
     RegisterComponent,
     LoadingIndicatorComponent,
-    RoleMatcherDirective
+    RoleMatcherDirective,
+    FloatingButtonComponent
   ],
   imports: [
     CommonModule,
