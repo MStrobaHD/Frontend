@@ -8,19 +8,77 @@
             </mat-icon> Edytor kodu
         </mat-toolbar>
         <mat-accordion>
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
+            <mat-expansion-panel (opened)="false">
+                <mat-expansion-panel-header>
                     <mat-panel-title>
-                      Nazwa algorytmu
+                        Nazwa algorytmu
                     </mat-panel-title>
                     <mat-panel-description>
-                      Rozwiń aby zobaczyć treść zadania oraz parametry potrzebne do poprawnego rozwiązania zadania
+                        Rozwiń aby zobaczyć treść zadania oraz parametry potrzebne do poprawnego rozwiązania zadania
                     </mat-panel-description>
-                  </mat-expansion-panel-header>
-              
-                 
-                </mat-expansion-panel>
-                </mat-accordion>
+                </mat-expansion-panel-header>
+                <!-- <div>
+                        <span class="task-label">
+                            Nazwa algorytmu :
+                        </span>
+                        <span>
+                            {{algorithmTask.algorithmTaskName}}
+                        </span>
+                        <br><br>
+                        <span class="task-label">
+                            Treść zadania :
+                        </span>
+                        <span>
+                            {{algorithmTask.description}}
+                        </span>
+                        <br><br>
+                        <span class="task-label">
+                            Złożoność :
+                        </span>
+                        <span>
+                            {{algorithmTask.complexity.complexityName}}
+                        </span>
+                        <br><br>
+                        <span class="task-label">
+                            Dane testowe :
+                        </span>
+                        <span>
+                            {{algorithmTask.complexity.complexityName}}
+                        </span>
+                    </div> -->
+                <!-- <mat-grid-list cols="2" rowHeight="15:1">
+                    <mat-grid-tile><span class="task-label">Nazwa algorytmu :</span></mat-grid-tile>
+                    <mat-grid-tile> {{algorithmTask.algorithmTaskName}}</mat-grid-tile>
+                    <mat-grid-tile>3</mat-grid-tile>
+                    <mat-grid-tile>4</mat-grid-tile>
+                    <mat-grid-tile>1</mat-grid-tile>
+                    <mat-grid-tile>2</mat-grid-tile>
+                    <mat-grid-tile>3</mat-grid-tile>
+                    <mat-grid-tile>4</mat-grid-tile>
+                </mat-grid-list> -->
+                <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                    <div class="item item-1" fxFlex="15%">Nazwa algorytmu :</div>
+                    <div class="item item-3" fxFlex>{{algorithmTask.algorithmTaskName}}</div>
+                </div>
+
+                <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                    <div class="item item-1" fxFlex="15%">Treść zadania :</div>
+                    <div class="item item-3" fxFlex> {{algorithmTask.description}}</div>
+                </div>
+                <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                    <div class="item item-1" fxFlex="15%">Złożoność :</div>
+                    <div class="item item-3" fxFlex>{{algorithmTask.complexity.complexityName}}</div>
+                </div>
+                <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                    <div class="item item-1" fxFlex="15%">Dane wejściowe :</div>
+                    <div class="item item-3" fxFlex>23 43 54 65 23 12 32 12</div>
+                </div>
+                <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                    <div class="item item-1" fxFlex="15%">Oczekiwany wynik :</div>
+                    <div class="item item-3" fxFlex>23 43 54 65 23 12 32 12</div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
         <mat-toolbar id="menu">
             <div>
                 <mat-form-field>

@@ -1,0 +1,51 @@
+<section fxFlex fxLayoutAlign="center center">
+    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+
+        <!-- <mat-toolbar>
+            <img src="../../../../../assets/course.png">
+            Egzamin
+        </mat-toolbar> -->
+
+        <mat-card>
+            <mat-chip-list aria-label="Fish selection">
+                <mat-basic-chip *ngFor="let question of questionList" class="chip" selected> <img class="chip-img" src="../../../../../assets/done_icon.png">
+                    <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
+                    <span> Pytanie
+                        {{question}}</span></mat-basic-chip>
+            </mat-chip-list>
+
+        </mat-card>
+        <br><br>
+        <mat-card class="question-title">
+            Na czym polega przeciążanie operatorów w języku C#. Wskaż poprawną odpowiedz
+        </mat-card>
+        <br><br>
+        <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column">
+            <ng-container>
+                <button mat-raised-button [ngStyle]="{'background-color': firstOption}" (click)="select(1)" class="header-info" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)"> Polega na
+                </button>
+                <button mat-raised-button [ngStyle]="{'background-color': secondOption}" (click)="select(2)" class="header-info" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">Polega na
+                </button>
+                <button mat-raised-button [ngStyle]="{'background-color': thirdOption}" (click)="select(3)" class="header-info" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">Polega na
+                </button>
+                <button mat-raised-button [ngStyle]="{'background-color': fourthOption}" (click)="select(4)" class="header-info" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">Polega na
+                </button>
+            </ng-container>
+        </div> 
+        <br><br>
+        <mat-progress-bar mode="buffer" value="40" [ngStyle]="{'color': 'gold'}"></mat-progress-bar>
+        <br><br>
+        <mat-card>
+            <div fxFlex fxLayoutAlign="center center" class="button-row">
+
+                <!-- <button mat-raised-button color="primary">Pierwsze pytanie</button> -->
+                <button mat-raised-button >
+                    <mat-icon>keyboard_arrow_left</mat-icon> Poprzednie pytanie
+                </button>
+                <button mat-raised-button>Następne pytanie <mat-icon>keyboard_arrow_right</mat-icon> </button>
+                <button mat-raised-button >Zakoncz test</button>
+
+            </div>
+        </mat-card>
+    </mat-card>
+</section>

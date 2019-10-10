@@ -18,11 +18,16 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod
+    ng build --configuration production --output-path=dist-prod
   displayName: 'npm install and build'
 
-- task: CopyFiles@2
+- task: ArchiveFiles@2
   inputs:
-    contents: '_buildOutput/**'
-    targetFolder: $(Build.ArtifactStagingDirectory)
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist-prod'
+    includeRootFolder: false
+    replaceExistingArchive: true
+    archiveFile: '$(Build.ArtifactStagingDirectory)/Angular_archive.zip'
+
 - task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/Angular_archive.zip'

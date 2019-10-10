@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { AlgorithmTaskService } from "src/app/core/services/judge/algorithm-task-service/algorithm-task.service";
+import { AlgorithmTaskListModel } from "src/app/core/models/judge/algorithm-task.model";
+import { AlertifyService } from "src/app/core/services/shared/alertify/alertify.service";
 
 @Component({
-  selector: 'app-code-editor',
-  templateUrl: './code-editor.component.html',
-  styleUrls: ['./code-editor.component.scss']
+  selector: "app-code-editor",
+  templateUrl: "./code-editor.component.html",
+  styleUrls: ["./code-editor.component.scss"]
 })
 export class CodeEditorComponent implements OnInit {
-
   mode: string;
 
   editorOptions = {
@@ -22,10 +24,25 @@ export class CodeEditorComponent implements OnInit {
   id: number;
   task: any;
   private sub: any;
-  constructor(private route: ActivatedRoute) {}
+
+  algorithmTask: AlgorithmTaskListModel;
+  algorithmTaskId: number;
+  constructor(
+    private route: ActivatedRoute,
+    private algorithmTaskService: AlgorithmTaskService,
+    private alertify: AlertifyService
+  ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
+    this.algorithmTaskId = +this.route.snapshot.paramMap.get('id');
+    this.getAlgorithmTask();
+  }
+  getAlgorithmTask() {
+    this.algorithmTaskService
+      .getAlgorithmTaskForSolveAsync(this.algorithmTaskId)
+      .subscribe(result => {
+        this.algorithmTask = result;
+        this.alertify.success('Data loaded correctly');
+      });
   }
 }

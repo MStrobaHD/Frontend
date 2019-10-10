@@ -15,9 +15,9 @@ export class AlgorithmTaskService {
   getAlgorithmTaskForListAsync() {
     return this.http.get<AlgorithmTaskListModel[]>(this.baseUrl + 'algorithmTask/');
   }
-  // getExam(examId: number) {
-  //   return this.http.get<ExamModel[]>(this.baseUrl + 'exam/' + examId);
-  // }
+  getAlgorithmTaskForSolveAsync(algorithmTaskId: number) {
+    return this.http.get<AlgorithmTaskListModel>(this.baseUrl + 'algorithmTask/' + algorithmTaskId);
+  }
   // getExamByCategory(categoryId: number) {
   //   return this.http.get<ExamModel[]>(this.baseUrl + 'exam/' + categoryId);
   // }

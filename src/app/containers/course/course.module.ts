@@ -18,6 +18,9 @@ import { CourseEditionPanelComponent } from './course-panel/course-edition-panel
 import { LessonEditComponent } from './course-panel/course-edition-panel/lesson-edit/lesson-edit.component';
 import { ExamEditComponent } from './course-panel/course-edition-panel/exam-edit/exam-edit.component';
 import { UploadComponent } from './course-panel/course-edition-panel/upload/upload.component';
+import { ExamComponent } from './exam-panel/exam/exam.component';
+import { ExamDragDropComponent } from './exam-panel/exam-drag-drop/exam-drag-drop.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { UploadComponent } from './course-panel/course-edition-panel/upload/uplo
     CourseEditionPanelComponent,
     LessonEditComponent,
     ExamEditComponent,
-    UploadComponent
+    UploadComponent,
+    ExamComponent,
+    ExamDragDropComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +44,7 @@ import { UploadComponent } from './course-panel/course-edition-panel/upload/uplo
     MaterialModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [CourseListResolver, CourseService,]
 })

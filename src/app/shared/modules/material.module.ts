@@ -38,7 +38,8 @@ import {
   MatSliderModule,
   MatSnackBarModule,
   MatTooltipModule,
-  MatTreeModule
+  MatTreeModule,
+  
 } from '@angular/material';
 import { A11yModule } from '@angular/cdk/a11y';
 import { CdkStepperModule } from '@angular/cdk/stepper';
@@ -47,6 +48,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
 import { PortalModule } from '@angular/cdk/portal';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatVideoModule } from 'mat-video';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -95,7 +97,8 @@ import { MatVideoModule } from 'mat-video';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    MatVideoModule
+    MatVideoModule,
+    DragDropModule
 
   ],
   exports: [
@@ -142,7 +145,8 @@ import { MatVideoModule } from 'mat-video';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    MatVideoModule
+    MatVideoModule,
+    DragDropModule
   ]
 })
 export class MaterialModule { }
