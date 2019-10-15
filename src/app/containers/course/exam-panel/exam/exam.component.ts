@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exam.component.scss']
 })
 export class ExamComponent implements OnInit {
+
   isDisabled: string;
 
   firstOption = 'e0e0e0';
@@ -42,5 +43,11 @@ export class ExamComponent implements OnInit {
       this.thirdOption = '#f5f5f5';
       this.fourthOption = '#00e676';
     }
+  }
+  getAllQuestions() {
+
+  }
+  getNextQuestion() {
+
   }
 }

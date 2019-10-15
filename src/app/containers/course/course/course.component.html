@@ -9,7 +9,9 @@
       </div>
     </mat-toolbar>
     <mat-card-content>
-
+        <button mat-raised-button [routerLink]="[ '/courses/exam']">
+          <mat-icon>keyboard_arrow_left</mat-icon> Egzamin
+      </button>
       <mat-form-field class="filter">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj interesujący kurs">
       </mat-form-field>
@@ -139,6 +141,7 @@
             <!-- <p>form value : {{addCourseForm.value | json}}</p>
             <p>form value : {{addCourseForm.status | json}}</p> -->
           </form>
+          
         </mat-card>
       </div>
     </mat-card-content>

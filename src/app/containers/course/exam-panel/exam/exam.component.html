@@ -1,13 +1,10 @@
 <section fxFlex fxLayoutAlign="center center">
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
-        <!-- <mat-toolbar>
-            <img src="../../../../../assets/course.png">
-            Egzamin
-        </mat-toolbar> -->
-
         <mat-card>
+            
             <mat-chip-list aria-label="Fish selection">
+                
                 <mat-basic-chip *ngFor="let question of questionList" class="chip" selected> <img class="chip-img" src="../../../../../assets/done_icon.png">
                     <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
                     <span> Pytanie
@@ -39,9 +36,12 @@
             <div fxFlex fxLayoutAlign="center center" class="button-row">
 
                 <!-- <button mat-raised-button color="primary">Pierwsze pytanie</button> -->
-                <button mat-raised-button >
-                    <mat-icon>keyboard_arrow_left</mat-icon> Poprzednie pytanie
+                <button mat-raised-button [routerLink]="[ '/courses']">
+                    <mat-icon>keyboard_arrow_left</mat-icon> Powrót
                 </button>
+                <button mat-raised-button >
+                        <mat-icon>keyboard_arrow_left</mat-icon> Poprzednie pytanie
+                    </button>
                 <button mat-raised-button>Następne pytanie <mat-icon>keyboard_arrow_right</mat-icon> </button>
                 <button mat-raised-button >Zakoncz test</button>
 
