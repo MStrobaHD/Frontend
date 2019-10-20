@@ -1,42 +1,43 @@
 <section fxLayout fxLayoutAlign="center center">
-
   <mat-card fxFlex.xs="100%" fxFlex="55rem" class="card-center">
 
     <mat-card-title fxLayoutAlign="center">
-      <!-- <mat-icon class="icon-space" fxLayout fxLayoutAlign="center">
-        person
-      </mat-icon> -->
       <img src="../../../../assets/user_login.png">
     </mat-card-title>
 
-    <form class="container">
+    <form [formGroup]="loginForm" class="container">
 
-      <mat-form-field hintLabel="Nazwa użytkownika powinna zawierać minimum 4 znaki oraz maksymalnie 10 znaków">
-        <input type="text" matInput placeholder="Your Login" name="username" placeholder="Username" login required>
+      <mat-form-field hintLabel="Wprowadż nazwę użytkownika">
+        <input formControlName="username" type="text" matInput name="username" placeholder="Mateusz" login required [ngClass]="{'isValid': loginForm.get('username').errors && loginForm.get('username').touched}">
+        <mat-error *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched">
+          Nazwa użytkownika jest wymagana
+        </mat-error>
         <mat-label>
           <mat-icon>account_circle</mat-icon> Nazwa użytkownika
         </mat-label>
       </mat-form-field>
 
-      <mat-form-field hintLabel="Hasło powinno zawierać minimum 4 znaki oraz maksymalnie 10 znaków">
-        <input type="password" matInput placeholder="Your password" name="password" placeholder="Password" minlength="4" maxlength="10" required>
+      <mat-form-field hintLabel="Wprowadż hasło">
+        <input formControlName="password" type="password" matInput name="password" placeholder="*********" required [ngClass]="{'isValid': loginForm.get('password').errors && loginForm.get('password').touched}">
+        <mat-error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+          Hasło jest wymagana
+        </mat-error>
         <mat-label>
           <mat-icon>vpn_key</mat-icon> Hasło
         </mat-label>
       </mat-form-field>
 
       <mat-card-actions fxLayout fxLayoutAlign="center">
-        <button class="login-button" type="submit" mat-raised-button color="primary">Zaloguj</button>
+        <button (click)="login()" class="login-button" type="submit" mat-raised-button color="primary">Zaloguj</button>
         <button [routerLink]="['/register']" class="register-button" type="submit" mat-raised-button color="accent">
           <mat-icon>person_add</mat-icon>
         </button>
       </mat-card-actions>
 
     </form>
-
+    
   </mat-card>
-
 </section>
-
-<!-- <p>form value : {{registerForm.value | json}}</p>
-<p>form value : {{registerForm.status | json}}</p> -->
+<!-- 
+<p>form value : {{loginForm.value | json}}</p>
+<p>form value : {{loginForm.status | json}}</p> -->

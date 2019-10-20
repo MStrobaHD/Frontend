@@ -1,17 +1,18 @@
 <section fxFlex fxLayoutAlign="center center">
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
         <mat-tab-group>
-            <mat-tab label="Add lesson">
-                <ng-template matTabContent>
-                    <app-lesson-edit></app-lesson-edit>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">school</mat-icon> Nowa Lekcja
                 </ng-template>
-            </mat-tab>
-            <mat-tab label="Add exam">
-                <ng-template matTabContent>
-                        <app-exam-edit></app-exam-edit>
+                <app-lesson-edit></app-lesson-edit>>
+              </mat-tab>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">format_list_numbered</mat-icon> Nowy Egzamin
                 </ng-template>
-            </mat-tab>
-       
+                <app-exam-edit></app-exam-edit>>
+              </mat-tab>
         </mat-tab-group>
     </mat-card>
 </section>

@@ -21,6 +21,9 @@ import { UploadComponent } from './course-panel/course-edition-panel/upload/uplo
 import { ExamComponent } from './exam-panel/exam/exam.component';
 import { ExamDragDropComponent } from './exam-panel/exam-drag-drop/exam-drag-drop.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddServerAssetComponent } from './course-panel/course-edition-panel/add-server-asset/add-server-asset.component';
+import { LessonService } from 'src/app/core/services/education/lesson-service/lesson.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ExamEditComponent,
     UploadComponent,
     ExamComponent,
-    ExamDragDropComponent
+    ExamDragDropComponent,
+    AddServerAssetComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule
   ],
-  providers: [CourseListResolver, CourseService,]
+  providers: [CourseListResolver, CourseService, LessonService]
 })
 export class CourseModule {}

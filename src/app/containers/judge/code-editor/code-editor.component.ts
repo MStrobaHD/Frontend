@@ -12,6 +12,10 @@ import { AlertifyService } from "src/app/core/services/shared/alertify/alertify.
 export class CodeEditorComponent implements OnInit {
   mode: string;
 
+  selected = 0;
+  hovered = 0;
+  readonly = false;
+  
   editorOptions = {
     theme: this.mode,
     language: 'csharp',

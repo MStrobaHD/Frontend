@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ExamModel } from 'src/app/core/models/education/exam/exam.model';
+import { ExamAddModel } from 'src/app/core/models/education/exam/examAdd.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,9 @@ export class ExamService {
   getExamByCategory(categoryId: number) {
     return this.http.get<ExamModel[]>(this.baseUrl + 'exam/' + categoryId);
   }
-  // addExam(exam: ExamAddModel) {
-  //   return this.http.post<ExamAddModel[]>(this.baseUrl + 'exam/', exam);
-  // }
+  addExam(exam: ExamAddModel) {
+    return this.http.post<ExamAddModel[]>(this.baseUrl + 'exam/', exam);
+  }
   deleteExam(examId: number) {
     const url = this.baseUrl + `exam/` + examId;
     return this.http.delete(url);

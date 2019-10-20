@@ -20,11 +20,17 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ],
 })
 export class AlgorithmListComponent implements OnInit {
+
+  selected = 0;
+  hovered = 0;
+  readonly = false;
+
   displayedColumns: string[] = [
     'expand',
     'name',
     'category',
     'level',
+    'rating',
     'action'
   ];
   dataSource = new MatTableDataSource();

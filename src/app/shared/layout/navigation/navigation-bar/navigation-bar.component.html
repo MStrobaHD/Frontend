@@ -67,13 +67,17 @@
         <mat-icon>person</mat-icon>
         <span>Informacje</span>
     </button>
-    <button mat-menu-item [routerLink]="['/flashcard_exam']">
+    <button mat-menu-item (click)="logout()">
         <mat-icon>directions_run</mat-icon>
         <span>Wyloguj</span>
     </button>
     <button mat-menu-item [routerLink]="['/login']">
         <mat-icon>person</mat-icon>
         <span>Zaloguj</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/register']">
+        <mat-icon>person_add</mat-icon>
+        <span>Zarejestruj</span>
     </button>
     <mat-toolbar class="user-menu-toolbar--section">Menu</mat-toolbar>
     <a mat-menu-item [routerLink]="['/courses']">

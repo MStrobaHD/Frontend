@@ -9,8 +9,8 @@
       </div>
     </mat-toolbar>
     <mat-card-content>
-        <button mat-raised-button [routerLink]="[ '/courses/exam']">
-          <mat-icon>keyboard_arrow_left</mat-icon> Egzamin
+      <button mat-raised-button [routerLink]="[ '/courses/exam']">
+        <mat-icon>keyboard_arrow_left</mat-icon> Egzamin
       </button>
       <mat-form-field class="filter">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj interesujący kurs">
@@ -21,19 +21,19 @@
 
           <!-- ID Column -->
           <ng-container matColumnDef="courseIconUrl">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
             <td mat-cell *matCellDef="let row"><img src="{{row.courseIconUrl}}"> </td>
           </ng-container>
 
           <!-- Course name Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Course name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa Kursu </th>
             <td mat-cell *matCellDef="let row">{{row.courseName}}</td>
           </ng-container>
 
           <!-- Progress Column -->
           <ng-container matColumnDef="progress">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Postęp </th>
             <td mat-cell *matCellDef="let row">
               <mat-progress-bar mode="determinate" value=" {{row.courseName}} " matTooltip="{{row.progress}} %" aria-label="Progress bar that inform about progress">
               </mat-progress-bar>
@@ -42,20 +42,24 @@
 
           <!-- Description Column -->
           <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-            <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ocena </th>
+            <td mat-cell *matCellDef="let row">
+              <ngb-rating [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
+            </td>
           </ng-container>
 
           <!-- Date Column -->
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
             <td mat-cell *matCellDef="let row"> {{row.date | date:"fullDate"}} </td>
           </ng-container>
 
           <!-- Action Column -->
           <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Czynności </th>
             <td mat-cell *matCellDef="let row" [style.color]="row.color">
+              <mat-icon class="icon-add positive" (click)="openCourse(row)">add_circle</mat-icon>
+              <mat-icon color="warn" (click)="openCourse(row)">clear</mat-icon>
               <mat-icon class="icon-add neutral" (click)="editCourse(row)">edit</mat-icon>
               <mat-icon class="icon-add positive" (click)="openCourse(row)">play_circle_filled</mat-icon>
               <mat-icon color="warn" (click)="deleteCourse(row)">delete</mat-icon>
@@ -83,22 +87,11 @@
 
             <mat-form-field>
               <input formControlName="courseName" type="text" matInput placeholder="CourseName" class="form-cotrol">
-              <mat-error class="isValid-feedback">Enter valid CourseName</mat-error>
+              <mat-error class="isValid-feedback">Wprowadż nazwę kursu</mat-error>
               <mat-label>
-                <mat-icon>title</mat-icon> CourseName
+                <mat-icon>title</mat-icon> Nazwa Kursu
               </mat-label>
             </mat-form-field>
-
-            <mat-form-field>
-              <input formControlName="date" type="date" matInput placeholder="Date" class="form-cotrol">
-              <mat-error class="isValid-feedback">
-                Enter a valid date
-              </mat-error>
-              <mat-label>
-                <mat-icon>date_range</mat-icon> Date
-              </mat-label>
-            </mat-form-field>
-
 
             <mat-form-field>
               <input formControlName="courseIconUrl" type="text" matInput placeholder="Course icon url" class="form-cotrol">
@@ -141,9 +134,14 @@
             <!-- <p>form value : {{addCourseForm.value | json}}</p>
             <p>form value : {{addCourseForm.status | json}}</p> -->
           </form>
-          
         </mat-card>
       </div>
+      <p class="opis"> ___progres bar widoczny tylko jeśli zapisany na kurs</p>
+      <p class="opis"> ___możliwość oceny tylko po dodaniu kursu</p>
+      <p class="opis"> ___przyciski odpowiednio</p>
+      <p class="opis"> ___Przerobić tabele na tabele z opisem wierszy</p>
+      <p class="opis"> ___Poprawić panel nauki i egzaminowania</p>
     </mat-card-content>
+   
   </mat-card>
 </section>

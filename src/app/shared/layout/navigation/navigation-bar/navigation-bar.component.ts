@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,12 +9,18 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class NavigationBarComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
-  constructor() { }
+  constructor(private router: Router,
+              private alertifyService: AlertifyService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
+
   onToggleSidenav() {
     this.sidenavToggle.emit();
     console.log('in sidenav');
+  }
+  logout() {
+    localStorage.removeItem('token');
+    this.alertifyService.message('Zostałeś wylogowany');
+    this.router.navigate(['/login']);
   }
 }

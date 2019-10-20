@@ -17,9 +17,15 @@ import { RoleMatcherDirective } from './core/directives/role-matcher.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptorProvider } from './core/interceptors/error.interceptor';
 import { AlertifyService } from './core/services/shared/alertify/alertify.service';
-
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { FloatingButtonComponent } from './shared/layout/floating-button/floating-button.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './core/services/user/auth.service';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -32,17 +38,26 @@ import { FloatingButtonComponent } from './shared/layout/floating-button/floatin
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     MonacoEditorModule.forRoot(),
-
+    JwtModule.forRoot({
+      config: {
+        // tslint:disable-next-line:object-literal-shorthand
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['https://localhost:44345'],
+        blacklistedRoutes: ['https://localhost:44345/api/auth']
+      }
+  }),
     // Container modules
     AuthModule,
     // Shared modules
     SharedModule
   ],
-  providers: [AlertifyService, ErrorInterceptorProvider],
+  providers: [AlertifyService, ErrorInterceptorProvider, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

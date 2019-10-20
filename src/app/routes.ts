@@ -11,7 +11,7 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   {
-    path: 'landing-page',
+    path: 'home',
     loadChildren: () => import('./containers/home/home.module').then(mod => mod.HomeModule)
   },
   {

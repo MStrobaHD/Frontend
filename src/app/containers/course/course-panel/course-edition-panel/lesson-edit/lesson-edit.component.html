@@ -1,68 +1,87 @@
-<div fxFlex fxLayoutAlign="center center">
+<div>
     <div>
 
         <mat-card-title fxLayoutAlign="center">
-            <!-- <mat-icon class="icon-space" fxLayout fxLayoutAlign="center">
-                      person
-                    </mat-icon> -->
             <img src="../../../../../../assets/lesson.png">
         </mat-card-title>
 
-        <form [formGroup]="addLessonForm" (ngSubmit)="addCourse()" autocomplete="on" fxLayoutGap="3rem">
+        <mat-vertical-stepper [linear]="false" #stepper>
 
-            <mat-form-field>
-                <input formControlName="lessonName" type="text" matInput placeholder="lessonName" class="form-cotrol">
-                <mat-error class="isValid-feedback">Enter valid Lesson name</mat-error>
-                <mat-label>
-                    <mat-icon>title</mat-icon> Lesson name
-                </mat-label>
-            </mat-form-field>
+            <mat-step [stepControl]="LessonForm">
+                <form [formGroup]="LessonForm">
+                    <ng-template matStepLabel>Informacje wymagane do utworzenia nowej lekcji</ng-template>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>title</mat-icon> Nazwa Lekcji
+                        </mat-label>
+                        <input formControlName="lessonTitle" matInput placeholder="Nazwa lekcji" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>filter_1</mat-icon> Ważność
+                        </mat-label>
+                        <input formControlName="priority" matInput placeholder="Ważność" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-raised-button color="accent" matStepperNext (click)="addLesson()">Utwórz Lekcję</button>
+                    </div>
+                </form>
+            </mat-step>
 
-            <mat-form-field>
-                <input formControlName="serverAssetId" type="text" matInput placeholder="Description"
-                    class="form-cotrol">
-                <mat-error class="isValid-feedback">
-                    Enter description here
-                </mat-error>
-                <mat-label>
-                    <mat-icon>date_range</mat-icon> Description
-                </mat-label>
-            </mat-form-field>
+            <mat-step>
+                <form>
+                    <ng-template matStepLabel>Dołącz materiały szkoleniowe</ng-template>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>title</mat-icon> Nazwa Materiału
+                        </mat-label>
+                        <input [(ngModel)]="serverAssetName" name="serverAssetName" matInput placeholder="Nazwa materiału">
+                    </mat-form-field>
+                    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                    <div>
+                        <button mat-raised-button color="primary" matStepperPrevious>Poprzedni</button>
+                        <button mat-raised-button color="accent" matStepperNext (click)="onCreate()">Zatwierdż</button>
+                    </div>
+                </form>
+            </mat-step>
 
+            <mat-step [stepControl]="AssetForm">
+                <form [formGroup]="AssetForm">
+                    <ng-template matStepLabel>Dołącz link z materiałami szkoleniowymi</ng-template>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>title</mat-icon> Nazwa Materiału
+                        </mat-label>
+                        <input formControlName="assetName" matInput placeholder="Nazwa materiału" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>attachment</mat-icon> Adres Odnośnika
+                        </mat-label>
+                        <input formControlName="url" matInput placeholder="Adres odnośnika" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-raised-button color="primary" matStepperPrevious>Poprzedni</button>
+                        <button mat-raised-button color="accent" (click)="addCloudAsset()">Zatwierdż</button>
+                    </div>
+                </form>
+                <p>form value : {{LessonForm.value | json}}</p>
+                <p>form value : {{LessonForm.status | json}}</p>
 
-            <mat-form-field>
-                <input formControlName="cloudAssetId" type="text" matInput placeholder="cloudAssetId"
-                    class="form-cotrol">
-                <mat-error class="isValid-feedback">Enter a valid url</mat-error>
-                <mat-label>
-                    <mat-icon>image</mat-icon> Add link to material
-                </mat-label>
-            </mat-form-field>
+                <!-- <p>form value : {{ServerForm.value | json}}</p>
+                <p>form value : {{ServerForm.status | json}}</p> -->
 
-            <!-- <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
-            <mat-hint>Click the Upload button to sent materials to server</mat-hint> -->
+                <p>form value : {{AssetForm.value | json}}</p>
+                <p>form value : {{AssetForm.status | json}}</p>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Zakończ</ng-template>
 
-
-            <!-- <mat-form-field>
-                    <mat-label>Select an option</mat-label>
-                    <mat-select [(value)]="selected">
-                      <mat-option>None</mat-option>
-                      <mat-option value="option1">Option 1</mat-option>
-                      <mat-option value="option2">Option 2</mat-option>
-                      <mat-option value="option3">Option 3</mat-option>
-                    </mat-select>
-                  </mat-form-field> -->
-                  
-                  <!-- <p>You selected: {{selected}}</p> -->
-
-            <mat-card-actions fxLayout fxLayoutAlign="center center">
-                <button type="submit" mat-raised-button color="primary">
-                    <mat-icon>add_circle</mat-icon>
-                </button>
-
-            </mat-card-actions>
-            <!-- <p>form value : {{addCourseForm.value | json}}</p>
-            <p>form value : {{addCourseForm.status | json}}</p> -->
-        </form>
+                <div>
+                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+                    <button mat-raised-button color="accent" (click)="stepper.reset()">Utwórz Nową Lekcję</button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
     </div>
 </div>

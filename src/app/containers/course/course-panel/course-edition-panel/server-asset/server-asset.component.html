@@ -1,0 +1,38 @@
+<form  autocomplete="on" fxLayoutGap="3rem">
+
+    <mat-form-field>
+        <input  type="text" matInput placeholder="lessonName" class="form-cotrol">
+        <mat-error class="isValid-feedback">Enter valid Lesson name</mat-error>
+        <mat-label>
+            <mat-icon>title</mat-icon> Lesson name
+        </mat-label>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input  type="text" matInput placeholder="Description"
+            class="form-cotrol">
+        <mat-error class="isValid-feedback">
+            Enter description here
+        </mat-error>
+        <mat-label>
+            <mat-icon>date_range</mat-icon> Description
+        </mat-label>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input  type="text" matInput placeholder="cloudAssetId"
+            class="form-cotrol">
+        <mat-error class="isValid-feedback">Enter a valid url</mat-error>
+        <mat-label>
+            <mat-icon>image</mat-icon> Add link to material
+        </mat-label>
+    </mat-form-field>
+
+    <mat-card-actions fxLayout fxLayoutAlign="center center">
+
+        <button type="submit" mat-raised-button color="primary">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+
+    </mat-card-actions>
+</form>

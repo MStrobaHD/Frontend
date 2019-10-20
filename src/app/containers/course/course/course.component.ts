@@ -34,6 +34,10 @@ export class CourseComponent implements OnInit {
   courses: CourseModel[];
   categories: CategoryModel[];
 
+  selected = 0;
+  hovered = 0;
+  readonly = false;
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -54,7 +58,6 @@ export class CourseComponent implements OnInit {
   createAddCourseForm() {
     this.addCourseForm = this.fb.group({
       courseName: ['', Validators.required],
-      date: [Date, Validators.required],
       courseIconUrl: ['', Validators.required],
       description: ['', Validators.required],
       userId: [1, Validators.required],
@@ -77,7 +80,6 @@ export class CourseComponent implements OnInit {
         () => {
           this.ngOnInit();
           this.alertify.success('Course was added');
-          // this.router.navigate(['/courses']);
         },
         error => {
           console.log(error);
@@ -126,9 +128,7 @@ export class CourseComponent implements OnInit {
         this.alertify.error(error);
       }
     );
-    this.alertify.message(course.id);
-    this.ngOnInit();
-    // this.ngOnInit();
+
   }
   closeCourse() {
     this.isVisibleCourseForm = false;

@@ -17,4 +17,12 @@ section {
       }
     }
   }
-  
+  mat-icon{
+    margin-right: 1rem;
+  }
+  mat-tab-group{
+      text-align: center !important;
+      // align-items: center !important;
+      width: 100%;
+
+  }

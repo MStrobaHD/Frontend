@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://education-support-app-api.azurewebsites.net/api/'
+  apiUrl: 'http://education-support-app-api.azurewebsites.net/api/'
 };
 
 /*

@@ -13,6 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JudgePanelResolver } from 'src/app/core/resolvers/judge/judge-panel/judge-panel.resolver';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task-service/algorithm-task.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,14 +23,17 @@ import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task
     AlgorithmAddComponent,
     AlgorithmFileUploadComponent
   ],
-  imports: [CommonModule, 
-            JudgeRoutingModule,
-            MaterialModule,
-            SharedModule,
-            ReactiveFormsModule,
-            FormsModule,
-            MonacoEditorModule],
+  imports: [
+    CommonModule,
+    JudgeRoutingModule,
+    MaterialModule,
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MonacoEditorModule,
+    NgbModule
+  ],
 
-            providers: [JudgePanelResolver, AlgorithmTaskService]
+  providers: [JudgePanelResolver, AlgorithmTaskService]
 })
 export class JudgeModule {}

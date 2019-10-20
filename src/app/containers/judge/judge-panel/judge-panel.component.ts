@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JudgePanelComponent implements OnInit {
   step = 0;
-
+  selected = 0;
+  hovered = 0;
+  readonly = false;
   
   constructor() { }
 

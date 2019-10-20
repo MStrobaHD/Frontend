@@ -1,4 +1,4 @@
-<div fxFlex fxLayoutAlign="center center">
+<div>
     <div>
 
         <mat-card-title fxLayoutAlign="center">
@@ -8,65 +8,161 @@
             <img src="../../../../../../assets/exam.png">
         </mat-card-title>
 
-        <form autocomplete="on">
 
-            <mat-form-field>
-                <input formControlName="examName" type="text" matInput placeholder="C# course" class="form-cotrol">
-                <mat-error class="isValid-feedback">Enter exam name</mat-error>
-                <mat-label>
-                    <mat-icon>title</mat-icon> Exam name
-                </mat-label>
-            </mat-form-field>
+        <mat-vertical-stepper [linear]="isLinear" #stepper>
 
-            <mat-form-field>
-                <input formControlName="numberOfQuestions" type="number" matInput placeholder="10" class="form-cotrol">
-                <mat-error class="isValid-feedback">
-                    Enter number of questions here
-                </mat-error>
-                <mat-label>
-                    <mat-icon>format_list_numbered</mat-icon> Number of questions
-                </mat-label>
-            </mat-form-field>
+            <mat-step [stepControl]="ExamAddForm">
+                <form [formGroup]="ExamAddForm">
+                    <ng-template matStepLabel>Informacje potrzebne do utworzenia egzaminu</ng-template>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>title</mat-icon> Nazwa Egzaminu
+                        </mat-label>
+                        <input matInput placeholder="Nazwa Egzaminu" formControlName="examName" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>filter_1</mat-icon> Liczba pytań
+                        </mat-label>
+                        <input type="number" matInput placeholder="Liczba pytań" formControlName="numberOfQuestion" [(ngModel)]="examItemsLimit" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>filter_1</mat-icon> Czas na rozwiązanie egzaminu
+                        </mat-label>
+                        <input type="number" matInput placeholder="Czas na rozwiązanie egzaminu" formControlName="timeForSolve" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>
+                            <mat-icon>business</mat-icon> Typ egzaminu
+                        </mat-label>
+                        <mat-select [(value)]="examTypeSelector" formControlName="examType">
+                            <mat-option value=1> Pytanie - Wpisywanie </mat-option>
+                            <mat-option value=2> Pytanie - Wybieranie </mat-option>
+                            <mat-option value=3> Ustalanie kolejności</mat-option>
+                        </mat-select>
+                    </mat-form-field>{{examTypeSelector}}
+                    <div>
+                        <button mat-raised-button color="accent" (click)="addExam()" matStepperNext>Zatwierdź</button>
+                    </div>
+                    <!-- <p>form value : {{ExamAddForm.value | json}}</p>
+                    <p>form value : {{ExamAddForm.status | json}}</p> -->
+                </form>
+            </mat-step>
+
+            <mat-step *ngIf="examTypeSelector == 1" [stepControl]="questionAddForm">
+
+                <br>
+                <mat-chip-list aria-label="Fish selection">
+
+                    <mat-basic-chip *ngFor="let question of questionList" class="chip" selected>
+                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
+                        <span> Pytanie
+                            {{question}}</span></mat-basic-chip>
+
+                </mat-chip-list>
+                <br>
+                <ng-template matStepLabel>Pytanie - Wpisywanie Odpowiedź</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Treść Pytania" name="question" [(ngModel)]="questionModel.questionContent" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Odpowiedź" name="ans" [(ngModel)]="questionModel.answer" required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+                    <button mat-raised-button color="accent" (click)="addQuestion()">Utwórz pytanie</button>
+                    <button mat-raised-button color="primary" matStepperNext>Przejdź dalej</button>
+                </div>
 
 
-            <mat-form-field>
-                <input formControlName="timeToSolve" type="text" matInput placeholder="15" class="form-cotrol">
-                <mat-error class="isValid-feedback">Enter time here</mat-error>
-                <mat-label>
-                    <mat-icon>timer</mat-icon> Time to solve
-                </mat-label>
-            </mat-form-field>
+            </mat-step>
 
-            <!-- <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
-                <mat-hint>Click the Upload button to sent materials to server</mat-hint>
-     
-                <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
-                <mat-hint>Click the Upload button to sent materials to server</mat-hint> -->
+            <mat-step *ngIf="examTypeSelector == 2" [stepControl]="chooseQuestionAddForm">
+                <br>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-basic-chip *ngFor="let question of questionList" class="chip" selected>
+                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
+                        <span> Pytanie
+                            {{question}}</span></mat-basic-chip>
+                </mat-chip-list>
+                <br>
+                <ng-template matStepLabel>Pytanie - Wybieranie odpowiedzi </ng-template>
+                <mat-form-field>
+                    <mat-label>
+                        <mat-icon>title</mat-icon> Treść Pytania
+                    </mat-label>
+                    <input matInput placeholder="Treść Pytania" name="question" [(ngModel)]="chooseQuestionModel.question" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>
+                        <mat-icon>title</mat-icon> Treść Pytania
+                    </mat-label>
+                    <input matInput placeholder="Poprawna odpowiedź" name="correctAnswer" [(ngModel)]="chooseQuestionModel.correctAnswer" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>
+                        <mat-icon>title</mat-icon> Treść Pytania
+                    </mat-label>
+                    <input matInput placeholder="Opcja 1" name="optionOne" [(ngModel)]="chooseQuestionModel.optionOne" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>
+                        <mat-icon>title</mat-icon> Treść Pytania
+                    </mat-label>
+                    <input matInput placeholder="Opcja 2" name="optionTwo" [(ngModel)]="chooseQuestionModel.optionTwo" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>
+                        <mat-icon>title</mat-icon> Treść Pytania
+                    </mat-label>
+                    <input matInput placeholder="Opcja 3" name="optionThree" [(ngModel)]="chooseQuestionModel.optionThree" required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+                    <button mat-raised-button color="accent" (click)="addChooseQuestion()">Utwórz pytanie</button>
+                    <button mat-raised-button color="primary" matStepperNext>Przejdź dalej</button>
+                </div>
+                <!-- <p>form value : {{chooseQuestionAddForm.value | json}}</p>
+                <p>form value : {{chooseQuestionAddForm.status | json}}</p> -->
 
-            <mat-form-field>
-                <mat-label>
-                    <mat-icon>
-                        category
-                    </mat-icon>Select exam type
-                </mat-label>
-                <mat-select [(value)]="selected">
-                    <mat-option>None</mat-option>
-                    <mat-option value="option1">Option 1</mat-option>
-                    <mat-option value="option2">Option 2</mat-option>
-                    <mat-option value="option3">Option 3</mat-option>
-                </mat-select>
-            </mat-form-field>
+            </mat-step>
 
-            <p>You selected: {{selected}}</p>
+            <mat-step *ngIf="examTypeSelector == 3" [stepControl]="dragDropAddForm">
+                <br>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-basic-chip *ngFor="let question of questionList" class="chip" selected>
+                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
+                        <span> Pytanie
+                            {{question}}</span></mat-basic-chip>
+                </mat-chip-list>
+                <br>
 
-            <mat-card-actions fxLayout fxLayoutAlign="center center">
-                <button type="submit" mat-raised-button color="primary">
-                    <mat-icon>add_circle</mat-icon>
-                </button>
+                <ng-template matStepLabel>Ustalanie Poprawnej Kolejności</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Treść Bloku" name="optionThree" [(ngModel)]="dragDropModel.content" required>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="number" matInput placeholder="Prawidłowa kolejność" name="optionThree" [(ngModel)]="dragDropModel.blockPosition" required>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+                    <button mat-raised-button color="accent" (click)="addDragDrop()">Utwórz pytanie</button>
+                    <button mat-raised-button color="primary" matStepperNext>Przejdź dalej</button>
+                </div>
+                <!-- <p>form value : {{dragDropAddForm.value | json}}</p>
+                <p>form value : {{dragDropAddForm.status | json}}</p> -->
 
-            </mat-card-actions>
-            <!-- <p>form value : {{addCourseForm.value | json}}</p>
-                <p>form value : {{addCourseForm.status | json}}</p> -->
-        </form>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Zakończ</ng-template>
+
+                <div>
+                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+                    <button mat-raised-button color="accent" (click)="stepper.reset()">Utwórz Nowy Egzamin</button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
     </div>
 </div>

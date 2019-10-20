@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/user/auth.service';
 import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginModel } from 'src/app/core/models/auth/login.model';
 
 @Component({
   selector: 'app-login',
@@ -11,28 +13,43 @@ import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.
 export class LoginComponent implements OnInit {
 
   @Output() sidenavToggle = new EventEmitter<void>();
-  model: any = {};
+
+  loginForm: FormGroup;
+  loginModel: LoginModel;
 
   constructor(
     public authService: AuthService,
     private alertify: AlertifyService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.createLoginForm();
+  }
 
+  createLoginForm() {
+    this.loginForm = this.formBuilder.group(
+      {
+        username: ['', Validators.required],
+        password:  ['', Validators.required],
+        role: ['student', Validators.required]
+      });
+  }
   login() {
-    this.authService.login(this.model).subscribe(
-      next => {
-        this.alertify.success('Zostałeś zalogowany');
-      },
-      error => {
-        this.alertify.error(error);
-      },
-      () => {
-        this.router.navigate(['/home']);
-      }
-    );
+    if (this.loginForm.valid) {
+      this.loginModel = Object.assign({}, this.loginForm.value);
+      this.authService.login(this.loginModel).subscribe(
+        () => {
+          this.alertify.success('Zostałeś zalogowany');
+          this.router.navigate(['/home']);
+        },
+        error => {
+          console.log(error);
+          this.alertify.error('Logowanie nieudane');
+        }
+      );
+    }
   }
 
   onToggleSidenav() {
@@ -40,10 +57,5 @@ export class LoginComponent implements OnInit {
   }
   loggedIn() {
     return this.authService.loggedIn();
-  }
-  logOut() {
-    localStorage.removeItem('token');
-    this.alertify.message('Zostałeś wylogowany');
-    this.router.navigate(['/home']);
   }
 }

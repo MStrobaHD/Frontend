@@ -78,11 +78,12 @@
                 <button mat-raised-button class="menu-button">
                     <mat-icon>cloud_download</mat-icon>
                 </button>
+                <ngb-rating  [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
             </div>
         </mat-toolbar>
         <mat-card>
             <div style="height: 500px">
-                <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+                <ngx-monaco-editor  style="height: 100%" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
             </div>
         </mat-card>
         <mat-toolbar id="menu">

@@ -1,0 +1,35 @@
+mat-card {
+    mat-toolbar {
+      height: 4rem;
+      text-emphasis: none;
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-family: "Raleway", sans-serif;
+      border-radius: 0.2rem;
+      // border: 1px solid rgb(62, 151, 253);
+      margin-bottom: 3rem;
+      -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+      -moz-box-shadow: 2px 2px 5px 0px #00000057;
+      box-shadow: 2px 2px 5px 0px #00000057;
+    }
+  }
+  div {
+    font-size: 1.6rem;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  img {
+    height: 8rem;
+  }
+  .card-center {
+    margin-top: 5rem;
+    position: relative;
+    width: 100%;
+  }
+  mat-card-title{
+      margin-top: 5rem;
+  }
+  mat-hint{
+      font-size: 1.2rem;
+  }
