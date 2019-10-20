@@ -24,6 +24,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddServerAssetComponent } from './course-panel/course-edition-panel/add-server-asset/add-server-asset.component';
 import { LessonService } from 'src/app/core/services/education/lesson-service/lesson.service';
+import { ServerAssetComponent } from './course-panel/course-edition-panel/server-asset/server-asset.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LessonService } from 'src/app/core/services/education/lesson-service/le
     UploadComponent,
     ExamComponent,
     ExamDragDropComponent,
-    AddServerAssetComponent
+    AddServerAssetComponent,
+    ServerAssetComponent
   ],
   imports: [
     CommonModule,
