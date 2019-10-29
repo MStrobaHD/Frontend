@@ -25,6 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddServerAssetComponent } from './course-panel/course-edition-panel/add-server-asset/add-server-asset.component';
 import { LessonService } from 'src/app/core/services/education/lesson-service/lesson.service';
 import { ServerAssetComponent } from './course-panel/course-edition-panel/server-asset/server-asset.component';
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { MatFileUploadModule } from 'angular-material-fileupload';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ServerAssetComponent } from './course-panel/course-edition-panel/server
     ExamComponent,
     ExamDragDropComponent,
     AddServerAssetComponent,
-    ServerAssetComponent
+    ServerAssetComponent,
+    FileSelectDirective,
+    FileDropDirective
   ],
   imports: [
     CommonModule,
@@ -51,7 +55,9 @@ import { ServerAssetComponent } from './course-panel/course-edition-panel/server
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    MatFileUploadModule
+
   ],
   providers: [CourseListResolver, CourseService, LessonService]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
@@ -8,7 +8,9 @@ import { LessonService } from 'src/app/core/services/education/lesson-service/le
 import { CloudModel } from 'src/app/core/models/common/cloud/cloud.model';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/core/services/user/auth.service';
-
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from 'src/environments/environment';
+import { CloudParameters } from 'src/app/core/models/common/cloud/parameters.model';
 @Component({
   selector: 'app-lesson-edit',
   templateUrl: './lesson-edit.component.html',
@@ -16,7 +18,11 @@ import { AuthService } from 'src/app/core/services/user/auth.service';
 })
 export class LessonEditComponent implements OnInit {
 
- 
+  @Input() assets: CloudModel[];
+  uploader: FileUploader;
+  hasBaseDropZoneOver = false;
+  hasAnotherDropZoneOver = false;
+  baseUrl = environment.apiUrl;
 
   public response: { dbPath: '' };
   public isCreate: boolean;
@@ -49,7 +55,8 @@ export class LessonEditComponent implements OnInit {
     private alertify: AlertifyService,
     private lessonService: LessonService,
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertifyService: AlertifyService
   ) {}
   public uploadFinished = event => {
     this.response = event;
@@ -60,18 +67,61 @@ export class LessonEditComponent implements OnInit {
 
   ngOnInit() {
     this.userID = + localStorage.getItem('userID');
+    this.initializeUploader();
     this.createAddLessonForm();
     // this.createAddServerAssetForm();
     this.createAddCloudAssetForm();
     this.isCreate = true;
-   
+
+  }
+
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+  public fileOverAnother(e: any): void {
+    this.hasAnotherDropZoneOver = e;
+  }
+
+  initializeUploader() {
+
+  
+    console.log(localStorage.getItem('lessonId'));
+    this.uploader = new FileUploader({
+      url: this.baseUrl + 'cloudupload/' + this.userID + '/' + localStorage.getItem('lessonId'),
+      authToken: 'Bearer ' + localStorage.getItem('token'),
+      isHTML5: true,
+      allowedFileType: ['image', 'pdf', 'video'],
+      removeAfterUpload: true,
+      autoUpload: false,
+      maxFileSize: 1000 * 1024 * 1024 * 1024
+    });
+
+    this.uploader.onAfterAddingFile = file => {
+      file.withCredentials = false;
+
+    };
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if (response) {
+        const res: CloudModel = JSON.parse(response);
+        this.alertifyService.success('Plik został wysłany');
+        const asset = {
+          name: res.assetName,
+          type: res.type,
+          url: res.url,
+          publicId: res.publicId,
+          userId: res.userId,
+          lessonId: res.lessonId
+        };
+      }
+    };
   }
 
   createAddLessonForm() {
     this.LessonForm = this.formBuilder.group({
       lessonTitle: [''],
       priority: [],
-      courseId: [12]
+      courseId: [3]
     });
   }
   // createAddServerAssetForm() {
@@ -99,6 +149,8 @@ export class LessonEditComponent implements OnInit {
           // this.ngOnInit();
           console.log(response);
           this.newLessonId = + response;
+          localStorage.removeItem('lessonId');
+          localStorage.setItem('lessonId',  String(this.newLessonId));
           this.alertify.success('Lekcja została utworzona');
         },
         error => {

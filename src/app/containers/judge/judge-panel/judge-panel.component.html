@@ -1,68 +1,203 @@
 <section fxFlex fxLayoutAlign="center center">
-    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+  <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
-        <mat-toolbar>
-                <mat-icon [routerLink]="[ '/']">
-                    keyboard_arrow_left
-    
-                </mat-icon> 
-            Algorytmy
-        </mat-toolbar>
+    <mat-toolbar>
+      <mat-icon [routerLink]="[ '/']">
+        keyboard_arrow_left
 
-        <mat-accordion class="example-headers-align">
-            <mat-expansion-panel [expanded]="step === 0" hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Wszystkie Algorytmy
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Zawiera wszystkie dostępne algorytmy
-                        <mat-icon>view_list</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <app-algorithm-list></app-algorithm-list>
-            </mat-expansion-panel>
+      </mat-icon>
+      Algorytmy
+      <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showAlgorithmForm()">add_circle</mat-icon>
+      </div>
+    </mat-toolbar>
 
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Polecane Algorytmy
-                    </mat-panel-title>
-                    <mat-panel-description>
-                            Algorytmy dopasowane do twoich preferencji
-                        <mat-icon>star</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <!-- <app-algorithm-list></app-algorithm-list> -->
-            </mat-expansion-panel>
+    <mat-card *ngIf="isVisibleCourseForm">
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="algorithmTaskAddForm">
+            <ng-template matStepLabel>Nowe Zadanie</ng-template>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Nazwa Zadania
+              </mat-label>
+              <input matInput placeholder="Nazwa lekcji" formControlName="algorithmTaskName" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Opis
+              </mat-label>
+              <input type="textarea" matInput placeholder="Ważność" formControlName="description" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>business</mat-icon> Poziom Trudności
+              </mat-label>
+              <mat-select formControlName="levelId">
+                <mat-option *ngFor="let level of levels" value="{{level.id}}"> {{level.levelName}} </mat-option>
+              </mat-select>
+            </mat-form-field>{{examTypeSelector}}
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>business</mat-icon> Kategoria
+              </mat-label>
+              <mat-select formControlName="algorithmCategoryId">
+                <mat-option *ngFor="let category of categories" value="{{category.id}}"> {{category.algorithmCategoryName}} </mat-option>
+              </mat-select>
+            </mat-form-field>{{examTypeSelector}}
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>business</mat-icon> Typ egzaminu
+              </mat-label>
+              <mat-select formControlName="complexityId">
+                <mat-option *ngFor="let complexity of complexities" value="{{complexity.id}}"> {{complexity.complexityName}} </mat-option>
+              </mat-select>
+            </mat-form-field>{{examTypeSelector}}
+            <div>
+              <p>form value : {{algorithmTaskAddForm.value | json}}</p>
+              <p>form value : {{algorithmTaskAddForm.status | json}}</p>
+              <button mat-raised-button color="primary" matStepperNext (click)="closeAlgorithmForm()">Anuluj</button>
+              <button mat-raised-button color="accent" matStepperNext>Zatwierdź</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="restrictionAddForm">
+          <form [formGroup]="restrictionAddForm">
+            <ng-template matStepLabel>Ograniczenia Algorytmu</ng-template>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Limit Czasu
+              </mat-label>
+              <input matInput placeholder="Nazwa lekcji" formControlName="timeLimit" pattern="[0-9 ]*" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Limit Pamięci
+              </mat-label>
+              <input type="number" matInput placeholder="Ważność" formControlName="memoryLimit" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Limit Operacji Elementarnych
+              </mat-label>
+              <input type="number" matInput placeholder="Nazwa lekcji" formControlName="elementaryOperationLimit" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Limit Linii Kodu
+              </mat-label>
+              <input type="number" matInput placeholder="Ważność" formControlName="linesOfCodeLimit" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Limit Operacji Elementarnych
+              </mat-label>
+              <input type="number" matInput placeholder="Nazwa lekcji" formControlName="timeToSolve" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Limit Linii Kodu
+              </mat-label>
+              <input type="number" matInput placeholder="Ważność" formControlName="complexityOrder" required>
+            </mat-form-field>
+            <div>
+              <p>form value : {{restrictionAddForm.value | json}}</p>
+              <p>form value : {{restrictionAddForm.status | json}}</p>
+              <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+              <button mat-raised-button color="accent" matStepperNext>Zatwierdź</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="verificationDataAddForm">
+          <form [formGroup]="verificationDataAddForm">
+            <ng-template matStepLabel>Dane Testowe</ng-template>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Dane Wejściowe
+              </mat-label>
+              <input matInput placeholder="Nazwa lekcji" formControlName="inputData" required>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>
+                <mat-icon>title</mat-icon> Dane Wyjściowe
+              </mat-label>
+              <input matInput placeholder="Ważność" formControlName="outputData" required>
+            </mat-form-field>
+            <div>
+              <p>form value : {{verificationDataAddForm.value | json}}</p>
+              <p>form value : {{verificationDataAddForm.status | json}}</p>
+              <p>działa :)</p>
+              <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+              <button mat-raised-button color="accent" (click)="addVerificationData()" matStepperNext>Zatwierdź</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
 
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Zadania Domowe
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Algorytmy zlecone do wykonania
-                        <mat-icon>home_work</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <!-- <app-algorithm-list></app-algorithm-list> -->
-            </mat-expansion-panel>
-
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Rozwiązane algorytmy
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Poprawnie rozwiązane algorytmy
-                        <mat-icon>insert_drive_file</mat-icon>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <!-- <app-algorithm-list></app-algorithm-list> -->
-            </mat-expansion-panel>
-
-        </mat-accordion>
-
+            <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
+            <button mat-raised-button color="accent" (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
     </mat-card>
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel [expanded]="step === 0" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Wszystkie Algorytmy
+          </mat-panel-title>
+          <mat-panel-description>
+            Zawiera wszystkie dostępne algorytmy
+            <mat-icon>view_list</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-algorithm-list></app-algorithm-list>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Polecane Algorytmy
+          </mat-panel-title>
+          <mat-panel-description>
+            Algorytmy dopasowane do twoich preferencji
+            <mat-icon>star</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- <app-algorithm-list></app-algorithm-list> -->
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Zadania Domowe
+          </mat-panel-title>
+          <mat-panel-description>
+            Algorytmy zlecone do wykonania
+            <mat-icon>home_work</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- <app-algorithm-list></app-algorithm-list> -->
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Rozwiązane algorytmy
+          </mat-panel-title>
+          <mat-panel-description>
+            Poprawnie rozwiązane algorytmy
+            <mat-icon>insert_drive_file</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- <app-algorithm-list></app-algorithm-list> -->
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </mat-card>
 </section>

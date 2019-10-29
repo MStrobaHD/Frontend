@@ -40,3 +40,44 @@ mat-card {
   button{
     margin-right: 1rem;
   }
+
+
+  .example-card{
+    font-family: 'Raleway', sans-serif;
+  }
+  .example-tab-icon{
+    margin: 8px
+  }
+  .karta{
+    font-family: 'Raleway', sans-serif;
+  }
+  .upload-drop-zone{
+      border-style: dashed;
+      width: 100%;
+      border-width: 1px;
+      border-color: grayscale($color: #bebebe);
+      font-family: "Raleway", sans-serif;
+      opacity: 0.7;
+  }
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  .inputbutton{
+      background-color: lightgreen;
+  }
+
+  .image{
+      width: 50px;
+      height: 50px;
+  }
+
+.btn_delete{
+  margin-right: 4px;
+//   padding-top: 0px;
+//   height: 30px;
+//   font-size: 15px
+color: white
+}

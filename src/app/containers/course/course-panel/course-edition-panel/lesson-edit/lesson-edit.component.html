@@ -23,7 +23,8 @@
                         <input formControlName="priority" matInput placeholder="Ważność" required>
                     </mat-form-field>
                     <div>
-                        <button mat-raised-button color="accent" matStepperNext (click)="addLesson()">Utwórz Lekcję</button>
+                        <button mat-raised-button color="accent" matStepperNext (click)="addLesson()">
+                            <mat-icon>add_box</mat-icon> Dodaj Lekcję</button>
                     </div>
                 </form>
             </mat-step>
@@ -39,10 +40,97 @@
                     </mat-form-field>
                     <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
                     <div>
-                        <button mat-raised-button color="primary" matStepperPrevious>Poprzedni</button>
-                        <button mat-raised-button color="accent" matStepperNext (click)="onCreate()">Zatwierdż</button>
+                        <button mat-raised-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon> Poprzedni</button>
+                        <button mat-raised-button color="accent" matStepperNext (click)="onCreate()"><mat-icon>add_box</mat-icon> Dodaj Materiał </button>
                     </div>
                 </form>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Dodaj materiały na chmurę</ng-template>
+                <style>
+                    .my-drop-zone {
+                        border: dotted 3px lightgray;
+                    }
+
+                    .nv-file-over {
+                        border: dotted 3px red;
+                    }
+
+                    /* Default class applied to drop zones on over */
+                    .another-file-over-class {
+                        border: dotted 3px green;
+                    }
+
+                    html,
+                    body {
+                        height: 100%;
+                    }
+                </style>
+                <mat-card ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" [uploader]="uploader" class="upload-drop-zone">
+                    Przeciągnij materiały
+                </mat-card>
+                <br>
+
+                <button mat-raised-button color="primary">
+                    <input type="file" placeholder="Choose file" ng2FileSelect [uploader]="uploader" /><mat-icon>add_box</mat-icon> Dodaj Materiał
+                </button>
+
+                <br>
+                <div style="margin-bottom: 40px">
+
+                    <!-- <h3>Lista plikow</h3>
+                    <p>Ilość plikow: {{ uploader?.queue?.length }}</p> -->
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="30%">Nazwa</th>
+                                <th>Rozmiar</th>
+                                <th>Postęp</th>
+                                <th>Status</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of uploader.queue">
+                                <td><strong>{{ item?.file?.name }}</strong></td>
+                                <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                                <td *ngIf="uploader. options.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                        <mat-progress-bar class="example-margin" color="primary" [ngStyle]="{ 'width': item.progress + '%' }">
+                                        </mat-progress-bar>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" mat-button mat-raised-button color="accent" class="btn_delete" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                        <mat-icon>publish</mat-icon>
+                                    </button>
+                                    <button type="button" mat-button mat-raised-button color="primary" class="btn_delete" (click)="item.cancel()" [disabled]="!item.isUploading">
+                                        <mat-icon>stop</mat-icon>
+                                    </button>
+                                    <button type="button" mat-button mat-raised-button color="warn" class="btn_delete" (click)="item.remove()">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div>
+                            <button mat-raised-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon> Wróć</button>
+                            <button mat-raised-button color="accent" (click)="addCloudAsset()"> Dalej <mat-icon>arrow_forward</mat-icon></button>
+                        </div>
+
+                </div>
+
+
             </mat-step>
 
             <mat-step [stepControl]="AssetForm">
@@ -61,25 +149,25 @@
                         <input formControlName="url" matInput placeholder="Adres odnośnika" required>
                     </mat-form-field>
                     <div>
-                        <button mat-raised-button color="primary" matStepperPrevious>Poprzedni</button>
-                        <button mat-raised-button color="accent" (click)="addCloudAsset()">Zatwierdż</button>
+                        <button mat-raised-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon> Poprzedni</button>
+                        <button mat-raised-button color="accent" (click)="addCloudAsset()"><mat-icon>add_box</mat-icon> Dodaj Link</button>
                     </div>
                 </form>
-                <p>form value : {{LessonForm.value | json}}</p>
-                <p>form value : {{LessonForm.status | json}}</p>
+                <!-- <p>form value : {{LessonForm.value | json}}</p>
+                <p>form value : {{LessonForm.status | json}}</p> -->
 
                 <!-- <p>form value : {{ServerForm.value | json}}</p>
                 <p>form value : {{ServerForm.status | json}}</p> -->
 
-                <p>form value : {{AssetForm.value | json}}</p>
-                <p>form value : {{AssetForm.status | json}}</p>
+                <!-- <p>form value : {{AssetForm.value | json}}</p>
+                <p>form value : {{AssetForm.status | json}}</p> -->
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Zakończ</ng-template>
 
                 <div>
-                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
-                    <button mat-raised-button color="accent" (click)="stepper.reset()">Utwórz Nową Lekcję</button>
+                    <button mat-raised-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon> Wróć</button>
+                    <button mat-raised-button color="accent" (click)="stepper.reset()"><mat-icon>add_box</mat-icon> Utwórz Nową Lekcję</button>
                 </div>
             </mat-step>
         </mat-vertical-stepper>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://education-support-app-api.azurewebsites.net/api/'
+  apiUrl: 'https://localhost:44345/api/'
 };
 
 /*

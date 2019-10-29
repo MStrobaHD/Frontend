@@ -14,6 +14,8 @@ import { JudgePanelResolver } from 'src/app/core/resolvers/judge/judge-panel/jud
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task-service/algorithm-task.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CodeEditorService } from 'src/app/core/services/judge/code-editor-service/code-editor.service';
+import { CodeEditorResolver } from 'src/app/core/resolvers/judge/judge-panel/code-editor.resolver';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
 
-  providers: [JudgePanelResolver, AlgorithmTaskService]
+  providers: [JudgePanelResolver, CodeEditorResolver, AlgorithmTaskService, CodeEditorService]
 })
 export class JudgeModule {}

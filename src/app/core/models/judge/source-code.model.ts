@@ -1,4 +1,4 @@
 export interface SourceCodeModel {
-    sourceCode: string;
-    input: string;
+    source_code: string;
+    language_id: number;
 }

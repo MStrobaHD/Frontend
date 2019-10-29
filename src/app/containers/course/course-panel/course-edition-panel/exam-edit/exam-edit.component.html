@@ -43,7 +43,7 @@
                         </mat-select>
                     </mat-form-field>{{examTypeSelector}}
                     <div>
-                        <button mat-raised-button color="accent" (click)="addExam()" matStepperNext>Zatwierdź</button>
+                        <button mat-raised-button color="accent" (click)="addExam()" matStepperNext><mat-icon>add_box</mat-icon> Utwórz</button>
                     </div>
                     <!-- <p>form value : {{ExamAddForm.value | json}}</p>
                     <p>form value : {{ExamAddForm.status | json}}</p> -->
@@ -70,9 +70,9 @@
                     <input matInput placeholder="Odpowiedź" name="ans" [(ngModel)]="questionModel.answer" required>
                 </mat-form-field>
                 <div>
-                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
-                    <button mat-raised-button color="accent" (click)="addQuestion()">Utwórz pytanie</button>
-                    <button mat-raised-button color="primary" matStepperNext>Przejdź dalej</button>
+                    <button mat-raised-button color="primary" matStepperPrevious> <mat-icon>arrow_back</mat-icon>Wróć</button>
+                    <button mat-raised-button color="accent" (click)="addQuestion()"> <mat-icon>add_box</mat-icon> Utwórz pytanie</button>
+                    <button mat-raised-button color="primary" matStepperNext> Przejdź dalej <mat-icon>arrow_forward</mat-icon></button>
                 </div>
 
 
@@ -119,9 +119,9 @@
                     <input matInput placeholder="Opcja 3" name="optionThree" [(ngModel)]="chooseQuestionModel.optionThree" required>
                 </mat-form-field>
                 <div>
-                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
-                    <button mat-raised-button color="accent" (click)="addChooseQuestion()">Utwórz pytanie</button>
-                    <button mat-raised-button color="primary" matStepperNext>Przejdź dalej</button>
+                    <button mat-raised-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon> Wróć</button>
+                    <button mat-raised-button color="accent" (click)="addChooseQuestion()"> <mat-icon>add_box</mat-icon> Utwórz pytanie</button>
+                    <button mat-raised-button color="primary" matStepperNext>Przejdź dalej <mat-icon>arrow_forward</mat-icon></button>
                 </div>
                 <!-- <p>form value : {{chooseQuestionAddForm.value | json}}</p>
                 <p>form value : {{chooseQuestionAddForm.status | json}}</p> -->
@@ -146,9 +146,9 @@
                     <input type="number" matInput placeholder="Prawidłowa kolejność" name="optionThree" [(ngModel)]="dragDropModel.blockPosition" required>
                 </mat-form-field>
                 <div>
-                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
-                    <button mat-raised-button color="accent" (click)="addDragDrop()">Utwórz pytanie</button>
-                    <button mat-raised-button color="primary" matStepperNext>Przejdź dalej</button>
+                    <button mat-raised-button color="primary" matStepperPrevious> <mat-icon>arrow_back</mat-icon> Wróć</button>
+                    <button mat-raised-button color="accent" (click)="addDragDrop()"> <mat-icon>add_box</mat-icon>Utwórz pytanie</button>
+                    <button mat-raised-button color="primary" matStepperNext> <mat-icon>arrow_forward</mat-icon> Przejdź dalej</button>
                 </div>
                 <!-- <p>form value : {{dragDropAddForm.value | json}}</p>
                 <p>form value : {{dragDropAddForm.status | json}}</p> -->
@@ -159,8 +159,8 @@
                 <ng-template matStepLabel>Zakończ</ng-template>
 
                 <div>
-                    <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
-                    <button mat-raised-button color="accent" (click)="stepper.reset()">Utwórz Nowy Egzamin</button>
+                    <button mat-raised-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon> Wróć</button>
+                    <button mat-raised-button color="accent" (click)="stepper.reset()"><mat-icon>add_box</mat-icon> Utwórz Nowy Egzamin</button>
                 </div>
             </mat-step>
         </mat-vertical-stepper>

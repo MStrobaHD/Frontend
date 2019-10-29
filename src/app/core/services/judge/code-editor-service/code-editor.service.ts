@@ -23,10 +23,10 @@ export class CodeEditorService {
     return this.http.post<SolutionModel[]>(this.baseUrl + 'judge', solution);
   }
   compileSourceCode(sourceCode: SourceCodeModel) {
-    return this.http.post<SourceCodeModel[]>(this.baseUrl + 'judge', sourceCode);
+    return this.http.post<SourceCodeModel>(this.baseUrl + 'judge/', sourceCode);
   }
-  executeCompiledFile() {
-    return this.http.get(this.baseUrl + 'judge');
+  executeCompiledFile(sourceCode: any) {
+    return this.http.get(this.baseUrl + 'judge/', sourceCode);
   }
   compileAndExecuteSourceCode() {
     return this.http.get(this.baseUrl + 'judge');

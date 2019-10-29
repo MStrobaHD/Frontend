@@ -46,10 +46,10 @@
                 <mat-form-field>
                     <mat-label>Motyw edytora</mat-label>
                     <mat-select selected="" [(ngModel)]="mode">
-                        <mat-option value="vs-dark">
+                        <mat-option value="vs-dark" (click) = "setDark()">
                             Dark theme
                         </mat-option>
-                        <mat-option value="vs">
+                        <mat-option value="vs" (click) = "setLight()">
                             Light theme
                         </mat-option>
                     </mat-select>
@@ -78,17 +78,26 @@
                 <button mat-raised-button class="menu-button">
                     <mat-icon>cloud_download</mat-icon>
                 </button>
-                <ngb-rating  [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
+                <ngb-rating [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
             </div>
         </mat-toolbar>
         <mat-card>
-            <div style="height: 500px">
-                <ngx-monaco-editor  style="height: 100%" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+            <div style="height: 400px">
+                <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
             </div>
+
         </mat-card>
         <mat-toolbar id="menu">
             <div class="example-button-row" fxFlex fxLayoutAlign="flex-end center">
-                <button mat-raised-button class="menu-button">
+                <form class="example-form" fxFlex fxLayoutAlign="flex-start">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Dane wejściowe" value="23 43 54 65 23 12 32 12">
+                    </mat-form-field>
+
+
+                </form>
+
+                <button mat-raised-button class="menu-button" (click)="compileSourceCode()">
                     <mat-icon>translate</mat-icon>
                 </button>
                 <button mat-raised-button class="menu-button">
@@ -97,5 +106,10 @@
                 <button mat-raised-button class="compile-execute-button">Kompiluj i uruchom</button>
             </div>
         </mat-toolbar>
+        <mat-card>
+                <div style="height: 100px">
+                        <ngx-monaco-editor  style="height: 100%" [options]="consoleOptions" disabled></ngx-monaco-editor>
+                    </div>
+            </mat-card>
     </mat-card>
 </section>
