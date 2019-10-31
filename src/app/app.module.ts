@@ -22,7 +22,7 @@ import { FloatingButtonComponent } from './shared/layout/floating-button/floatin
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './core/services/user/auth.service';
-import { MatFileUploadModule } from 'angular-material-fileupload';
+//import { MatFileUploadModule } from 'angular-material-fileupload';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -45,7 +45,7 @@ export function tokenGetter() {
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     MonacoEditorModule.forRoot(),
-    MatFileUploadModule,
+    //MatFileUploadModule,
     JwtModule.forRoot({
       config: {
         // tslint:disable-next-line:object-literal-shorthand
