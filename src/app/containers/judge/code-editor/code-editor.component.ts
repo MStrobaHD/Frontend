@@ -12,7 +12,6 @@ import { SourceCodeModel } from 'src/app/core/models/judge/source-code.model';
   styleUrls: ['./code-editor.component.scss']
 })
 export class CodeEditorComponent implements OnInit {
-
   mode: string;
 
   selected = 0;
@@ -27,11 +26,11 @@ export class CodeEditorComponent implements OnInit {
     colorDecorators: 'true',
     formatOnType: 'true'
   };
-  consoleOptions = {
-  };
+  consoleOptions = {};
 
- code: string = 'function x() {\nconsole.log("Hello world!");\n}';
- public source: SourceCodeModel;
+  code = 'function x() {\nconsole.log("Hello world!");\n}';
+  resultInformation: any;
+  public source: SourceCodeModel;
 
   id: number;
   task: any;
@@ -44,11 +43,12 @@ export class CodeEditorComponent implements OnInit {
     private algorithmTaskService: AlgorithmTaskService,
     private alertify: AlertifyService,
     private codeEditorService: CodeEditorService
-  ) {}
+  ) {
+    // this.route.data.subscribe(data => this.algorithmTask = data;);
+  }
 
   ngOnInit() {
-    this.algorithmTaskId = +this.route.snapshot.paramMap.get('id');
-    this.getAlgorithmTask();
+    this.algorithmTask = this.route.snapshot.data.algorithmTask;
   }
   getAlgorithmTask() {
     this.algorithmTaskService
@@ -61,45 +61,63 @@ export class CodeEditorComponent implements OnInit {
   compileSourceCode() {
     // if (this.verificationDataAddForm.valid) {
     //   this.verificationDataAddObject = Object.assign({}, this.verificationDataAddForm.value);
-      // this.source.sourceCode = 'dsadadsasad';
-      //const str = this.code.replace('"', '/\/');
-      this.source = {
-        source_code: this.code,
-        language_id: 16
-      },
+    // this.source.sourceCode = 'dsadadsasad';
+    // const str = this.code.replace('"', '/\/');
+    (this.source = {
+      source_code: this.code,
+      language_id: 16
+    }),
       console.log(this.source);
-      this.codeEditorService.compileSourceCode(this.source).subscribe(
-        result => {
-          // this.ngOnInit();
-          console.log(result);
+    this.codeEditorService.compileSourceCode(this.source).subscribe(
+      result => {
+        // this.ngOnInit();
+        this.resultInformation = result;
+        this.ngOnInit();
+        console.log(result);
 
-          // this.alertifyService.success('Dane testowe zostały dodane');
-        },
-        error => {
-          console.log(error);
-          // this.alertifyService.error(error);
-        }
-      );
-    }
-    setDark() {
-      this.editorOptions = {
-        theme: 'vs-dark',
-        language: 'csharp',
-        contextmenu: 'true',
-        codelens: 'true',
-        colorDecorators: 'true',
-        formatOnType: 'true'
-      };
-    }
-    setLight() {
-      this.editorOptions = {
-        theme: 'vs',
-        language: 'csharp',
-        contextmenu: 'true',
-        codelens: 'true',
-        colorDecorators: 'true',
-        formatOnType: 'true'
-      };
-    }
+        // this.alertifyService.success('Dane testowe zostały dodane');
+      },
+      error => {
+        console.log(error);
+        // this.alertifyService.error(error);
+      }
+    );
+  }
+
+  downloadSourceCodeAsFile() {
+
+  }
+  uploadVerificationData() {
+
+  }
+  uploadSourceCode() {
+
+  }
+  markTask() {
+
+  }
+  chooseProgrammingLanguage() {
+    
+  }
+
+  setDark() {
+    this.editorOptions = {
+      theme: 'vs-dark',
+      language: 'csharp',
+      contextmenu: 'true',
+      codelens: 'true',
+      colorDecorators: 'true',
+      formatOnType: 'true'
+    };
+  }
+  setLight() {
+    this.editorOptions = {
+      theme: 'vs',
+      language: 'csharp',
+      contextmenu: 'true',
+      codelens: 'true',
+      colorDecorators: 'true',
+      formatOnType: 'true'
+    };
+  }
 }
-

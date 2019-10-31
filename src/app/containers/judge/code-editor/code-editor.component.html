@@ -20,7 +20,7 @@
 
                 <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
                     <div class="item item-1" fxFlex="15%">Nazwa algorytmu :</div>
-                    <div class="item item-3" fxFlex>{{algorithmTask.algorithmTaskName}}</div>
+                    <div class="item item-3" fxFlex>{{algorithmTask.algorithmTaskName }}</div>
                 </div>
 
                 <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
@@ -46,10 +46,10 @@
                 <mat-form-field>
                     <mat-label>Motyw edytora</mat-label>
                     <mat-select selected="" [(ngModel)]="mode">
-                        <mat-option value="vs-dark" (click) = "setDark()">
+                        <mat-option value="vs-dark" (click)="setDark()">
                             Dark theme
                         </mat-option>
-                        <mat-option value="vs" (click) = "setLight()">
+                        <mat-option value="vs" (click)="setLight()">
                             Light theme
                         </mat-option>
                     </mat-select>
@@ -97,19 +97,31 @@
 
                 </form>
 
-                <button mat-raised-button class="menu-button" (click)="compileSourceCode()">
+                <!-- <button mat-raised-button class="menu-button" (click)="compileSourceCode()">
                     <mat-icon>translate</mat-icon>
                 </button>
                 <button mat-raised-button class="menu-button">
                     <mat-icon>play_circle_filled</mat-icon>
+                </button> -->
+                <button mat-raised-button class="compile-execute-button" (click)="compileSourceCode()" >
+                    <mat-icon>play_circle_filled</mat-icon>
                 </button>
-                <button mat-raised-button class="compile-execute-button">Kompiluj i uruchom</button>
             </div>
         </mat-toolbar>
         <mat-card>
-                <div style="height: 100px">
-                        <ngx-monaco-editor  style="height: 100%" [options]="consoleOptions" disabled></ngx-monaco-editor>
+            <!-- <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                        <div class="item item-1" fxFlex="15%">Nazwa algorytmu :</div>
+                        <div class="item item-3" fxFlex>{{resultInformation.compile_output }}</div>
                     </div>
-            </mat-card>
+    
+                    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                        <div class="item item-1" fxFlex="15%">Treść zadania :</div>
+                        <div class="item item-3" fxFlex> {{resultInformation.stdout}}</div>
+                    </div>
+                    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                        <div class="item item-1" fxFlex="15%">Status :</div>
+                        <div class="item item-3" fxFlex>{{resultInformation.status.description}}</div>
+                    </div> -->
+        </mat-card>
     </mat-card>
 </section>

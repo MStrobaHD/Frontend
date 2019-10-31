@@ -65,12 +65,16 @@ div {
   align-content: center;
   height: 3rem;
   color: white;
+ 
 }
 .task-label{
   color: #696969;
 }
 mat-grid-tile {
   background: rgb(240, 239, 238);
+}
+mat-card{
+  font-size: 1.5rem;
 }
 .item{
   background-color: #fdfafa;

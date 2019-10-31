@@ -20,8 +20,8 @@ export class LessonEditComponent implements OnInit {
 
   @Input() assets: CloudModel[];
   uploader: FileUploader;
-  hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver = false;
+ // hasBaseDropZoneOver = false;
+  //hasAnotherDropZoneOver = false;
   baseUrl = environment.apiUrl;
 
   public response: { dbPath: '' };
@@ -75,12 +75,12 @@ export class LessonEditComponent implements OnInit {
 
   }
 
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
+  // fileOverBase(e: any): void {
+  //   this.hasBaseDropZoneOver = e;
+  // }
+  // public fileOverAnother(e: any): void {
+  //   this.hasAnotherDropZoneOver = e;
+  // }
 
   initializeUploader() {
 

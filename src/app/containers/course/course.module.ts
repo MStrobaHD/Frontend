@@ -20,13 +20,13 @@ import { ExamEditComponent } from './course-panel/course-edition-panel/exam-edit
 import { UploadComponent } from './course-panel/course-edition-panel/upload/upload.component';
 import { ExamComponent } from './exam-panel/exam/exam.component';
 import { ExamDragDropComponent } from './exam-panel/exam-drag-drop/exam-drag-drop.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+//import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddServerAssetComponent } from './course-panel/course-edition-panel/add-server-asset/add-server-asset.component';
 import { LessonService } from 'src/app/core/services/education/lesson-service/lesson.service';
 import { ServerAssetComponent } from './course-panel/course-edition-panel/server-asset/server-asset.component';
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
-import { MatFileUploadModule } from 'angular-material-fileupload';
+//import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+//import { MatFileUploadModule } from 'angular-material-fileupload';
 
 @NgModule({
   declarations: [
@@ -45,8 +45,8 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     ExamDragDropComponent,
     AddServerAssetComponent,
     ServerAssetComponent,
-    FileSelectDirective,
-    FileDropDirective
+    //FileSelectDirective,
+    //FileDropDirective
   ],
   imports: [
     CommonModule,
@@ -56,7 +56,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    MatFileUploadModule
+    //MatFileUploadModule
 
   ],
   providers: [CourseListResolver, CourseService, LessonService]
