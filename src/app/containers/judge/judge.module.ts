@@ -16,7 +16,7 @@ import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CodeEditorService } from 'src/app/core/services/judge/code-editor-service/code-editor.service';
 import { CodeEditorResolver } from 'src/app/core/resolvers/judge/judge-panel/code-editor.resolver';
-import { MetricsDialog } from './code-editor/metrics-dialog/metrics-dialog';
+import { MetricsDialogComponent } from './code-editor/metrics-dialog/metrics-dialog';
 import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
 import { NgxGraphModule} from '@swimlane/ngx-graph';
 import { DiagramDialog } from './code-editor/diagram-dialog.ts/diagram-dialog';
@@ -28,7 +28,7 @@ import { DiagramDialog } from './code-editor/diagram-dialog.ts/diagram-dialog';
     AlgorithmListComponent,
     AlgorithmAddComponent,
     AlgorithmFileUploadComponent,
-    MetricsDialog,
+    MetricsDialogComponent,
     DiagramDialog
   ],
   imports: [
@@ -44,7 +44,7 @@ import { DiagramDialog } from './code-editor/diagram-dialog.ts/diagram-dialog';
     NgxGraphModule
   ],
 
-  entryComponents: [CodeEditorComponent, MetricsDialog, DiagramDialog],
+  entryComponents: [CodeEditorComponent, MetricsDialogComponent, DiagramDialog],
   providers: [JudgePanelResolver, CodeEditorResolver, AlgorithmTaskService, CodeEditorService]
 })
 export class JudgeModule {}

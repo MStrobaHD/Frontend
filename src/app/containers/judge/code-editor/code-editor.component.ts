@@ -8,7 +8,7 @@ import { SourceCodeModel } from 'src/app/core/models/judge/source-code.model';
 import { VerdictModel } from 'src/app/core/models/judge/verdict.model';
 import { SourceCFGModel } from 'src/app/core/models/judge/source.model';
 import { MatDialog } from '@angular/material';
-import { MetricsDialog } from './metrics-dialog/metrics-dialog';
+import { MetricsDialogComponent } from './metrics-dialog/metrics-dialog';
 import { Observable } from 'rxjs';
 import { MetricsModel } from 'src/app/core/models/judge/metrics.model';
 import { SourceCodeInputModel } from 'src/app/core/models/judge/source-code-input.model';
@@ -278,7 +278,7 @@ export class CodeEditorComponent implements OnInit {
   }
   openDialog(metrics: MetricsModel): void {
     if (this.metrics) {
-      const dialogRef = this.dialog.open(MetricsDialog, {
+      const dialogRef = this.dialog.open(MetricsDialogComponent, {
         data: { metrics: this.metrics }
       });
     }
