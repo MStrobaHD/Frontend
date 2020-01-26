@@ -7,9 +7,9 @@ import { MetricsModel } from 'src/app/core/models/judge/metrics.model';
   selector: 'metrics-dialog',
   templateUrl: 'metrics-dialog.html'
 })
-export class MetricsDialog {
+export class MetricsDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<MetricsDialog>,
+    public dialogRef: MatDialogRef<MetricsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
