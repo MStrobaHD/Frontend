@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag} from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-exam-drag-drop',
@@ -7,18 +12,33 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag} from '@angular
   styleUrls: ['./exam-drag-drop.component.scss']
 })
 export class ExamDragDropComponent implements OnInit {
-  todo = ['crop_16_9', 'person', 'send', 'movie', 'album'];
-  test = ['crop_16_9', 'person', 'send', 'movie', 'album'];
-  done = ['crop_16_9', 'person', 'send', 'movie', 'album'];
+  diagramElement = [
+    'start.PNG',
+    'condition.PNG',
+    'input_output.PNG',
+    'process.PNG',
+    'end.PNG',
+    'condition_arrow.PNG',
+    'condition_arrow_double.PNG',
+    'input_output_arrow.PNG',
+    'start_arrow.PNG'
+  ];
+  diagramScheme = [];
   setTrue: boolean;
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     }
   }
 
@@ -31,9 +51,7 @@ export class ExamDragDropComponent implements OnInit {
   noReturnPredicate() {
     return false;
   }
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,0 +1,82 @@
+<section fxFlex fxLayoutAlign="center center">
+    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+        <mat-toolbar>
+            Szczegóły rozwiązania
+        </mat-toolbar>
+        <mat-list>
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Werdykt
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.verdictName}}</mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Liczba operacji elementarnych
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.elementaryOperation}}</mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Pamięć
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.memory}}</mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Czas
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.time}}</mat-grid-tile>
+            </mat-grid-list>
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Liczba linii kodu
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.linesOfCode}}</mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Złożoność cyklomatyczna
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.cyclomaticComplexity}}</mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Liczba decyzji
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.numberOfDecision}}</mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-divider></mat-divider>
+            <mat-grid-list cols="2" rowHeight="20:1">
+                <mat-grid-tile>
+                    Liczba przypisań
+                </mat-grid-tile>
+                <mat-grid-tile>{{verdict.numberOfAssignment}}</mat-grid-tile>
+            </mat-grid-list>
+            <mat-divider></mat-divider>
+
+        </mat-list>
+        <br>
+        <mat-toolbar>
+            Kod żródłowy
+        </mat-toolbar>
+        <mat-card>
+            <div style="height: 400px">
+                <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="verdict.solution" id="codeeditor"></ngx-monaco-editor>
+            </div>
+        </mat-card>
+    </mat-card>
+</section>

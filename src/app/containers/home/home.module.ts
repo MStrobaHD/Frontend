@@ -5,7 +5,7 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from 'src/app/shared/modules/shared.module';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { SharedModule } from 'src/app/shared/modules/shared.module';
     MaterialModule,
     FormsModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ]
 })
 export class HomeModule {

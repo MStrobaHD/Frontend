@@ -17,43 +17,12 @@
 
             <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs fxHide.sm class="toolbar-content">
                 <ul fxLayout fxLayoutGap="5px">
-                    <!-- <li>
-                        <a routerLink="/login">
-                            <mat-icon>person</mat-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a routerLink="/register">
-                            <mat-icon>person_add</mat-icon>
-                        </a>
-                    </li>-->
-                    <li>
-                        <a routerLink="/landing-page">
-                            <img mat-card-avatar src="../../../../../assets/settings.png" alt="settings menu icon">
-                        </a>
-                    </li>
                     <li>
                         <a [matMenuTriggerFor]="menu" matBadge="11" matBadgeSize="small" matBadgeColor="warn">
                             <img mat-card-avatar src="../../../../../assets/user_menu.png" alt="user menu icon">
                         </a>
                     </li>
-                    <!-- <li>
-                        <a>
-                            <mat-icon>directions_run</mat-icon>
-                        </a>
-                    </li>
-                    <li>
-                        <a routerLink="/login">
-                            <mat-icon>person_outline</mat-icon>
-                        </a>
-                    </li> -->
 
-
-
-
-                    <li>
-
-                    </li>
                 </ul>
             </div>
         </div>
@@ -63,19 +32,19 @@
 <mat-menu #menu="matMenu">
     <mat-toolbar class="user-menu-toolbar--section">Ogólne</mat-toolbar>
     <mat-divider></mat-divider>
-    <button mat-menu-item [routerLink]="['/users']">
+    <button mat-menu-item [routerLink]="['/user']">
         <mat-icon>person</mat-icon>
-        <span>Informacje</span>
+        <span>Profil</span>
     </button>
     <button mat-menu-item (click)="logout()">
         <mat-icon>directions_run</mat-icon>
         <span>Wyloguj</span>
     </button>
-    <button mat-menu-item [routerLink]="['/login']">
+    <button *ngIf="!isLogged()" mat-menu-item [routerLink]="['/login']">
         <mat-icon>person</mat-icon>
         <span>Zaloguj</span>
     </button>
-    <button mat-menu-item [routerLink]="['/register']">
+    <button *ngIf="!isLogged()" mat-menu-item [routerLink]="['/register']">
         <mat-icon>person_add</mat-icon>
         <span>Zarejestruj</span>
     </button>
@@ -84,10 +53,6 @@
         <mat-icon>view_list</mat-icon>
         <span>Kursy</span>
     </a>
-    <button mat-menu-item routerLink="/courses/course_panel">
-        <mat-icon>view_list</mat-icon>
-        <span>Egzaminy</span>
-    </button>
     <button mat-menu-item routerLink="/algorithms">
         <mat-icon>view_list</mat-icon>
         <span>Algorytmy</span>
@@ -96,6 +61,4 @@
         <mat-icon>picture_as_pdf</mat-icon>
         <span>Materiały szkoleniowe</span>
     </a>
-
-
 </mat-menu>

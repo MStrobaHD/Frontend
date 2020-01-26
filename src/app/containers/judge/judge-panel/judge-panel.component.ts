@@ -8,6 +8,7 @@ import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.
 import { LevelModel } from 'src/app/core/models/judge/level.model';
 import { AlgorithmCategoryModel } from 'src/app/core/models/judge/algorithm-category.model';
 import { ComplexityModel } from 'src/app/core/models/judge/complexity.model';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-judge-panel',
@@ -40,6 +41,10 @@ export class JudgePanelComponent implements OnInit {
   categories: AlgorithmCategoryModel;
   complexities: ComplexityModel;
 
+  // helpers
+    algorithmTaskId: string;
+  verificationId: number;
+
   constructor(
     private formBuilder: FormBuilder,
     private algorithmTaskService: AlgorithmTaskService,
@@ -66,12 +71,16 @@ export class JudgePanelComponent implements OnInit {
     this.algorithmTaskAddForm = this.formBuilder.group({
       algorithmTaskName: [''],
       description: [''],
-      userId: [],
+      userId: [+localStorage.getItem('userID')],
       complexityId: [],
       algorithmCategoryId: [],
-      verificationDataId: [],
-      restrictionId: [],
       levelId: [],
+      timeLimit: [],
+      memoryLimit: [],
+      elementaryOperationLimit: [],
+      linesOfCodeLimit: [],
+      timeToSolve: [],
+      complexityOrder: []
     });
   }
   createAddRestrictionForm() {
@@ -87,7 +96,8 @@ export class JudgePanelComponent implements OnInit {
   createAddVerificationDataForm() {
     this.verificationDataAddForm = this.formBuilder.group({
       inputData: [''],
-      outputData: ['']
+      outputData: [''],
+      algorithmTaskId: [this.algorithmTaskId]
     });
   }
   getLevels() {
@@ -118,9 +128,9 @@ export class JudgePanelComponent implements OnInit {
   addRestriction() {
       if (this.restrictionAddForm.valid) {
         this.restrictionAddObject = Object.assign({}, this.restrictionAddForm.value);
-        this.algorithmTaskService.addRestriction(this.restrictionAddObject).subscribe(
-          () => {
-            // this.ngOnInit();
+        this.algorithmTaskService.addRestriction(this.restrictionAddObject)
+          .subscribe(result => {
+            //this.restrictionId = + result;
             this.alertifyService.success('Ograniczenia zostały dodane');
           },
           error => {
@@ -134,11 +144,13 @@ export class JudgePanelComponent implements OnInit {
     addVerificationData() {
       if (this.verificationDataAddForm.valid) {
         this.verificationDataAddObject = Object.assign({}, this.verificationDataAddForm.value);
-        this.algorithmTaskService.addVerificationData(this.verificationDataAddObject).subscribe(
-          () => {
-            // this.ngOnInit();
-            this.alertifyService.success('Dane testowe zostały dodane');
-          },
+        console.log(+ localStorage.getItem('algorithmTaskId'));
+        this.verificationDataAddObject.algorithmTaskId = + localStorage.getItem('algorithmTaskId');
+        this.algorithmTaskService.addVerificationData(this.verificationDataAddObject).subscribe(result => {
+          // this.verificationId = + result;
+          this.alertifyService.success('Dane testowe zostały dodane');
+          //this.addAlgorithmTaskData();
+        },
           error => {
             console.log(error);
             this.alertifyService.error(error);
@@ -146,6 +158,22 @@ export class JudgePanelComponent implements OnInit {
         );
       }
   }
+  addAlgorithmTaskData() {
+    if (this.algorithmTaskAddForm.valid) {
+      this.algorithmTaskAddObject = Object.assign({}, this.algorithmTaskAddForm.value);
+      this.algorithmTaskService.addAlgorithm(this.algorithmTaskAddObject).subscribe(result => {
+          this.algorithmTaskId =  String(result);
+          localStorage.setItem('algorithmTaskId', this.algorithmTaskId);
+          console.log(this.algorithmTaskId );
+          this.alertifyService.success('Algorytm został dodany');
+        },
+        error => {
+          console.log(error);
+          this.alertifyService.error(error);
+        }
+      );
+    }
+}
   showAlgorithmForm() {
     this.isVisibleCourseForm = true;
     this.step = 1;

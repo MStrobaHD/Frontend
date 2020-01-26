@@ -22,7 +22,16 @@ import { FloatingButtonComponent } from './shared/layout/floating-button/floatin
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './core/services/user/auth.service';
-//import { MatFileUploadModule } from 'angular-material-fileupload';
+import { UserComponent } from './containers/user/user/user.component';
+import { InformationComponent } from './containers/user/user/information/information.component';
+import { ResultComponent } from './containers/user/user/result/result.component';
+import { AuthGuardService } from './core/guards/auth-guard.service';
+import { ExamResultComponent } from './containers/user/user/result/exam-result/exam-result.component';
+import { AlgorithmResultComponent } from './containers/user/user/result/algorithm-result/algorithm-result.component';
+import { PriviligesManagementComponent } from './containers/user/user/priviliges-management/priviliges-management.component';
+import { AlgorithmResultDetailsComponent } from './containers/user/user/result/algorithm-result/algorithm-result-details/algorithm-result-details.component';
+import { VerdictService } from './core/services/judge/verdict-service/verdict.service';
+import { VerdictDetailsResolver } from './core/resolvers/judge/verdict-details/verdict-details.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -35,7 +44,14 @@ export function tokenGetter() {
     RegisterComponent,
     LoadingIndicatorComponent,
     RoleMatcherDirective,
-    FloatingButtonComponent
+    FloatingButtonComponent,
+    UserComponent,
+    InformationComponent,
+    ResultComponent,
+    ExamResultComponent,
+    AlgorithmResultComponent,
+    PriviligesManagementComponent,
+    AlgorithmResultDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +61,6 @@ export function tokenGetter() {
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     MonacoEditorModule.forRoot(),
-    //MatFileUploadModule,
     JwtModule.forRoot({
       config: {
         // tslint:disable-next-line:object-literal-shorthand
@@ -59,7 +74,11 @@ export function tokenGetter() {
     // Shared modules
     SharedModule
   ],
-  providers: [AlertifyService, ErrorInterceptorProvider, AuthService],
+  providers: [AlertifyService,
+     ErrorInterceptorProvider,
+      AuthService,
+       AuthGuardService,
+      VerdictService,VerdictDetailsResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -5,6 +5,7 @@ import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task
 import { AlgorithmTaskListModel } from 'src/app/core/models/judge/algorithm-task.model';
 import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { RatingModel } from 'src/app/core/models/judge/rating.model';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class AlgorithmListComponent implements OnInit {
   selected = 0;
   hovered = 0;
   readonly = false;
+  rating: RatingModel;
 
   displayedColumns: string[] = [
     'expand',
@@ -73,6 +75,26 @@ export class AlgorithmListComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.alertify.success('Data loaded correctly');
       });
+  }
+  mark(id: number){
+    (this.rating = {
+      points: this.hovered,
+      userId: +localStorage.getItem('userID'),
+      algorithmTaskId: id
+    }),
+    console.log(this.rating);
+    this.algorithmTaskService.markTask(this.rating).subscribe(
+      () => {
+        this.ngOnInit();
+       // console.log(data);
+        //this.openDiagramDialog(this.controlFlowGraph);
+        //this.alertify.success('Graf przepływu sterowania został utworzony');
+      },
+      error => {
+        console.log(error);
+        this.alertify.error(error);
+      }
+    );
   }
 }
 

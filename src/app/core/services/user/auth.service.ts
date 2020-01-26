@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { RegisterModel } from '../../models/auth/register.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginModel } from '../../models/auth/login.model';
+import { UserModel } from '../../models/user/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { LoginModel } from '../../models/auth/login.model';
 export class AuthService {
 
   baseUrl = environment.apiUrl + 'auth/';
+  baseUrlNoAuth = environment.apiUrl;
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   decodedId: number;
@@ -27,6 +29,7 @@ export class AuthService {
           // localStorage.setItem('role', user.role);
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           localStorage.setItem('userID', this.decodedToken.nameid);
+          localStorage.setItem('role', this.decodedToken.role);
           // this.decodedId = this.decodedToken.nameid;
           console.log(this.decodedToken);
         }
@@ -44,5 +47,9 @@ export class AuthService {
   isAdmin() {
     const role = localStorage.getItem('role');
     return role;
+  }
+
+  getUserData(userId: number) {
+    return this.http.get<UserModel>(this.baseUrlNoAuth + 'user/' + userId);
   }
 }

@@ -1,0 +1,112 @@
+section {
+    
+    margin-top: 2rem;
+    mat-card {
+      mat-toolbar {
+        height: 4rem;
+        text-emphasis: none;
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-family: "Raleway", sans-serif;
+        border-radius: 0.2rem;
+        // border: 1px solid rgb(62, 151, 253);
+        margin-bottom: 3rem;
+        -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+        -moz-box-shadow: 2px 2px 5px 0px #00000057;
+        box-shadow: 2px 2px 5px 0px #00000057;
+      }
+    }
+  }
+  .example-list {
+    border: solid 1px #ccc;
+    min-height: 5rem;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+  
+  }
+  
+  .example-box {
+   
+    border-bottom: solid 1.5px #ccc;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: move;
+    background: white;
+    margin-bottom: 1px;
+    height: 5rem;
+    font-size: 1.5rem;
+  
+    img{
+      height: 10rem;
+    }
+  
+  }
+  
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0 8px 10px 1px rgba(0, 0, 0, 0.14),
+      0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-box:last-child {
+    border: none;
+  }
+  
+  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .cdk-drop-dragging .cdk-drag {
+    transition: transform 500ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 550ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .cdk-drag-placeholder {
+    background: rgba(0, 0, 0, .2);
+  }
+  
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    height: 10px;
+    padding-bottom: 15px;
+  
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .draft-option-panel button,
+  .draft-option-panel {
+    margin-right: 2px;
+    margin-left: 2px;
+    font-family: 'Raleway', sans-serif;
+  }
+  .elements{
+    width: 10%;
+  }
+  .diagram{
+    width: 70%;
+  }
+ 
+  

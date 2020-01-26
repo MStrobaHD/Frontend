@@ -26,7 +26,7 @@ export class CoursePanelComponent implements OnInit {
 
   ngOnInit() {
 
-    this.courseService.getCourses()
+    this.courseService.getCourses(+localStorage.getItem('userID'))
     .subscribe(result => {
 
       this.courses = result;

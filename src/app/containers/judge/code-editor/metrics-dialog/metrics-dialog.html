@@ -1,0 +1,30 @@
+<h2 mat-dialog-title fxLayout fxLayoutAlign="center">Metryka Kodu Żródłowego</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Złożoność cyklomatyczna  :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.cyclomaticComplexity }}</div>
+    </div>
+
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba linii kodu :</div>
+        <div class="item item-3" fxFlex> {{data.metrics.linesOfCode}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba niezakomentowanych linii kodu :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.linesOfNonCommentedCode}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba decyzji :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.numberOfDecision}} </div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba przypisań :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.numberOfAssignment}}</div>
+    </div>
+
+ 
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <!-- <button mat-button mat-dialog-close>Cancel</button> -->
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

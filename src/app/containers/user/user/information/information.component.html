@@ -1,0 +1,41 @@
+<div>
+  <mat-list *ngIf="user">
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-icon>person</mat-icon>Nazwa użytkownika : <b> {{user.username}}</b>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-icon>person</mat-icon>Adres email : <b> {{user.email}}</b>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <mat-icon>person</mat-icon>Uprawnienia : <b> {{user.role}}</b>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</div>
+<div class="example-container">
+  <mat-form-field hintLabel="Max 10 characters">
+    <input matInput #input  placeholder="Wprowadż nową nazwę użytkownika">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    <!-- <mat-icon matPrefix>mode_edit</mat-icon> -->
+  </mat-form-field>
+
+  <mat-form-field hintLabel="Max 10 characters">
+    <input matInput #input  placeholder="Wprowadż nowy adres email">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    <!-- <mat-icon matPrefix>email</mat-icon> -->
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Wybierz uprawnienia">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+<div>
+  <button mat-raised-button color="primary">Edytuj</button>
+</div>

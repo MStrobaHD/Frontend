@@ -5,16 +5,57 @@
 
             <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column" fxLayoutGap="5px">
                 <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
+                    <ngx-charts-pie-chart
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [gradient]="gradient"
+                    [legend]="showLegend"
+                    [legendPosition]="legendPosition"
+                    [labels]="showLabels"
+                    [animations]="true"
+                    [doughnut]="isDoughnut"
+                    (select)="onSelect($event)"
+                    (activate)="onActivate($event)"
+                    (deactivate)="onDeactivate($event)"
+                    >
+                  </ngx-charts-pie-chart>
                 </mat-card>
                 <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
+                    <ngx-charts-bar-vertical
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [gradient]="gradient"
+                    [legendPosition]="legendPosition"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel"
+                    [animations]="true"
+                    [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect($event)">
+                  </ngx-charts-bar-vertical>
                 </mat-card>
                 <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
+                    <ngx-charts-number-card
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [cardColor]="cardColor"
+                    (select)="onSelect($event)">
+                  </ngx-charts-number-card>
                 </mat-card>
                 <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
+                    <ngx-charts-number-card
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="single"
+                    [cardColor]="cardColor"
+                    (select)="onSelect($event)">
+                  </ngx-charts-number-card>
                 </mat-card>
                 <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
 

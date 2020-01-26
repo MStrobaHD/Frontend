@@ -14,7 +14,7 @@ export class CourseListResolver implements Resolve<CourseModel[]> {
                 private alertify: AlertifyService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<CourseModel[]> {
-        return this.courseService.getCourses().pipe(
+        return this.courseService.getCourses(+localStorage.getItem('userID')).pipe(
             catchError(error => {
                 this.alertify.error('Problem retrieving data');
                 this.router.navigate(['/home']);

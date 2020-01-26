@@ -8,6 +8,13 @@ export interface AlgorithmTaskListModel {
     id: number;
     algorithmTaskName: string;
     description: string;
+    timeLimit: number;
+    memoryLimit: number;
+    elementaryOperationLimit: number;
+    linesOfCodeLimit: number;
+    timeToSolveLimit: number;
+    complexityOrder: number;
+    ratePoints: number;
     user: UserModel;
     complexity: ComplexityModel;
     algorithmCategory: AlgorithmCategoryModel;

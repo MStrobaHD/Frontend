@@ -25,6 +25,12 @@ export class QuestionService {
   addDragDrop(cloudAsset: DragDropAddModel) {
     return this.http.post<DragDropAddModel>(this.baseUrl + 'question/orderedBlock', cloudAsset);
   }
+  // getExamNormalQuestion(examId: number) {
+  //   return this.http.get<QuestionAddModel[]>(this.baseUrl + 'Question/' + examId);
+  // }
+  getExamChooseQuestions(examId: number) {
+    return this.http.get<ChooseQuestionAddModel[]>(this.baseUrl + 'Question/multiSelectQuestion/' + examId);
+  }
   // deleteCourse(courseId: number) {
   //   const url = this.baseUrl + `course/` + courseId;
   //   return this.http.delete(url);

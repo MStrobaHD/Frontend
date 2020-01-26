@@ -28,19 +28,21 @@ section {
   }
   
   .example-box {
-    padding: 20px 10px;
+   
     border-bottom: solid 1.5px #ccc;
     color: rgba(0, 0, 0, 0.87);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
+    text-align: center;
     cursor: move;
     background: white;
-    font-size: 16px;
     margin-bottom: 1px;
     height: 5rem;
+  
+    img{
+      height: 10rem;
+    }
   
   }
   
@@ -99,4 +101,11 @@ section {
     margin-left: 2px;
     font-family: 'Raleway', sans-serif;
   }
+  .elements{
+    width: 10%;
+  }
+  .diagram{
+    width: 70%;
+  }
+ 
   

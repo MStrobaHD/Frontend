@@ -16,6 +16,10 @@ import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CodeEditorService } from 'src/app/core/services/judge/code-editor-service/code-editor.service';
 import { CodeEditorResolver } from 'src/app/core/resolvers/judge/judge-panel/code-editor.resolver';
+import { MetricsDialog } from './code-editor/metrics-dialog/metrics-dialog';
+import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
+import { NgxGraphModule} from '@swimlane/ngx-graph';
+import { DiagramDialog } from './code-editor/diagram-dialog.ts/diagram-dialog';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { CodeEditorResolver } from 'src/app/core/resolvers/judge/judge-panel/cod
     JudgePanelComponent,
     AlgorithmListComponent,
     AlgorithmAddComponent,
-    AlgorithmFileUploadComponent
+    AlgorithmFileUploadComponent,
+    MetricsDialog,
+    DiagramDialog
   ],
   imports: [
     CommonModule,
@@ -33,9 +39,12 @@ import { CodeEditorResolver } from 'src/app/core/resolvers/judge/judge-panel/cod
     ReactiveFormsModule,
     FormsModule,
     MonacoEditorModule,
-    NgbModule
+    NgbModule,
+    FctrlxAngularFileReader,
+    NgxGraphModule
   ],
 
+  entryComponents: [CodeEditorComponent, MetricsDialog, DiagramDialog],
   providers: [JudgePanelResolver, CodeEditorResolver, AlgorithmTaskService, CodeEditorService]
 })
 export class JudgeModule {}

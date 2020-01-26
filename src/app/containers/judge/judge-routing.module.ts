@@ -19,16 +19,6 @@ const routes: Routes = [
     component: CodeEditorComponent,
     resolve: {algorithmTask: CodeEditorResolver},
   },
-  // {
-  //   runGuardsAndResolvers: 'always',
-  //   path: 'course_panel',
-  //   component: CoursePanelComponent
-  // },
-  // {
-  //   runGuardsAndResolvers: 'always',
-  //   path: 'course_edition_panel',
-  //   component: CourseEditionPanelComponent
-  // }
 ];
 
 @NgModule({

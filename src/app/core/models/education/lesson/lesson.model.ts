@@ -1,6 +1,9 @@
+import { CloudAssetModel } from './cloud-asset.model';
+import { ServerAssetModel } from './server-asset.model';
+
 export interface LessonModel {
     lessonTitle: string;
     serverAssetId: number;
-    cloudAssetId: number;
-    courseId: number;
+    cloudAsset: CloudAssetModel;
+    serverAsset: ServerAssetModel;
 }

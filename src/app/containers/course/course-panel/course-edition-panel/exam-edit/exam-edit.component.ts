@@ -7,6 +7,8 @@ import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.
 import { ChooseQuestionAddModel } from 'src/app/core/models/education/question/choose-question-add.model';
 import { DragDropAddModel } from 'src/app/core/models/education/question/drag-drop-add-model';
 import { QuestionService } from 'src/app/core/services/education/question-service/question.service';
+import { Route } from '@angular/compiler/src/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-exam-edit',
@@ -38,6 +40,7 @@ export class ExamEditComponent implements OnInit {
 
   dragDropAddForm: FormGroup;
   dragDropAddObject: DragDropAddModel;
+  courseId: number;
 
   questionList: number[] = [];
 
@@ -45,10 +48,15 @@ export class ExamEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private examService: ExamService,
     private questionService: QuestionService,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      console.log('kurs id', +params.courseId);
+      this.courseId = +params.courseId;
+   }); 
     this.createAddExamForm();
     this.createAddQuestionForm();
     this.createAddChooseQuestionForm();
@@ -61,7 +69,7 @@ export class ExamEditComponent implements OnInit {
       numberOfQuestion: [''],
       timeForSolve: [''],
       examType: [''],
-      courseId: [3]
+      courseId: [this.courseId]
     });
   }
   createAddQuestionForm() {

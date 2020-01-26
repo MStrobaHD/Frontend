@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  img{
+      height: 2rem;
+  }
+  table {
+    text-align: center !important;
+    align-items: center !important;
+    width: 100%;
+  }
+  .mat-header-cell {
+    text-align: center;
+  }
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }

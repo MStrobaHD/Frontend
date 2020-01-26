@@ -1,0 +1,49 @@
+<mat-card>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Słowo kluczowe">
+      </mat-form-field>
+      
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+      
+            <!-- ID Column -->
+          <ng-container matColumnDef="icon">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let row"> 
+                <img *ngIf='row.mark === "Bardzo dobry" || row.mark === "Dobry" || row.mark === "Dostateczny"' src='../../../../../../assets/positive_mark.png'> 
+                <img *ngIf='row.mark === "Niezaliczone"' src='../../../../../../assets/negative_mark.png'>
+             </td>
+          </ng-container>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="mark">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ocena </th>
+            <td mat-cell *matCellDef="let row"> {{row.mark}} </td>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="points">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Liczba punktów </th>
+            
+            <td  mat-cell *matCellDef="let row">{{row.points}} 
+              </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Wynik </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-progress-bar mode="determinate" value="{{row.percentage}}"></mat-progress-bar>
+             </td>
+          </ng-container>
+      
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+      
+</mat-card>

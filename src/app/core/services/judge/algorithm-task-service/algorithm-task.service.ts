@@ -8,6 +8,9 @@ import { ComplexityModel } from 'src/app/core/models/judge/complexity.model';
 import { AlgorithmCategoryModel } from 'src/app/core/models/judge/algorithm-category.model';
 import { VerificationDataAddModel } from 'src/app/core/models/judge/verification-data-add.model';
 import { RestrictionsAddModel } from 'src/app/core/models/judge/restrictions.model';
+import { AlgorithmTaskAddModel } from 'src/app/core/models/judge/algorithm-task-add.model';
+import { RatingModel } from 'src/app/core/models/judge/rating.model';
+import { VerdictListModel } from 'src/app/core/models/judge/verdict/verdict.list.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +43,15 @@ export class AlgorithmTaskService {
   addRestriction(restriction: RestrictionsAddModel) {
     return this.http.post<RestrictionsAddModel[]>(this.baseUrl + 'restriction/', restriction);
   }
-
+  addAlgorithm(algorithm: AlgorithmTaskAddModel) {
+    return this.http.post<RestrictionsAddModel>(this.baseUrl + 'algorithmTask/', algorithm);
+  }
+  markTask(rating: RatingModel) {
+    return this.http.post<RestrictionsAddModel>(this.baseUrl + 'algorithmTask/rating', rating);
+  }
+  getVerdictsForList(userId: number) {
+    return this.http.get<VerdictListModel[]>(this.baseUrl + 'verdict/'+userId);
+  }
   // getExamByCategory(categoryId: number) {
   //   return this.http.get<ExamModel[]>(this.baseUrl + 'exam/' + categoryId);
   // }

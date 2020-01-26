@@ -7,11 +7,6 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
 
-      <!-- ID Column -->
-      <!-- <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-      </ng-container> -->
       <ng-container matColumnDef="expand">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
         <td mat-cell *matCellDef="let row" [style.color]="row.color">
@@ -39,15 +34,15 @@
       <ng-container matColumnDef="rating">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Poziom </th>
         <td mat-cell *matCellDef="let row">
-          <ngb-rating [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
+          <ngb-rating [(rate)]="row.ratePoints" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly" (click)="mark(row.id)"></ngb-rating>
         </td>
       </ng-container>
       <!-- Color Column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
         <td mat-cell *matCellDef="let row" [style.color]="row.color">
-          <mat-icon class="icon-add neutral">edit</mat-icon>
-          <mat-icon class="icon-add positive" (click)="solveAlgorithm(row)">play_circle_filled</mat-icon>
+          <!-- <mat-icon class="icon-add neutral">edit</mat-icon> -->
+          <mat-icon class="icon-add positive" (click)="solveAlgorithm(row)">school</mat-icon>
           <mat-icon color="warn">delete</mat-icon>
         </td>
       </ng-container>
@@ -56,12 +51,7 @@
         <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
 
           <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <!-- <div class="example-element-diagram">
-              <div class="example-element-position"> {{element.position}} </div>
-              <div class="example-element-symbol"> {{element.symbol}} </div>
-              <div class="example-element-name"> {{element.name}} </div>
-              <div class="example-element-weight"> {{element.weight}} </div>
-            </div> -->
+
             <div class="example-element-description">
               <span class="example-element-description-attribution"> Dodane przez : </span>
               {{element.user.username}}
@@ -79,10 +69,6 @@
           </div>
         </td>
       </ng-container>
-
-      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-      </tr> -->
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === element">

@@ -37,6 +37,7 @@ export class LessonEditComponent implements OnInit {
   LessonObject: LessonModel;
   newLessonId: number;
   userID: number;
+  courseId: number;
 
   // ServerForm: FormGroup;
   // ServerObject: ServerModel;
@@ -47,7 +48,7 @@ export class LessonEditComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
+  lessonID = 5;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -66,11 +67,11 @@ export class LessonEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.courseId = +params.courseId;
+   }); 
     this.userID = + localStorage.getItem('userID');
-    this.initializeUploader();
-    this.createAddLessonForm();
-    // this.createAddServerAssetForm();
-    this.createAddCloudAssetForm();
+    this.createAddLessonForm(this.courseId);
     this.isCreate = true;
 
   }
@@ -82,12 +83,11 @@ export class LessonEditComponent implements OnInit {
   //   this.hasAnotherDropZoneOver = e;
   // }
 
-  initializeUploader() {
-
-  
+  initializeUploader(lessonId: number) {
     console.log(localStorage.getItem('lessonId'));
+    console.log('ja jebe',lessonId);
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'cloudupload/' + this.userID + '/' + localStorage.getItem('lessonId'),
+      url: this.baseUrl + 'cloudupload/' + this.userID + '/' + lessonId,
       authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image', 'pdf', 'video'],
@@ -117,27 +117,21 @@ export class LessonEditComponent implements OnInit {
     };
   }
 
-  createAddLessonForm() {
+  createAddLessonForm(id: number) {
     this.LessonForm = this.formBuilder.group({
       lessonTitle: [''],
       priority: [],
-      courseId: [3]
+      courseId: [id]
     });
   }
-  // createAddServerAssetForm() {
-  //   this.ServerForm = this.formBuilder.group({
-  //     serverAssetName: [''],
-  //     url: [this.response.dbPath],
-  //     userId: [],
-  //     lessonId: []
-  //   });
-  // }
-  createAddCloudAssetForm() {
+
+  createAddCloudAssetForm(id: number) {
+    const lessonid = +localStorage.getItem('lessonId');
     this.AssetForm = this.formBuilder.group({
       assetName: [''],
       url: [],
       userId: [this.userID],
-      lessonId: [this.newLessonId]
+      lessonId: [lessonid]
     });
   }
 
@@ -146,7 +140,6 @@ export class LessonEditComponent implements OnInit {
       this.LessonObject = Object.assign({}, this.LessonForm.value);
       this.lessonService.addLesson(this.LessonObject).subscribe(
         (response) => {
-          // this.ngOnInit();
           console.log(response);
           this.newLessonId = + response;
           localStorage.removeItem('lessonId');
@@ -158,14 +151,15 @@ export class LessonEditComponent implements OnInit {
           this.alertify.error(error);
         }
       );
+      this.initializeUploader(this.newLessonId);
     }
   }
   addCloudAsset() {
     if (this.AssetForm.valid) {
       this.AssetObject = Object.assign({}, this.AssetForm.value);
+      this.AssetObject.lessonId = +localStorage.getItem('lessonId');
       this.lessonService.addCloudAsset(this.AssetObject).subscribe(
         () => {
-          // this.ngOnInit();
           this.alertify.success('Link został dodany');
         },
         error => {
@@ -201,10 +195,4 @@ export class LessonEditComponent implements OnInit {
     );
   }
 
-  // public uploadFinished = event => {
-  //   this.response = event;
-  // }
-  // public createImgPath = (serverPath: string) => {
-  //   return `http://educourseapi.azurewebsites.net/${serverPath}`;
-  // }
 }

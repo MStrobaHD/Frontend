@@ -6,17 +6,17 @@
             Ułóż w poprawnej kolejności
         </mat-toolbar>
 
-        <div gdAreas="side content" gdGap="10px" gdRows="auto" gdAreas.lt-md="side | content" gdRows.lt-md="auto auto auto auto">
+        <!-- <div gdAreas="side content" gdGap="10px" gdRows="auto" gdAreas.lt-md="side | content" gdRows.lt-md="auto auto auto auto">
 
             <div gdArea="side">
                 <mat-card>
                     <div class="example-container">
 
 
-                        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
-                            <div class="example-box" *ngFor="let item of todo" cdkDrag>
-                                <mat-icon>{{item}}</mat-icon>
+                        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="diagramElement" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
 
+                            <div class="example-box" *ngFor="let item of diagramElement" cdkDrag>
+                                <img src="../../../../../assets/algorithm_diagram_element/{{item}}">
                             </div>
                         </div>
                     </div>
@@ -28,10 +28,9 @@
                     <div class="example-container">
 
 
-                        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="diagramScheme" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
 
-                            <div class="example-box" [ngStyle]="{'background-color':setTrue == true ? '#00c853' : 'gold' }" [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of done" cdkDrag>
-                                <mat-icon>{{item}}</mat-icon>
+                            <div class="example-box" [ngStyle]="{'background-color':setTrue == true ? '#00c853' : 'gold' }" [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of diagramScheme" cdkDrag>
 
 
                             </div>
@@ -39,7 +38,68 @@
                     </div>
                 </mat-card>
             </div>
+        </div> -->
+
+        <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+            <div class="item item-4" fxFlex="30%" >
+                <mat-card>
+                    <div class="example-container">
+
+
+                        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="diagramElement" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+
+                            <div class="example-box" *ngFor="let item of diagramElement" cdkDrag>
+                                <img src="../../../../../assets/algorithm_diagram_element/{{item}}">
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+            <div class="item item-5" fxFlex="70%">
+                <mat-card>
+                    <div class="example-container">
+
+
+                        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="diagramScheme" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+
+                            <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of diagramScheme" cdkDrag>
+                                    <img src="../../../../../assets/algorithm_diagram_element/{{item}}">
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
         </div>
+        <!-- <div class="example-container">
+            <div cdkDropList #test1="cdkDropList" [cdkDropListData]="test" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of test" cdkDrag>
+                    <mat-icon>{{item}}</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="example-container">
+            <div cdkDropList #test2="cdkDropList" [cdkDropListData]="test" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of test" cdkDrag>
+                    <mat-icon>{{item}}</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="example-container">
+            <div cdkDropList #test3="cdkDropList" [cdkDropListData]="test" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of test" cdkDrag>
+                    <mat-icon>{{item}}</mat-icon>
+                </div>
+            </div>
+        </div> -->
+
+        <mat-list>
+            <mat-list-item>Item 1</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Item 2</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>Item 3</mat-list-item>
+        </mat-list>
 
 
 

@@ -72,11 +72,11 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: #fafafa;
+  //background: #fafafa;
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
-  background: #e2e2e2;
+  //background: #e2e2e2;
 }
 
 .example-element-row td {
@@ -86,7 +86,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-detail {
   overflow: hidden;
   display: flex;
-  background: #fafafa;
+  //background: #fafafa;
 }
 
 .example-element-diagram {

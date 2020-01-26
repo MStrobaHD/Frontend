@@ -1,0 +1,48 @@
+<section fxFlex fxLayoutAlign="center center">
+        <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+    
+            <mat-toolbar>
+                <img src="../../../../../assets/course.png">
+                Dopasuj elementy
+            </mat-toolbar>
+
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-4" fxFlex="30%" >
+                    <mat-card>
+                        <div class="example-container">
+    
+    
+                            <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="diagramElement" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+    
+                                <div class="example-box" *ngFor="let item of diagramElement" cdkDrag>
+                                    <!-- <img src="../../../../../assets/algorithm_diagram_element/{{item}}"> -->
+                                    Defincja
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div class="item item-5" fxFlex="70%">
+                    <mat-card>
+                        <div class="example-container">
+    
+    
+                            <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="diagramScheme" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+    
+                                <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of diagramScheme" cdkDrag>
+                                        <!-- <img src="../../../../../assets/algorithm_diagram_element/{{item}}"> -->
+                                        Odpowiedz
+    
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+
+
+    
+    
+    
+        </mat-card>
+    </section>

@@ -13,9 +13,9 @@ export class LessonService {
 
   constructor(private http: HttpClient) {}
 
-  // getCourses() {
-  //   return this.http.get<Les[]>(this.baseUrl + 'course');
-  // }
+  getCourseLessons(courseId: number) {
+    return this.http.get<LessonModel[]>(this.baseUrl + 'lesson/list/' + courseId);
+  }
   addLesson(lesson: LessonModel) {
     return this.http.post<LessonModel>(this.baseUrl + 'lesson/', lesson);
   }

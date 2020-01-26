@@ -43,10 +43,20 @@ mat-card {
   background-color: #f5f5f5;
   color: black;
 }
+.header-info_active {
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  height: 5rem;
+  background-color: #ca1e1e;
+  color: black;
+}
 .button-row {
   button {
     margin-right: 1rem;
   }
+}
+.light-bg{
+  background-color: rgb(253, 253, 253);
 }
 .question-title {
   font-size: 1.6rem;
@@ -60,4 +70,14 @@ button {
   &:hover {
     background-color: #00e676;
   }
+}
+mat-grid-tile {
+  background: rgb(241, 241, 241);
+  margin: 5px;
+}
+mat-grid-list{
+  margin: .2rem;
+}
+#active{
+  background-color: springgreen;
 }

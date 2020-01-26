@@ -5,6 +5,11 @@ export interface AlgorithmTaskAddModel {
     complexityId: number;
     algorithmCategoryId: number;
     verificationDataId: number;
-    restrictionId: number;
     levelId: number;
+    timeLimit: number;
+    memoryLimit: number;
+    elementaryOperationLimit: number;
+    linesOfCodeLimit: number;
+    timeToSolve: number;
+    complexityOrder: number;
 }
