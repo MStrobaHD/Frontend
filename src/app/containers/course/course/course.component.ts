@@ -16,6 +16,7 @@ import { EnlistParameter } from 'src/app/core/models/education/course/enlist-par
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnInit {
+  panelOpenState = false;
   isVisibleCourseForm = false;
   displayedColumns: string[] = [
     'courseIconUrl',
