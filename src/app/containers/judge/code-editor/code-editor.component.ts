@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 import { MetricsModel } from 'src/app/core/models/judge/metrics.model';
 import { SourceCodeInputModel } from 'src/app/core/models/judge/source-code-input.model';
 import * as shape from 'd3-shape';
-import { DiagramDialog } from './diagram-dialog.ts/diagram-dialog';
+// import { DiagramDialog } from './diagram-dialog.ts/diagram-dialog';
 import { CFG } from 'src/app/core/models/judge/control-flow-graph.model';
 import { DiagramModel } from 'src/app/core/models/judge/diagram.model';
 
@@ -159,7 +159,7 @@ export class CodeEditorComponent implements OnInit {
           this.controlFlowGraph = data;
           this.ngOnInit();
           console.log(data);
-          this.openDiagramDialog(this.controlFlowGraph);
+          //this.openDiagramDialog(this.controlFlowGraph);
           this.alertify.success('Graf przepływu sterowania został utworzony');
         },
         error => {
@@ -283,12 +283,12 @@ export class CodeEditorComponent implements OnInit {
       });
     }
   }
-  openDiagramDialog(controlFlowGraph: CFG): void {
-    if (this.controlFlowGraph) {
-      console.log(this.controlFlowGraph);
-      const dialogRef = this.dialog.open(DiagramDialog, {
-        data: { controlFlowGraph: this.controlFlowGraph }
-      });
-    }
-  }
+//   openDiagramDialog(controlFlowGraph: CFG): void {
+//     if (this.controlFlowGraph) {
+//       console.log(this.controlFlowGraph);
+//       const dialogRef = this.dialog.open(DiagramDialog, {
+//         data: { controlFlowGraph: this.controlFlowGraph }
+//       });
+//     }
+//   }
 }
