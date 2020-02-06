@@ -1,4 +1,4 @@
-<!-- <h2 mat-dialog-title fxLayout fxLayoutAlign="center">Graf Przepływu Sterowania</h2>
+<h2 mat-dialog-title fxLayout fxLayoutAlign="center">Graf Przepływu Sterowania</h2>
 <mat-dialog-content class="mat-typography">
   <div class="page">
     <ngx-graph [links]="links" [nodes]="nodes" [layout]="layout" [curve]="curve" [autoZoom]="autoZoom"
@@ -13,13 +13,13 @@
         </svg:marker>
       </ng-template>
 
-      <!-- <ng-template #clusterTemplate let-cluster>
+      <ng-template #clusterTemplate let-cluster>
             <svg:g class="node cluster">
               <svg:rect rx="5" ry="5" [attr.width]="cluster.dimension.width" [attr.height]="cluster.dimension.height" [attr.fill]="cluster.data.color" />
             </svg:g>
           </ng-template> -->
 
-      <!-- <ng-template #nodeTemplate let-node>
+      <ng-template #nodeTemplate let-node>
         <svg:g class="node">
           <svg:rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height" [attr.fill]="node.data.color" />
           <svg:text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height / 2">{{node.label}}</svg:text>
@@ -38,11 +38,11 @@
         </svg:g>
       </ng-template>
     </ngx-graph>
-  </div> -->
+  </div> 
   <!-- {{data.controlflowgraph.nodes}} -->
 
-<!-- </mat-dialog-content>
-<mat-dialog-actions align="end"> -->
-  <!-- <button mat-button mat-dialog-close>Cancel</button> -->
-  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
-</mat-dialog-actions> --> -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button> 
+</mat-dialog-actions>

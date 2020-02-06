@@ -18,8 +18,8 @@ import { CodeEditorService } from 'src/app/core/services/judge/code-editor-servi
 import { CodeEditorResolver } from 'src/app/core/resolvers/judge/judge-panel/code-editor.resolver';
 import { MetricsDialogComponent } from './code-editor/metrics-dialog/metrics-dialog';
 import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
-//import { NgxGraphModule} from '@swimlane/ngx-graph';
-// import { DiagramDialog } from './code-editor/diagram-dialog.ts/diagram-dialog';
+import { DiagramDialog } from './code-editor/diagram-dialog/diagram-dialog';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
     AlgorithmAddComponent,
     AlgorithmFileUploadComponent,
     MetricsDialogComponent,
-    // DiagramDialog
+    DiagramDialog
   ],
   imports: [
     CommonModule,
@@ -41,10 +41,10 @@ import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
     MonacoEditorModule,
     NgbModule,
     FctrlxAngularFileReader,
-   // NgxGraphModule
+    NgxGraphModule
   ],
 
-  entryComponents: [CodeEditorComponent, MetricsDialogComponent],
+  entryComponents: [CodeEditorComponent, MetricsDialogComponent, DiagramDialog],
   providers: [JudgePanelResolver, CodeEditorResolver, AlgorithmTaskService, CodeEditorService]
 })
 export class JudgeModule {}

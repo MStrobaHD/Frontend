@@ -10,7 +10,10 @@ import { UserModel } from 'src/app/core/models/user/user.model';
 })
 export class InformationComponent implements OnInit {
 
+  editable = false;
   user: UserModel;
+  model: any = {};
+  userId: number;
 
   constructor(
     private authService: AuthService,
@@ -19,8 +22,26 @@ export class InformationComponent implements OnInit {
 
   ngOnInit() {
     this.getUserData();
+    this.userId = +localStorage.getItem('userID');
   }
-
+  showEditForm(){
+    this.editable = true;
+  }
+  updateUserData() {
+    this.editable = false;
+    console.log(this.userId);
+    this.authService.updateUserData( this.userId, this.model).subscribe(
+      next => {
+        this.alertifyService.success('Dane zostały zaktualizowane');
+        this.getUserData();
+      },
+      error => {
+       this.alertifyService.error(error);
+      });
+  }
+  closeEditForm(){
+    this.editable = false;
+  }
   getUserData() {
     this.authService
       .getUserData(+localStorage.getItem('userID'))

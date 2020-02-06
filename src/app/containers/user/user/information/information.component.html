@@ -1,41 +1,74 @@
-<div>
-  <mat-list *ngIf="user">
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <mat-icon>person</mat-icon>Nazwa użytkownika : <b> {{user.username}}</b>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <mat-icon>person</mat-icon>Adres email : <b> {{user.email}}</b>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>
-      <mat-icon>person</mat-icon>Uprawnienia : <b> {{user.role}}</b>
-    </mat-list-item>
-    <mat-divider></mat-divider>
-  </mat-list>
+<br>
+<div *ngIf="user">
+  <div *ngIf="editable" fxFlex fxLayout="column" fxLayoutGap="5px">
+   
+    <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column" fxLayoutGap="5px">
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <b> Nazwa użytkownika </b>
+      </mat-card>
+      <mat-card fxLayoutAlign="start center" class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <mat-form-field>
+          <input matInput #input [value]="user.username" [(ngModel)]="model.username">
+        </mat-form-field>
+      </mat-card>
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <b> Adres email </b>
+      </mat-card>
+      <mat-card fxLayoutAlign="start center" class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <mat-form-field>
+          <input matInput #input [value]="user.email" [(ngModel)]="model.email">
+        </mat-form-field>
+      </mat-card>
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <b> Uprawnienia </b>
+      </mat-card>
+      <mat-card fxLayoutAlign="start center" class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <mat-form-field>
+          <mat-select [(ngModel)]="model.role" >
+            <mat-option value="Administrator">Administrator</mat-option>
+            <mat-option value="Student">Student</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+    
+    </div>
+  </div>
+  <div *ngIf="!editable" fxFlex fxLayout="column" fxLayoutGap="5px">
+
+    <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column" fxLayoutGap="5px">
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <b> Nazwa użytkownika </b>
+      </mat-card>
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        {{user.username}}
+      </mat-card>
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <b> Adres email </b>
+      </mat-card>
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        {{user.email}}
+      </mat-card>
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        <b> Uprawnienia </b>
+      </mat-card>
+      <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+        {{user.role}}
+      </mat-card>
+
+    </div>
+  </div>
 </div>
-<div class="example-container">
-  <mat-form-field hintLabel="Max 10 characters">
-    <input matInput #input  placeholder="Wprowadż nową nazwę użytkownika">
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-    <!-- <mat-icon matPrefix>mode_edit</mat-icon> -->
-  </mat-form-field>
-
-  <mat-form-field hintLabel="Max 10 characters">
-    <input matInput #input  placeholder="Wprowadż nowy adres email">
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-    <!-- <mat-icon matPrefix>email</mat-icon> -->
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Wybierz uprawnienia">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-
 <div>
-  <button mat-raised-button color="primary">Edytuj</button>
+  <br>
+  <div fxLayoutGap="2px" fxLayoutAlign="center">
+    <button *ngIf="!editable" mat-raised-button color="primary" (click)="showEditForm()">
+      Edytuj
+    </button>
+    <button *ngIf="editable" mat-raised-button color="accent" (click)="updateUserData()">
+      Zapisz
+    </button>
+    <button *ngIf="editable" mat-raised-button color="primary" (click)="closeEditForm()">
+      Anuluj
+    </button>
+  </div>
 </div>

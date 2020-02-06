@@ -168,6 +168,9 @@ export class CourseComponent implements OnInit {
   openExamPanel(course) {
     this.router.navigate(['/courses/exampanel/' + course.id]);
   }
+  openCardPanel(course) {
+    this.router.navigate(['/courses/flashcard-panel/' + course.id]);
+  }
   editCourse(course) {
     this.router.navigate(['/courses/course_edition_panel/'  + course.id]);
   }

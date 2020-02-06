@@ -1,0 +1,38 @@
+<section fxFlex fxLayoutAlign="center center">
+
+    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+        <div class="flip-container" (click)="flip()" [class.flipped]="flipped">
+            <mat-card class="karta">
+                <h3>Zestaw : Słownictwo</h3>
+            </mat-card>
+            <br>
+            <mat-card-content class="flipper">
+                <mat-card class="front">
+                    {{flashcardLists.frontside}}
+                    <img *ngIf="flashcardLists.imageUrl" src="{{flashcardLists.imageUrl}}">
+                </mat-card>
+                <mat-card class="back">
+                    {{flashcardLists.backside}}
+                </mat-card>
+            </mat-card-content>
+        </div>
+        <mat-card-footer>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- <mat-chip-list fxLayout fxLayoutAlign="center">
+             <mat-chip class="btn_enlist" id="btn_easy" color="default" mat-button mat-raised-button  selected>Łatwe</mat-chip>
+             <mat-chip class="btn_enlist" color="default" mat-button mat-raised-button  selected>Średnie</mat-chip>
+             <mat-chip  class="btn_enlist"  id="btn_hard" color="default" mat-button mat-raised-button  selected>Trudne</mat-chip>
+           </mat-chip-list> -->
+            <br>
+            <mat-card-actions>
+                <button (click)="deiterate()" class="btn-flashcard" mat-button mat-raised-button id="previous">Poprzednia</button>
+                <button (click)="iterate()" class="btn-flashcard" mat-button mat-raised-button id="next">Następna</button>
+            </mat-card-actions>
+        </mat-card-footer>
+    </mat-card>
+</section>

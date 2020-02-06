@@ -1,5 +1,9 @@
-<section fxFlex fxLayoutAlign="center center">
+<section  fxLayout fxLayoutAlign="center center">
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+
+        <!-- <section fxLayout fxLayoutAlign="center center">
+            <mat-card fxFlex.xs="100%" fxFlex="55rem" class="card-center"> -->
+
         <mat-tab-group>
             <mat-tab>
                 <ng-template mat-tab-label>
@@ -8,7 +12,6 @@
                 </ng-template>
                 <app-information></app-information>
             </mat-tab>
-
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class="example-tab-icon">view_list</mat-icon>
@@ -16,12 +19,10 @@
                 </ng-template>
                 <app-result></app-result>
             </mat-tab>
-
             <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon class="example-tab-icon">people</mat-icon>
                     Uprawnienia
-
                 </ng-template>
                 <app-priviliges-management></app-priviliges-management>
             </mat-tab>

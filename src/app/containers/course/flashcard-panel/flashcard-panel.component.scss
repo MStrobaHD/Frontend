@@ -1,0 +1,33 @@
+section {
+    margin-top: 2rem;
+    mat-card {
+      mat-toolbar {
+        height: 4rem;
+        text-emphasis: none;
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-family: "Raleway", sans-serif;
+        border-radius: 0.2rem;
+        // border: 1px solid rgb(62, 151, 253);
+        margin-bottom: 3rem;
+        -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+        -moz-box-shadow: 2px 2px 5px 0px #00000057;
+        box-shadow: 2px 2px 5px 0px #00000057;
+      }
+    }
+  }
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  mat-icon{
+    cursor: pointer;
+  }

@@ -1,11 +1,11 @@
-<mat-card-content>
+<mat-card>
   <br>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Nazwa werdyktu">
   </mat-form-field>
 
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
 
       <ng-container matColumnDef="expand">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
@@ -18,7 +18,7 @@
       <!-- Progress Column -->
       <ng-container matColumnDef="verdictName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Werdykt </th>
-        <td mat-cell *matCellDef="let row">{{row.verdictName}}</td>
+        <td mat-cell *matCellDef="let row">NA</td>
       </ng-container>
 
       <ng-container matColumnDef="time">
@@ -32,12 +32,12 @@
       </ng-container>
 
       <ng-container matColumnDef="elementaryOperation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Liczba operacji elementarnych </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Op. elem. </th>
         <td mat-cell *matCellDef="let row"> {{row.elementaryOperation}} </td>
       </ng-container>
 
       <ng-container matColumnDef="cyclomaticComplexity">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Złożoność cyklomatyczna </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Zł. cykl. </th>
         <td mat-cell *matCellDef="let row"> {{row.cyclomaticComplexity}} </td>
       </ng-container>
 
@@ -83,4 +83,4 @@
   </div>
 
 
-</mat-card-content>
+</mat-card>

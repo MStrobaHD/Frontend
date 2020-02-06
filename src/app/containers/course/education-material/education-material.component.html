@@ -1,0 +1,22 @@
+<section fxFlex fxLayoutAlign="center center">
+  <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+      <mat-tab-group>
+          <mat-tab>
+              <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">person_outline</mat-icon>
+                  Materiały dodane przez użytkownika
+              </ng-template>
+              <app-user-added></app-user-added>
+          </mat-tab>
+
+          <mat-tab>
+              <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon">people</mat-icon>
+                  Materiały dostępne dla uczestników kursu
+
+              </ng-template>
+              <!-- <app-priviliges-management></app-priviliges-management> -->
+          </mat-tab>
+      </mat-tab-group>
+  </mat-card>
+</section>

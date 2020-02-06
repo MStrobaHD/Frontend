@@ -10,6 +10,7 @@ import { VideoContentComponent } from './course-panel/video-content/video-conten
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CourseListResolver } from 'src/app/core/resolvers/education/course/course.resolver';
 import { CourseService } from 'src/app/core/services/education/course-service/course.service';
+import { CardService } from 'src/app/core/services/education/card-service/card.service';
 import { LessonComponent } from './course-panel/lesson/lesson.component';
 import { CourseEditionPanelComponent } from './course-panel/course-edition-panel/course-edition-panel.component';
 import { LessonEditComponent } from './course-panel/course-edition-panel/lesson-edit/lesson-edit.component';
@@ -36,6 +37,13 @@ import { ExamWriteAnswerComponent } from './exam-panel/exam-write-answer/exam-wr
 import { ExamMatchItemComponent } from './exam-panel/exam-match-item/exam-match-item.component';
 import { ExamPropertiesResolver } from 'src/app/core/resolvers/education/exam/exam-properties.resolver';
 import { LessonPanelResolver } from 'src/app/core/resolvers/education/lesson/lesson-panel.resolver';
+import { EducationMaterialComponent } from './education-material/education-material.component';
+import { UserAddedComponent } from './education-material/user-added/user-added.component';
+import { FlashcardPanelComponent } from './flashcard-panel/flashcard-panel.component';
+import { FlashcardStudyingComponent } from './flashcard-panel/flashcard-studying/flashcard-studying.component';
+import { FlashcardService } from 'src/app/core/services/education/flashcard-service/flashcard.service';
+import { FlashcardSetResolver } from 'src/app/core/resolvers/education/flashcard/flashcard.resolver';
+import { FlashcardListResolver } from 'src/app/core/resolvers/education/flashcard/flascard-list.resolver';
 // import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 // import { MatFileUploadModule } from 'angular-material-fileupload';
 
@@ -58,7 +66,11 @@ import { LessonPanelResolver } from 'src/app/core/resolvers/education/lesson/les
     CourseRecommendedComponent,
     CourseCreatedComponent,
     ExamWriteAnswerComponent,
-    ExamMatchItemComponent
+    ExamMatchItemComponent,
+    EducationMaterialComponent,
+    UserAddedComponent,
+    FlashcardPanelComponent,
+    FlashcardStudyingComponent 
     // FileSelectDirective,
     // FileDropDirective
   ],
@@ -81,8 +93,12 @@ import { LessonPanelResolver } from 'src/app/core/resolvers/education/lesson/les
     ExamResolver,
     QuestionService,
     CourseService,
+    CardService,
     LessonService,
-    LessonPanelResolver
+    LessonPanelResolver,
+    FlashcardService,
+    FlashcardSetResolver,
+    FlashcardListResolver
   ]
 })
 export class CourseModule {}

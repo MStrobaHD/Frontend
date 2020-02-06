@@ -6,6 +6,8 @@ import { RegisterModel } from '../../models/auth/register.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginModel } from '../../models/auth/login.model';
 import { UserModel } from '../../models/user/user.model';
+import { CloudAssetModel } from '../../models/user/cloud-asset.model';
+import { UserListModel } from '../../models/user/userlist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +53,14 @@ export class AuthService {
 
   getUserData(userId: number) {
     return this.http.get<UserModel>(this.baseUrlNoAuth + 'user/' + userId);
+  }
+  getUsers() {
+    return this.http.get<UserListModel[]>(this.baseUrlNoAuth + 'user/');
+  }
+  getUserAddedMaterials(userId: number) {
+    return this.http.get<CloudAssetModel[]>(this.baseUrlNoAuth + 'standarduser/addedbyuser/' + userId);
+  }
+  updateUserData(userId: number, user: any){
+    return this.http.put(this.baseUrlNoAuth + 'standardUser/'+ userId, user);
   }
 }

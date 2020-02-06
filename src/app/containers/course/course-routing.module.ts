@@ -12,6 +12,11 @@ import { CourseEnroledListResolver } from 'src/app/core/resolvers/education/cour
 import { ExamMatchItemComponent } from './exam-panel/exam-match-item/exam-match-item.component';
 import { ExamPropertiesResolver } from 'src/app/core/resolvers/education/exam/exam-properties.resolver';
 import { LessonPanelResolver } from 'src/app/core/resolvers/education/lesson/lesson-panel.resolver';
+import { EducationMaterialComponent } from './education-material/education-material.component';
+import { FlashcardStudyingComponent } from './flashcard-panel/flashcard-studying/flashcard-studying.component';
+import { FlashcardPanelComponent } from './flashcard-panel/flashcard-panel.component';
+import { FlashcardSetResolver } from 'src/app/core/resolvers/education/flashcard/flashcard.resolver';
+import { FlashcardListResolver } from 'src/app/core/resolvers/education/flashcard/flascard-list.resolver';
 
 
 const routes: Routes = [
@@ -55,6 +60,24 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     path: 'match_item',
     component: ExamMatchItemComponent
+  },
+  {
+    runGuardsAndResolvers: 'always',
+    path: 'education-material',
+    component: EducationMaterialComponent
+  },
+  {
+    runGuardsAndResolvers: 'always',
+    path: 'test_router/:cardId',
+    component: FlashcardStudyingComponent,
+    resolve: {cards: FlashcardListResolver}
+  },
+  {
+    runGuardsAndResolvers: 'always',
+    path: 'flashcard-panel/:courseId',
+    component: FlashcardPanelComponent,
+    resolve: {sets: FlashcardSetResolver
+              }
   }
 ];
 
