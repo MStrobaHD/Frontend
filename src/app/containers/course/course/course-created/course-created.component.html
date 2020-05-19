@@ -1,1 +1,67 @@
-<p>course-created works!</p>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="courseIconUrl">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+            <td mat-cell *matCellDef="let row"><img src="{{row.courseIconUrl}}"> </td>
+        </ng-container>
+
+        <!-- Course name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa Kursu </th>
+            <td mat-cell *matCellDef="let row">{{row.courseName}}</td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <!-- <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Postęp </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-progress-bar mode="determinate" value=" {{row.courseName}} " matTooltip="{{row.progress}} %" aria-label="Progress bar that inform about progress">
+                </mat-progress-bar>
+            </td>
+        </ng-container> -->
+ <!-- Date Column -->
+ <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+    <td mat-cell *matCellDef="let row"> {{row.date | date:"shortDate"}} </td>
+</ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Czynności </th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color">
+                <!-- normal user stuff -->
+                <button mat-raised-button color="primary" (click)="openCardPanel(row)">
+                    <mat-icon >sync_alt</mat-icon>
+                </button>
+                <!-- <button mat-raised-button color="primary" (click)="openExamPanel(row)">
+                    <mat-icon>school</mat-icon>
+                </button>
+                
+                <button mat-raised-button color="primary" (click)="openCourse(row)">
+                    <mat-icon >local_library</mat-icon>
+                </button> -->
+                <button mat-raised-button color="accent" (click)="editCourse(row)">
+                    <mat-icon >edit</mat-icon>
+                </button>
+                <button mat-raised-button color="warn" (click)="deleteCourse(row)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <!-- <mat-icon color="warn" (click)="dislistCourse(row)" matTooltip="Wypisz sie z kursu">clear</mat-icon> -->
+                
+                
+                
+                
+                
+
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

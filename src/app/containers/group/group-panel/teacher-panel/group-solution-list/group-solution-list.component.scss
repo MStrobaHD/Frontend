@@ -1,0 +1,20 @@
+table {
+    text-align: center !important;
+    width: 100%;
+  }
+  .table{
+    margin-bottom: 1rem;
+  }
+  .mat-header-cell {
+    text-align: center;
+  }
+  :host ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  button{
+    margin-left: 1rem;
+  }

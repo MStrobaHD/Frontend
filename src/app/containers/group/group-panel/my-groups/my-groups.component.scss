@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  .icon-add {
+     
+    &.neutral {
+      color: orange;
+    }
+    &.positive {
+      color: #00e676;
+    }
+    img {
+      height: 2rem;
+      color: lightskyblue;
+    }
+  }
+  mat-icon{
+    cursor: pointer;
+  }
+  button{
+      margin: .5rem;
+  }

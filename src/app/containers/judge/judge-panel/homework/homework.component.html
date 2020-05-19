@@ -1,0 +1,47 @@
+<mat-card>
+   <mat-toolbar>Przydziel zadania do wykonania</mat-toolbar>
+    <mat-form-field>
+        <mat-label>Lista zadań algorytmicznych</mat-label>
+        <mat-select [formControl]="toppingListForm" multiple>
+          <mat-select-trigger>
+            {{toppingListForm.value ? toppingListForm.value[0] : ''}}
+            <span *ngIf="toppingListForm.value?.length > 1" class="example-additional-selection">
+              (+{{toppingListForm.value.length - 1}} {{toppingListForm.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let task of algorithmList" [value]="task.algorithmTaskName">{{task.algorithmTaskName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Lista uczniów</mat-label>
+        <mat-select [formControl]="userForm" multiple>
+          <mat-select-trigger>
+            {{userForm.value ? userForm.value[0] : ''}}
+            <span *ngIf="userForm.value?.length > 1" class="example-additional-selection">
+              (+{{userForm.value.length - 1}} {{userForm.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let user of users" [value]="user.username">{{user.username}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Wprowadź date rozpoczęcia zadania</mat-label>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Wprowadź date ważności zadania</mat-label>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+{{userForm.value | json}}
+      <div class="button-row" fxLayoutGap="5px">
+        <button mat-raised-button color="primary" click="display()">Zatwierdż</button>
+        <button mat-raised-button color="accent">Anuluj</button>
+      </div>
+</mat-card>

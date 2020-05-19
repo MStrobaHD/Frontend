@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { QuestionService } from 'src/app/core/services/education/question-service/question.service';
 import { QuestionAddModel } from 'src/app/core/models/education/question/question-add.model';
 import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
@@ -10,6 +10,27 @@ import { ExamResultAddModel } from 'src/app/core/models/education/result/exam-re
 import { ExamService } from 'src/app/core/services/education/exam-service/exam.service';
 import { ExamModel } from 'src/app/core/models/education/exam/exam.model';
 
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import {
+  ComponentPortal,
+  // This import is only used to define a generic type. The current TypeScript version incorrectly
+  // considers such imports as unused (https://github.com/Microsoft/TypeScript/issues/14953)
+  // tslint:disable-next-line:no-unused-variable
+  Portal,
+  TemplatePortalDirective
+} from '@angular/cdk/portal';
+import { STATIC_FILE_DATE } from '../../../../shared/layout/image-preview-overlay/data';
+import {
+  Component,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  ViewContainerRef,
+  ViewEncapsulation
+} from '@angular/core';
+import { ImagePreviewService } from 'src/app/shared/layout/image-preview-overlay/image-preview.service';
+import { ImagePreviewOverlayRef } from 'src/app/shared/layout/image-preview-overlay/image-preview-ref';
+import { BadgeModel } from 'src/app/core/models/user/badge.model';
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -17,10 +38,9 @@ import { ExamModel } from 'src/app/core/models/education/exam/exam.model';
 })
 export class ExamComponent implements OnInit {
   BAR_RATIO = 100;
-  
 
   isDisabled: string;
-
+  isAssignment = false;
   firstOption = 'e0e0e0';
   secondOption = 'e0e0e0';
   thirdOption = 'e0e0e0';
@@ -54,6 +74,7 @@ export class ExamComponent implements OnInit {
   timeForProgresBar = 0;
   convertedTime: number;
   interval;
+  interval2;
 
   // Exam result params -> showing and saving after exam end
   answered: number;
@@ -64,14 +85,19 @@ export class ExamComponent implements OnInit {
   percentage: number;
   examId: number;
   // -----
-  //mark: string;
-   positiveQuestion = 0;
-   negativeQuestion = 0;
-   markRatio: number;
-   temporaryMark: string;
-   resultObject: ExamResultAddModel;
-   exam: ExamModel;
+  // mark: string;
+  positiveQuestion = 0;
+  negativeQuestion = 0;
+  markRatio: number;
+  temporaryMark: string;
+  resultObject: ExamResultAddModel;
+  exam: ExamModel;
+  badge: BadgeModel;
+  files = STATIC_FILE_DATE;
 
+  @ViewChildren(TemplatePortalDirective) templatePortals: QueryList<
+    Portal<any>
+  >;
 
 
   constructor(
@@ -80,16 +106,20 @@ export class ExamComponent implements OnInit {
     private authService: AuthService,
     private examService: ExamService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public overlay: Overlay,
+    public viewContainerRef: ViewContainerRef,
+    private previewService: ImagePreviewService
   ) {}
 
   ngOnInit() {
+    this.makeMoment();
     this.exam = this.route.snapshot.data.examProperties;
     this.timeLeft = this.exam.timeForSolve * 60;
     this.route.params.subscribe(params => {
       console.log(+params.id);
       this.examId = +params.id;
-   });
+    });
     this.convertedTime = this.convertTimeForProgressBar(this.timeLeft);
     this.questions = this.route.snapshot.data.exam;
     this.questionAmount = this.questions.length;
@@ -100,7 +130,19 @@ export class ExamComponent implements OnInit {
       this.questionTopIterator++;
     }
   }
-  
+  showPreview(file) {
+    const dialogRef: ImagePreviewOverlayRef = this.previewService.open({
+      image: file
+    });
+    setTimeout(() => {
+      dialogRef.close();
+    }, 4000);
+  }
+
+  makeMoment() {
+    this.isAssignment = true;
+    this.interval = setInterval(() => {}, 4000);
+  }
   startTimer() {
     this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
@@ -108,10 +150,8 @@ export class ExamComponent implements OnInit {
         this.timeForProgresBar = this.timeForProgresBar + this.convertedTime;
       } else if (this.timeLeft === 0) {
         this.finishExam();
-        console.log('koniec czasu');
       }
     }, 1000);
-
   }
   convertTimeForProgressBar(timeInSeconds: number) {
     const ratio = this.BAR_RATIO / timeInSeconds;
@@ -152,6 +192,7 @@ export class ExamComponent implements OnInit {
         );
       }
     } else {
+      this.finishExam();
       this.isExamResultVisible = true;
       this.nextQuestionButtonPrevent = false;
     }
@@ -169,11 +210,7 @@ export class ExamComponent implements OnInit {
   }
   setAsMarked() {
     this.afterFirstClick = true;
-    console.log(
-      this.questionPointer,
-      '===',
-      this.questions[this.questionIterator].correctAnswer
-    );
+ 
     if (this.answersTemporaryDraft.length !== 0) {
       if (this.answersTemporaryDraft[this.questionIterator] != null) {
         this.flag = true;
@@ -224,7 +261,6 @@ export class ExamComponent implements OnInit {
       this.questionIterator++;
     }
 
-    console.log(this.answersTemporaryDraft);
     if (this.questionIterator < this.questions.length) {
       this.firstOption = '#f5f5f5';
       this.secondOption = '#f5f5f5';
@@ -237,36 +273,32 @@ export class ExamComponent implements OnInit {
     this.markSelectedAnswers(
       this.answersTemporaryDraft[this.questionIterator].optionSelected
     );
-    console.log(this.questionIterator);
   }
   finishExam() {
     this.pauseTimer();
     this.isExamResultVisible = true;
-    const numberOfQuestion = this.answersTemporaryDraft.length;
+    const numberOfQuestion = this.questionAmount;
 
     // get mark
     this.answersTemporaryDraft.forEach(element => {
-      if(element.isTrue === true){
+      if (element.isTrue === true) {
         this.positiveQuestion++;
       }
     });
     this.answersTemporaryDraft.forEach(element => {
-      if(element.isTrue === false){
+      if (element.isTrue === false) {
         this.negativeQuestion++;
       }
     });
     this.markRatio = this.positiveQuestion / numberOfQuestion;
     this.mark = this.calculateMark(this.markRatio);
-    // console.log(this.mark);
-    // console.log(this.positiveQuestion);
-    const userid = + localStorage.getItem('userID');
-    // console.log('userId' + userid);
-    // console.log('examId' + this.examId);
+    const userid = +localStorage.getItem('userID');
     // Save result
     this.resultObject = {
       mark: this.mark,
       points: this.positiveQuestion,
       maxPoints: this.exam.numberOfQuestion,
+      examName: this.exam.examName,
       percentage: (this.positiveQuestion / this.exam.numberOfQuestion) * 100,
       examId: this.examId,
       userId: userid
@@ -275,7 +307,11 @@ export class ExamComponent implements OnInit {
     this.percentage = this.positiveQuestion / this.exam.numberOfQuestion;
     this.answered = this.positiveQuestion + this.negativeQuestion;
 
-    if (this.mark === 'Bardzo dobry' || this.mark === 'Dobry' || this.mark === 'Dostateczny') {
+    if (
+      this.mark === 'Bardzo dobry' ||
+      this.mark === 'Dobry' ||
+      this.mark === 'Dostateczny'
+    ) {
       this.isPassed = true;
     } else {
       this.isPassed = false;
@@ -283,23 +319,26 @@ export class ExamComponent implements OnInit {
 
     this.examService.saveResult(this.resultObject).subscribe(
       response => {
-        console.log(response);
+        if (response !== null) {
+          this.badge = response;
+          this.showPreview(this.badge);
+        }
+
         this.alertifyService.success('Zapisano wynik');
       },
       error => {
-        console.log(error);
         this.alertifyService.error(error);
       }
     );
   }
-  calculateMark(markRatio){
-    if(markRatio >= 0.9){
+  calculateMark(markRatio) {
+    if (markRatio >= 0.9) {
       this.temporaryMark = 'Bardzo dobry';
       return this.temporaryMark;
-    } else if(markRatio >= 0.7) {
+    } else if (markRatio >= 0.7) {
       this.temporaryMark = 'Dobry';
       return this.temporaryMark;
-    } else if(markRatio >= 0.5) {
+    } else if (markRatio >= 0.5) {
       this.temporaryMark = 'Dostateczny';
       return this.temporaryMark;
     } else {
@@ -342,6 +381,4 @@ export class ExamComponent implements OnInit {
       this.selectedOption = optionNumber;
     }
   }
-  getAllQuestions() {}
-  getNextQuestion() {}
 }

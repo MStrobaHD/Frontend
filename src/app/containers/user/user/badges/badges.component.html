@@ -1,0 +1,69 @@
+<mat-card>
+
+  <div fxLayout="column" fxLayoutGap="5px">
+
+    <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column" fxLayoutGap="5px">
+
+      <mat-card *ngFor="let item of badges" class="header-info" fxFlex.lt-md="0 1 calc(23% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(23%)" >
+        <!-- <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{item.badgeName}}</mat-card-title>
+          <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+        </mat-card-header> -->
+        <img fxLayout fxLayoutAlign="center center" mat-card-image src="{{item.imageUrl}}" alt="obraz odznaki">
+        <mat-card-content>
+          <p>
+            {{item.badgeName}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+
+
+  </div>
+
+  <!-- <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Słowo kluczowe">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="imageUrl">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Odznaka </th>
+        <td mat-cell *matCellDef="let row">
+          <img src="{{row.imageUrl}}">
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="badgeName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa odznaki </th>
+        <td mat-cell *matCellDef="let row"> {{row.badgeName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="experiencePoints">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Liczba punktów doświadczenia</th>
+
+        <td mat-cell *matCellDef="let row">{{row.experiencePoints}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Opis </th>
+        <td mat-cell *matCellDef="let row">
+          {{row.description}}"
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div> -->
+
+</mat-card>

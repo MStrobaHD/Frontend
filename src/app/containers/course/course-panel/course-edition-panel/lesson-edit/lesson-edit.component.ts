@@ -39,9 +39,6 @@ export class LessonEditComponent implements OnInit {
   userID: number;
   courseId: number;
 
-  // ServerForm: FormGroup;
-  // ServerObject: ServerModel;
-
   AssetForm: FormGroup;
   AssetObject: CloudModel;
 
@@ -73,15 +70,7 @@ export class LessonEditComponent implements OnInit {
     this.userID = + localStorage.getItem('userID');
     this.createAddLessonForm(this.courseId);
     this.isCreate = true;
-
   }
-
-  // fileOverBase(e: any): void {
-  //   this.hasBaseDropZoneOver = e;
-  // }
-  // public fileOverAnother(e: any): void {
-  //   this.hasAnotherDropZoneOver = e;
-  // }
 
   initializeUploader(lessonId: number) {
     console.log(localStorage.getItem('lessonId'));
@@ -140,14 +129,12 @@ export class LessonEditComponent implements OnInit {
       this.LessonObject = Object.assign({}, this.LessonForm.value);
       this.lessonService.addLesson(this.LessonObject).subscribe(
         (response) => {
-          console.log(response);
           this.newLessonId = + response;
           localStorage.removeItem('lessonId');
           localStorage.setItem('lessonId',  String(this.newLessonId));
           this.alertify.success('Lekcja została utworzona');
         },
         error => {
-          console.log(error);
           this.alertify.error(error);
         }
       );
@@ -185,7 +172,6 @@ export class LessonEditComponent implements OnInit {
     },
     this.lessonService.addServerAsset(this.serverAsset).subscribe(
       () => {
-        // this.ngOnInit();
         this.alertify.success('Materiał został dodany');
       },
       error => {

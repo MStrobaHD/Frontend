@@ -1,3 +1,4 @@
+<app-image-overlay></app-image-overlay>
 <section fxLayout fxLayoutAlign="center center">
   <mat-card fxFlex.xs="100%" fxFlex="55rem" class="card-center">
 
@@ -35,9 +36,9 @@
       </mat-card-actions>
 
     </form>
+    <div *ngIf="isLoaded" class="relative">
+      
+    </div>
     
   </mat-card>
 </section>
-<!-- 
-<p>form value : {{loginForm.value | json}}</p>
-<p>form value : {{loginForm.status | json}}</p> -->

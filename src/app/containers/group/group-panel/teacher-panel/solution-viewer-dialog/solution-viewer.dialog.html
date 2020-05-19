@@ -1,0 +1,141 @@
+<mat-dialog-content>
+    <mat-card class="editor">
+        <mat-toolbar>
+            <img src="https://cdn4.iconfinder.com/data/icons/businessmen-set-1/512/32-512.png"> Szczegóły rozwiązania <b> </b>
+        </mat-toolbar>
+      
+        <mat-accordion>
+            <mat-expansion-panel expanded = true>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Wyliczone metryki rozwiązania
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Złożoność cyklomatyczna :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].cyclomaticComplexity }} 
+                    <mat-icon class="icon"
+                        matTooltip="metryka oprogramowania opracowana przez Thomasa J. McCabe'a w 1976,
+                         używana do pomiaru stopnia skomplikowania programu. Podstawą do wyliczeń 
+                         jest liczba dróg w schemacie blokowym danego programu, co oznacza wprost 
+                         liczbę punktów decyzyjnych w tym programie."
+                        fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Liczba linii kodu :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].linesOfCode}} 
+                    <mat-icon class="icon" matTooltip="Liczba linii kodu nadesłanego rozwiazania" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Liczba niezakomentowanych linii kodu :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].linesOfCode }}
+                     <mat-icon class="icon" matTooltip="Liczba niezakomentowanych linii kodu nadesłanego rozwiazania" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Liczba decyzji :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].numberOfDecision}} 
+                    <mat-icon class="icon" matTooltip="Liczba decyzji tj. np instrukcji IF" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Liczba przypisań :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].numberOfAssignment }} 
+                    <mat-icon class="icon" matTooltip="Liczba przypisań a = 1"  fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Liczba wszystkich tokenów :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].numberOfTokens}} 
+                    <mat-icon class="icon" matTooltip="Liczba wszystkich tokenów" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Liczba unikalnych operatorów :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].numberOfUniqueOperators }} 
+                    <mat-icon class="icon" matTooltip="Liczba unikalnych operatorów" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Liczba wszystkich operatorów :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].numberOfOperators}} 
+                    <mat-icon class="icon"  matTooltip="Liczba wszystkich operatorów " fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Liczba unikalnych operandów :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].numberOfUniqueOperands }} 
+                    <mat-icon class="icon" matTooltip="Liczba unikalnych operandów" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Liczba wszystkich operandów :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].numberOfOperands}} 
+                    <mat-icon class="icon" matTooltip="Liczba wszystkich operandów" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Gramatyka Halstead'a :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].halsteadVocabulary }} 
+                    <mat-icon class="icon" matTooltip="" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Rozmiar programu :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].programVolume}} BIT. 
+                    <mat-icon class="icon" matTooltip="Proporcjonalny do rozmiaru programu, reprezentuje rozmiar w bitach przestrzeń niezbędną
+                    do przechowywania programu. Ten parametr zależy od konkretnej implementacji algorytmu." fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Trudność utrzymania programu :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].programDifficulty }} 
+                    <mat-icon class="icon" matTooltip="Ten parametr pokazuje, jak trudna jest obsługa programu.
+                     Wraz ze wzrostem rozmiaru implementacji programu poziom programu maleje, a trudność wzrasta. Zatem praktyki programowania,
+                      takie jak nadmiarowe użycie operandów lub niepowodzenie w stosowaniu konstrukcji kontrolnych wyższego poziomu, będą miały
+                       tendencję do zwiększania rozmiaru, a także trudności." fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Poziom języka programowania :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].programLevel}} 
+                    <mat-icon class="icon" matTooltip="Aby uszeregować języki programowania, brany jest pod uwagę poziom abstrakcji zapewniany przez język programowania, Poziom Programu (L). Im wyższy poziom języka, tym mniej wysiłku wymaga opracowanie programu przy użyciu tego języka.
+                    L = V * / V
+                    Wartość L mieści się w przedziale od zera do jednego, przy czym L = 1 oznacza program napisany na najwyższym możliwym poziomie (tj. O minimalnym rozmiarze).
+                    Szacowany poziom programu to L ^ = 2 * (n2) / (n1) (N2)
+                    " fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Wysiłek włożony w implementacje algorytmu :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].programmingEffort }} 
+                    <mat-icon class="icon" matTooltip="Mierzy ilość aktywności umysłowej potrzebnej do przetłumaczenia istniejącego
+                     algorytmu na implementację w określonym języku programu." fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Poziom języka :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].languageLevel}} 
+                    <mat-icon class="icon" matTooltip="Pokazuje poziom języka programu implementującego algorytm. Ten sam algorytm wymaga 
+                    dodatkowego wysiłku, jeśli jest napisany w języku programowania niskiego poziomu. Na przykład łatwiej jest programować w Pascalu niż w asemblerze.
+                    L ’= V / D / D
+                    lambda = L * V * = L2 * V" fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+            <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <div class="item item-1" fxFlex>Ilość twórczego myslenia :</div>
+                <div class="item item-3" fxFlex>{{data.actualSolution.metrics[0].inteligenceContent }} 
+                    <mat-icon class="icon"
+                    matTooltip="Określa ilość inteligencji przedstawionej (podanej) w programie Ten parametr zapewnia pomiar złożoności programu, niezależnie od języka programu, w którym został zaimplementowany." fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+                <div class="item item-1" fxFlex>Czas potrzebny do implementacji :</div>
+                <div class="item item-3" fxFlex> {{data.actualSolution.metrics[0].programmingTime}} MIN. 
+                    <mat-icon class="icon" matTooltip="
+                    Pokazuje czas (w minutach) potrzebny do przetłumaczenia istniejącego algorytmu na implementację w określonym języku programu." fxFlex fxLayout fxLayoutAlign="flex-end">help_outline</mat-icon>
+                </div>
+            </div>
+    
+            
+            </mat-expansion-panel>
+          </mat-accordion>
+          <br>
+                <mat-card >
+                    <!-- <mat-toolbar> Kod żródłowy
+                    </mat-toolbar> -->
+                    <div style="height: 400px">
+                        <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="data.actualSolution.solution" id="codeeditor"></ngx-monaco-editor>
+                    </div>
+                </mat-card>
+         
+    </mat-card>
+</mat-dialog-content>
+<div mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="onConfirm()" tabindex="1">Ok</button>
+    <button mat-raised-button color="warn" mat-dialog-close tabindex="-1" (click)="onNoClick()">Anuluj</button>
+</div>>

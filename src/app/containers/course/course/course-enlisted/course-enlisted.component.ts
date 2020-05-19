@@ -5,6 +5,7 @@ import { CourseService } from 'src/app/core/services/education/course-service/co
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
 import { EnlistParameter } from 'src/app/core/models/education/course/enlist-paramater.model';
+import { CourseRatingModel } from 'src/app/core/models/education/course/course-rating.model';
 
 @Component({
   selector: 'app-course-enlisted',
@@ -20,10 +21,13 @@ export class CourseEnlistedComponent implements OnInit {
     'date',
     'action'
   ];
+  selected = 0;
+  hovered = 0;
+  readonly = false;
+  rating: CourseRatingModel;
 
   dataSource = new MatTableDataSource();
   courses: CourseModel[];
-  
   enlistParamters: EnlistParameter;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -46,6 +50,21 @@ export class CourseEnlistedComponent implements OnInit {
       );
     }
     this.getEnlistedCourses();
+  }
+  mark(id: number){
+    (this.rating = {
+      points: this.hovered,
+      userId: +localStorage.getItem('userID'),
+      courseId: id
+    }),
+    this.courseService.markTask(this.rating).subscribe(
+      () => {
+        this.ngOnInit();
+      },
+      error => {
+        this.alertify.error(error);
+      }
+    );
   }
   getEnlistedCourses() {
     this.courseService
@@ -77,9 +96,12 @@ export class CourseEnlistedComponent implements OnInit {
     );
   }
   openCourse(course) {
-    this.router.navigate(['/courses/course_panel']);
+    this.router.navigate(['/courses/course_panel/' + course.id]);
   }
   openExamPanel(course) {
     this.router.navigate(['/courses/exampanel/' + course.id]);
+  }
+  openCardPanel(course) {
+    this.router.navigate(['/courses/flashcard-panel/' + course.id]);
   }
 }

@@ -1,0 +1,38 @@
+<div *ngIf="isLogged()" class="tilemenu" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="5px" (mouseover)="tileMenuSelector=true" (mouseleave)="tileMenuSelector=false">
+  <mat-card (click)="redirect('/home')" mat-raised-button color="primary" fxFlex="20%" fxFlexOrder="1">
+    <img *ngIf="tileMenuSelector==true" mat-card-image src="../../../../assets/home_icon.png" alt="Photo of a Shiba Inu">
+    <mat-card-footer fxLayout fxLayoutAlign="center center">
+      STRONA GŁÓWNA
+    </mat-card-footer>
+  </mat-card>
+  <mat-card (click)="redirect('/courses')" mat-raised-button color="primary" fxFlex="20%" fxFlexOrder="2">
+    <img *ngIf="tileMenuSelector==true" mat-card-image src="../../../../assets/book_icon.png" alt="Photo of a Shiba Inu">
+    <mat-card-footer fxLayout fxLayoutAlign="center center">
+      KURSY
+    </mat-card-footer>
+  </mat-card>
+  <mat-card (click)="redirect('/group')" mat-raised-button color="primary" fxFlex="20%" fxFlexOrder="2">
+    <img *ngIf="tileMenuSelector==true" mat-card-image src="../../../../assets/group.png" alt="Photo of a Shiba Inu">
+    <mat-card-footer fxLayout fxLayoutAlign="center center">
+      GRUPA
+    </mat-card-footer>
+  </mat-card>
+  <mat-card (click)="redirect('/algorithms')" mat-raised-button color="primary" fxFlex="20%" fxFlexOrder="3">
+    <img *ngIf="tileMenuSelector==true" mat-card-image src="../../../../assets/algorithm_icon.png" alt="Photo of a Shiba Inu">
+    <mat-card-footer fxLayout fxLayoutAlign="center center">
+      ALGORYTMY
+    </mat-card-footer>
+  </mat-card>
+  <mat-card (click)="redirect('/user')" mat-raised-button color="primary" fxFlex="20%" fxFlexOrder="4">
+    <img *ngIf="tileMenuSelector==true" mat-card-image src="../../../../assets/profile_icon.png" alt="Photo of a Shiba Inu">
+    <mat-card-footer fxLayout fxLayoutAlign="center center">
+      PROFIL
+    </mat-card-footer>
+  </mat-card>
+  <mat-card (click)="redirect('/stats')" mat-raised-button color="primary" fxFlex="20%" fxFlexOrder="5">
+    <img *ngIf="tileMenuSelector==true" mat-card-image src="../../../../assets/stats_icon.png" alt="Photo of a Shiba Inu">
+    <mat-card-footer fxLayout fxLayoutAlign="center center">
+      STATYSTYKI
+    </mat-card-footer>
+  </mat-card>
+</div>

@@ -16,9 +16,8 @@ export class FlashcardStudyingComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  // flashcard: Flashcard;
-  // flashcardLists: Flashcard[];
   flashcardLists: any = {};
+  origin: any;
   flipped = false;
 
   id: number;
@@ -32,12 +31,11 @@ export class FlashcardStudyingComponent implements OnInit {
 
   ngOnInit() {
     this.flashcardLists = this.route.snapshot.data.cards.flashcard;
+    this.origin = this.flashcardLists;
     this.getFlashcards();
   }
 
   iterate() {
-    console.log(this.counter + 'licznik');
-    console.log(this.i + 'iterator');
     if (this.i < this.counter - 1) {
       this.i++;
       this.ngOnInit();
@@ -47,8 +45,6 @@ export class FlashcardStudyingComponent implements OnInit {
     }
   }
   deiterate() {
-    console.log(this.counter + 'licznik');
-    console.log(this.i + 'iterator');
     if (this.i <= 0) {
       this.i = this.counter - 1;
       this.ngOnInit();
@@ -66,14 +62,11 @@ export class FlashcardStudyingComponent implements OnInit {
 
     this.flashcardLists.forEach(flashcardLists => arr.push(flashcardLists));
     const customArr = arr[this.i];
-    console.log(this.i + 'iterator po array');
     this.flashcardLists = customArr;
 
     this.counter = arr.length;
-    console.log(this.flashcardLists);
     this.dataSource = new MatTableDataSource(customArr);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    //  this.ngOnInit();
   }
 }

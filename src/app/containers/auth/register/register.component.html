@@ -8,18 +8,18 @@
         <form [formGroup]="registerForm" class="container">
 
             <mat-form-field>
-                <input type="text" matInput placeholder="Nazwa użytkownika" class="form-cotrol" formControlName="firstname">
+                <input type="text" matInput placeholder="Imię" class="form-cotrol" formControlName="firstname">
                 <mat-error>Wprowadz nazwę uzytkownika</mat-error>
                 <mat-label>
-                    <mat-icon>person</mat-icon> Nazwa użytkownika
+                    <mat-icon>person</mat-icon> Imię
                 </mat-label>
             </mat-form-field>
 
             <mat-form-field>
-                <input type="text" matInput placeholder="Nazwa użytkownika" class="form-cotrol" formControlName="lastname">
+                <input type="text" matInput placeholder="Nazwisko" class="form-cotrol" formControlName="lastname">
                 <mat-error >Wprowadz nazwę uzytkownika</mat-error>
                 <mat-label>
-                    <mat-icon>person</mat-icon> Nazwa użytkownika
+                    <mat-icon>person</mat-icon> Nazwisko
                 </mat-label>
             </mat-form-field>
 
@@ -32,7 +32,7 @@
                 </mat-label>
             </mat-form-field>
 
-            <mat-form-field hintLabel="At least 10 character">
+            <mat-form-field hintLabel="Minimum 10 znaków">
                 <input type="password" class="form-cotrol" matInput placeholder="Hasło" formControlName="password">
                 <mat-label>
                     <mat-icon>vpn_key</mat-icon> Hasło
@@ -67,7 +67,7 @@
                 <button class="register-button" type="submit" mat-raised-button color="primary" (click)="register()">Zarejestruj
                 </button>
                 <button [routerLink]="['/login']" type="submit" class="login-button" mat-raised-button color="accent">
-                    <img src="../../../../assets/login-icon-white.png">
+                    <mat-icon>person</mat-icon>
                 </button>
             </mat-card-actions>
         </form>

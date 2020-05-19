@@ -57,7 +57,7 @@ export class DiagramDialog {
     'Step Before'
   ];
 
-  draggingEnabled = true;
+  draggingEnabled = false;
   panningEnabled = true;
   zoomEnabled = true;
 
@@ -83,9 +83,10 @@ export class DiagramDialog {
   }
 
   ngOnInit() {
+    console.log(this.data.controlFlowGraph[0].edges);
     this.setInterpolationType(this.curveType);
-    this.nodes = this.data.controlFlowGraph.nodes;
-    this.links = this.data.controlFlowGraph.edges;
+    //this.nodes = this.data.controlFlowGraph.nodes;
+    //this.links = this.data.controlFlowGraph.edges;
   }
 
   setInterpolationType(curveType) {

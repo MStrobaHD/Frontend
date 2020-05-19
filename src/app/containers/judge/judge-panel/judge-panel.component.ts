@@ -58,7 +58,7 @@ export class JudgePanelComponent implements OnInit {
     this.getLevels();
     this.getAlgorithmCategories();
     this.getComplexities();
-    
+
     this.firstFormGroup = this.formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
@@ -105,7 +105,7 @@ export class JudgePanelComponent implements OnInit {
       .getLevels()
       .subscribe(result => {
         this.levels = result;
-        this.alertifyService.success('Załadowano Poziomy Trudności');
+        // this.alertifyService.success('Załadowano Poziomy Trudności');
       });
   }
   getAlgorithmCategories() {
@@ -113,7 +113,7 @@ export class JudgePanelComponent implements OnInit {
       .getAlgortihmCategories()
       .subscribe(result => {
         this.categories = result;
-        this.alertifyService.success('Załadowano Dostępne Kategorie');
+        // this.alertifyService.success('Załadowano Dostępne Kategorie');
       });
   }
   getComplexities() {
@@ -121,7 +121,7 @@ export class JudgePanelComponent implements OnInit {
       .getComplexities()
       .subscribe(result => {
         this.complexities = result;
-        this.alertifyService.success('Załadowano Złożoności');
+        // this.alertifyService.success('Załadowano Złożoności');
       });
   }
 
@@ -134,7 +134,6 @@ export class JudgePanelComponent implements OnInit {
             this.alertifyService.success('Ograniczenia zostały dodane');
           },
           error => {
-            console.log(error);
             this.alertifyService.error(error);
           }
         );
@@ -144,15 +143,11 @@ export class JudgePanelComponent implements OnInit {
     addVerificationData() {
       if (this.verificationDataAddForm.valid) {
         this.verificationDataAddObject = Object.assign({}, this.verificationDataAddForm.value);
-        console.log(+ localStorage.getItem('algorithmTaskId'));
         this.verificationDataAddObject.algorithmTaskId = + localStorage.getItem('algorithmTaskId');
         this.algorithmTaskService.addVerificationData(this.verificationDataAddObject).subscribe(result => {
-          // this.verificationId = + result;
-          this.alertifyService.success('Dane testowe zostały dodane');
-          //this.addAlgorithmTaskData();
+        this.alertifyService.success('Dane testowe zostały dodane');
         },
           error => {
-            console.log(error);
             this.alertifyService.error(error);
           }
         );
@@ -164,11 +159,9 @@ export class JudgePanelComponent implements OnInit {
       this.algorithmTaskService.addAlgorithm(this.algorithmTaskAddObject).subscribe(result => {
           this.algorithmTaskId =  String(result);
           localStorage.setItem('algorithmTaskId', this.algorithmTaskId);
-          console.log(this.algorithmTaskId );
           this.alertifyService.success('Algorytm został dodany');
         },
         error => {
-          console.log(error);
           this.alertifyService.error(error);
         }
       );

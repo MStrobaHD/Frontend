@@ -9,7 +9,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$esa-app-primary: mat-palette($mat-blue, 500);
+$esa-app-primary: mat-palette($mat-blue-grey, 800);
 $esa-app-accent:  mat-palette($mat-pink, A200, A100, A400);
 
 
@@ -17,9 +17,23 @@ $esa-app-accent:  mat-palette($mat-pink, A200, A100, A400);
 $esa-app-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$esa-app-theme: mat-light-theme($esa-app-primary, $esa-app-accent, $esa-app-warn);
+$default-app-theme: mat-light-theme($esa-app-primary, $esa-app-accent, $esa-app-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($esa-app-theme);
+@include angular-material-theme($default-app-theme);
+
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey, 800);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+}

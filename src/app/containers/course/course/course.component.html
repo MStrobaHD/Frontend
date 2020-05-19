@@ -1,22 +1,76 @@
-<section fxFlex fxLayoutAlign="center center">
+<section fxLayoutAlign="center center">
 
   <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
     <mat-toolbar>
-      <img src="../../../../assets/course.png">
-      Kursy szkoleniowe
+      <!-- <mat-icon>local_library</mat-icon> -->
+      KURSY SZKOLENIOWE
       <div fxFlex fxLayout fxLayoutAlign="flex-end">
         <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showCourseForm()">add_circle</mat-icon>
       </div>
     </mat-toolbar>
     <mat-card-content>
 
+      <div mat-elevation-z8 *ngIf="isVisibleCourseForm">
+        <mat-card fxFlex.md="100%" fxFlex.lt-md="100%">
 
+          <form class="container" [formGroup]="addCourseForm" (ngSubmit)="addCourse()" autocomplete="on" fxLayoutGap="2rem">
+
+            <mat-form-field>
+              <input formControlName="courseName" type="text" matInput placeholder="CourseName" class="form-cotrol">
+              <mat-error class="isValid-feedback">Wprowadż nazwę kursu</mat-error>
+              <mat-label>
+                <mat-icon>title</mat-icon> Nazwa Kursu
+              </mat-label>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input formControlName="courseIconUrl" type="text" matInput placeholder="Course icon url" class="form-cotrol">
+              <mat-error class="isValid-feedback">Enter a valid url</mat-error>
+              <mat-label>
+                <mat-icon>image</mat-icon> Course icon url
+              </mat-label>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="At least 10 character">
+              <input formControlName="description" type="text" class="form-cotrol" matInput placeholder="Description">
+              <mat-error class="isValid-feedback">
+                Enter a valid description
+              </mat-error>
+              <mat-label>
+                <mat-icon>font_download</mat-icon> Description
+              </mat-label>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="At least 10 character">
+              <mat-select formControlName="categoryId">
+                <mat-option *ngFor="let category of categories" value='{{category.id}}'>{{category.categoryName}}</mat-option>
+              </mat-select>
+              <mat-error class="isValid-feedback">
+                Select category
+              </mat-error>
+              <mat-label>
+                <mat-icon>category</mat-icon> Category
+              </mat-label>
+            </mat-form-field>
+
+            <mat-card-actions fxLayout fxLayoutAlign="center center">
+              <button type="submit" mat-raised-button color="primary">
+                <mat-icon>add_circle</mat-icon>
+              </button>
+              <button mat-raised-button color="warn" type="button" (click)="closeCourse()">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-card-actions>
+
+          </form>
+        </mat-card>
+      </div>
       <mat-accordion>
         <mat-expansion-panel [expanded]="step === 0" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>view_list</mat-icon>
-              Dostępne kursy
+              <!-- <mat-icon>view_list</mat-icon> -->
+              WSZYSTKIE KURSY
             </mat-panel-title>
             <mat-panel-description>
 
@@ -29,59 +83,35 @@
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort>
 
-              <!-- ID Column -->
               <ng-container matColumnDef="courseIconUrl">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
                 <td mat-cell *matCellDef="let row"><img src="{{row.courseIconUrl}}"> </td>
               </ng-container>
 
-              <!-- Course name Column -->
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa Kursu </th>
                 <td mat-cell *matCellDef="let row">{{row.courseName}}</td>
               </ng-container>
 
-              <!-- Progress Column -->
-              <ng-container matColumnDef="progress">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Postęp </th>
-                <td mat-cell *matCellDef="let row">
-                  <mat-progress-bar mode="determinate" value=" {{row.courseName}} " matTooltip="{{row.progress}} %" aria-label="Progress bar that inform about progress">
-                  </mat-progress-bar>
-                </td>
-              </ng-container>
 
-              <!-- Description Column -->
               <ng-container matColumnDef="description">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Ocena </th>
                 <td mat-cell *matCellDef="let row">
-                  <ngb-rating [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
+                  <ngb-rating [(rate)]="row.rate" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
                 </td>
               </ng-container>
 
-              <!-- Date Column -->
               <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
-                <td mat-cell *matCellDef="let row"> {{row.date | date:"fullDate"}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.date | date:"shortDate"}} </td>
               </ng-container>
 
-              <!-- Action Column -->
               <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Czynności </th>
                 <td mat-cell *matCellDef="let row" [style.color]="row.color">
-
-                  <!-- normal user stuff -->
-                  <!-- enlist course -->
-                  <mat-icon class="icon-add positive" (click)="enlistCourse(row)">add_circle</mat-icon>
-                  <!-- delete enrolment -->
-                  <!-- <mat-icon *ngIf="checkIfEnlisted(row)" color="warn" (click)="dislistCourse(row)">clear</mat-icon> -->
-
-                  <mat-icon class="icon-add positive" (click)="openExamPanel(row)">school</mat-icon>
-                  <mat-icon class="icon-add positive" (click)="openCardPanel(row)">sync_alt</mat-icon>
-                  <mat-icon class="icon-add positive" (click)="openCourse(row)">local_library</mat-icon>
-
-                  <!-- admin stuff -->
-                  <mat-icon *ngIf="checkIfMyCourse()" class="icon-add neutral" (click)="editCourse(row)">edit</mat-icon>
-                  <mat-icon *ngIf="checkIfMyCourse()" color="warn" (click)="deleteCourse(row)">delete</mat-icon>
+                  <button mat-raised-button color="primary" (click)="enlistCourse(row)">
+                    <mat-icon >add_circle</mat-icon>
+                  </button>
                 </td>
               </ng-container>
 
@@ -99,79 +129,34 @@
             Add new course
           </mat-toolbar>
 
-          <div mat-elevation-z8 *ngIf="isVisibleCourseForm">
-            <mat-card fxFlex.md="100%" fxFlex.lt-md="100%">
+         
 
-              <form class="container" [formGroup]="addCourseForm" (ngSubmit)="addCourse()" autocomplete="on" fxLayoutGap="2rem">
-
-                <mat-form-field>
-                  <input formControlName="courseName" type="text" matInput placeholder="CourseName" class="form-cotrol">
-                  <mat-error class="isValid-feedback">Wprowadż nazwę kursu</mat-error>
-                  <mat-label>
-                    <mat-icon>title</mat-icon> Nazwa Kursu
-                  </mat-label>
-                </mat-form-field>
-
-                <mat-form-field>
-                  <input formControlName="courseIconUrl" type="text" matInput placeholder="Course icon url" class="form-cotrol">
-                  <mat-error class="isValid-feedback">Enter a valid url</mat-error>
-                  <mat-label>
-                    <mat-icon>image</mat-icon> Course icon url
-                  </mat-label>
-                </mat-form-field>
-
-                <mat-form-field hintLabel="At least 10 character">
-                  <input formControlName="description" type="text" class="form-cotrol" matInput placeholder="Description">
-                  <mat-error class="isValid-feedback">
-                    Enter a valid description
-                  </mat-error>
-                  <mat-label>
-                    <mat-icon>font_download</mat-icon> Description
-                  </mat-label>
-                </mat-form-field>
-
-                <mat-form-field hintLabel="At least 10 character">
-                  <mat-select formControlName="categoryId">
-                    <mat-option *ngFor="let category of categories" value='{{category.id}}'>{{category.categoryName}}</mat-option>
-                  </mat-select>
-                  <mat-error class="isValid-feedback">
-                    Select category
-                  </mat-error>
-                  <mat-label>
-                    <mat-icon>category</mat-icon> Category
-                  </mat-label>
-                </mat-form-field>
-
-                <mat-card-actions fxLayout fxLayoutAlign="center center">
-                  <button type="submit" mat-raised-button color="primary">
-                    <mat-icon>add_circle</mat-icon>
-                  </button>
-                  <button mat-raised-button color="warn" type="button" (click)="closeCourse()">
-                    <mat-icon>cancel</mat-icon>
-                  </button>
-                </mat-card-actions>
-                <!-- <p>form value : {{addCourseForm.value | json}}</p>
-                    <p>form value : {{addCourseForm.status | json}}</p> -->
-              </form>
-            </mat-card>
-          </div>
-          <!-- <p class="opis"> ___progres bar widoczny tylko jeśli zapisany na kurs</p>
-          <p class="opis"> ___możliwość oceny tylko po dodaniu kursu</p>
-          <p class="opis"> ___przyciski odpowiednio</p>
-          <p class="opis"> ___Przerobić tabele na tabele z opisem wierszy</p>
-          <p class="opis"> ___Poprawić panel nauki i egzaminowania</p> -->
 
         </mat-expansion-panel>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>view_list</mat-icon> Zapisane kursy
+              <!-- <mat-icon>view_list</mat-icon>  -->
+              PRZYPISANE KURSY
             </mat-panel-title>
             <mat-panel-description>
 
             </mat-panel-description>
           </mat-expansion-panel-header>
           <app-course-enlisted></app-course-enlisted>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <!-- <mat-icon>view_list</mat-icon> -->
+              MOJE KURSY
+            </mat-panel-title>
+            <mat-panel-description>
+
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-course-created></app-course-created>
         </mat-expansion-panel>
       </mat-accordion>
 

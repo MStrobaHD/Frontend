@@ -6,6 +6,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { TileMenuComponent } from 'src/app/shared/layout/tile-menu/tile-menu.component';
 
 
 @NgModule({
@@ -17,8 +18,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MaterialModule,
     FormsModule,
     CommonModule,
-    SharedModule,
-    NgxChartsModule
+    SharedModule
+
   ]
 })
 export class HomeModule {

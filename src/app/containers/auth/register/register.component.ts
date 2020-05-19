@@ -45,8 +45,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error => {
-          console.log(error);
-          this.alertifyService.error('Tworzenie konta nieudane');
+          this.alertifyService.error('Nie udało utworzyć konta');
         }
       );
     }

@@ -20,7 +20,7 @@ export class VerdictDetailsResolver implements Resolve<VerdictListModel[]> {
 
     resolve(route: ActivatedRouteSnapshot): Observable<VerdictListModel[]> {
 
-        return this.verdictService.getVerdictDetails(+ route.paramMap.get('id')).pipe(
+        return this.verdictService.getVerdictWithMetrics(+ route.paramMap.get('id')).pipe(
             catchError(error => {
                 this.alertify.error('Wystąpił błąd przy wczytywaniu szczegołów rozwiązania');
                 this.router.navigate(['/home']);

@@ -4,4 +4,5 @@ export interface CourseModel {
     description: string;
     date: Date;
     courseIconUrl: string;
+    rate: number;
 }

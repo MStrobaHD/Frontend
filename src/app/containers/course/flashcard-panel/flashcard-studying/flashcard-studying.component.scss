@@ -46,14 +46,14 @@ section {
 #btn_hard {
   background-color: #ff3333;
 }
-#previous {
-  background-color: #6699ff;
-  color: white;
-}
-#next {
-  background-color: #6699ff;
-  color: white;
-}
+// #previous {
+//   background-color: #6699ff;
+//   color: white;
+// }
+// #next {
+//   background-color: #6699ff;
+//   color: white;
+// }
 .btn-flashcard {
   font-family: "Raleway", sans-serif;
   color: white;
@@ -100,9 +100,8 @@ section {
 
 /* flip speed goes here */
 .flipper {
-  transition: 2s;
+  transition: 1s;
   transform-style: preserve-3d;
-
   position: relative;
 }
 

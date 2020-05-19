@@ -20,6 +20,7 @@ import { MetricsDialogComponent } from './code-editor/metrics-dialog/metrics-dia
 import { FctrlxAngularFileReader } from 'fctrlx-angular-file-reader';
 import { DiagramDialog } from './code-editor/diagram-dialog/diagram-dialog';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { HomeworkComponent } from './judge-panel/homework/homework.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
     AlgorithmAddComponent,
     AlgorithmFileUploadComponent,
     MetricsDialogComponent,
-    DiagramDialog
+    DiagramDialog,
+    HomeworkComponent
   ],
   imports: [
     CommonModule,

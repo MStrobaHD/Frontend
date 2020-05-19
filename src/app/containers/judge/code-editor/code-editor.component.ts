@@ -17,6 +17,15 @@ import * as shape from 'd3-shape';
 import { CFG } from 'src/app/core/models/judge/control-flow-graph.model';
 import { DiagramModel } from 'src/app/core/models/judge/diagram.model';
 import { DiagramDialog } from './diagram-dialog/diagram-dialog';
+import { ImagePreviewService } from 'src/app/shared/layout/image-preview-overlay/image-preview.service';
+import { ImagePreviewOverlayRef } from 'src/app/shared/layout/image-preview-overlay/image-preview-ref';
+import {
+  BadgeAddModel,
+  BadgeModel
+} from 'src/app/core/models/user/badge.model';
+import { VerdictService } from 'src/app/shared/layout/verdict-displayer/verdict.service';
+import { VerdictRef } from 'src/app/shared/layout/verdict-displayer/verdict-ref';
+import { ConfirmDialogComponent } from 'src/app/shared/layout/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-code-editor',
@@ -57,18 +66,22 @@ export class CodeEditorComponent implements OnInit {
   analyzedSourceCode: string;
   algorithmTask: AlgorithmTaskListModel;
   algorithmTaskId: number;
+  algorithmTaskName: string;
   verdict: VerdictModel;
   metrics: MetricsModel;
-  controlFlowGraph: CFG;
+  controlFlowGraph: CFG[];
   verdictName: string;
+  verdictBadge: BadgeModel;
 
-  constructor(
-    private route: ActivatedRoute,
-    private algorithmTaskService: AlgorithmTaskService,
-    private alertify: AlertifyService,
-    private codeEditorService: CodeEditorService,
-    public dialog: MatDialog
-  ) {
+  confirm = false;
+
+  constructor(private route: ActivatedRoute,
+              private algorithmTaskService: AlgorithmTaskService,
+              private alertify: AlertifyService,
+              private codeEditorService: CodeEditorService,
+              public dialog: MatDialog,
+              private verdictService: VerdictService)
+  {
     this.code;
     this.algorithmTask = this.route.snapshot.data.algorithmTask;
   }
@@ -77,8 +90,8 @@ export class CodeEditorComponent implements OnInit {
     this.algorithmTask = this.route.snapshot.data.algorithmTask;
 
     this.route.params.subscribe(params => {
-      console.log(+params.id);
       this.algorithmTaskId = +params.id;
+      this.algorithmTaskName = params.taskName;
     });
   }
   getAlgorithmTask() {
@@ -86,50 +99,56 @@ export class CodeEditorComponent implements OnInit {
       .getAlgorithmTaskForSolveAsync(this.algorithmTaskId)
       .subscribe(result => {
         this.algorithmTask = result;
-        this.alertify.success('Data loaded correctly');
       });
   }
+  showPreview(file) {
+    const dialogRef: VerdictRef = this.verdictService.open({
+      image: file
+    });
+    setTimeout(() => {
+      dialogRef.close();
+    }, 4000);
+  }
   compileSourceCode() {
-
     if (this.input === '') {
       (this.source = {
         source_code: this.code,
         language_id: 51
       }),
-      console.log(this.source);
+        console.log(this.source);
       this.codeEditorService.compileSourceCode(this.source).subscribe(
         result => {
           this.resultInformation = result;
           this.ngOnInit();
-          console.log(result);
           this.alertify.success('Kod żródłowy został skompilowany');
         },
         error => {
-          console.log(error);
-          this.alertify.error(error);
+          this.alertify.error('Brak kodu żródłowego');
         }
       );
     } else if (this.input !== '') {
       (this.sourceWithInput = {
         source_code: this.code,
         language_id: 51,
+        algorithmTaskName: this.algorithmTaskName,
         stdin: this.input,
         userId: +localStorage.getItem('userID'),
         algorithmTaskId: this.algorithmTaskId
       }),
-      console.log(this.sourceWithInput);
-      this.codeEditorService.compileSourceCodeWithInput(this.sourceWithInput).subscribe(
-        result => {
-          this.resultInformation = result;
-          this.ngOnInit();
-          console.log(result);
-          this.alertify.success('Kod żródłowy z danymi wejściowymi został skompilowany');
-        },
-        error => {
-          console.log(error);
-          this.alertify.error(error);
-        }
-      );
+        this.codeEditorService
+          .compileSourceCodeWithInput(this.sourceWithInput)
+          .subscribe(
+            result => {
+              this.resultInformation = result;
+              this.ngOnInit();
+              this.alertify.success(
+                'Kod żródłowy z danymi wejściowymi został skompilowany'
+              );
+            },
+            error => {
+              this.alertify.error('Brak kodu żródłowego');
+            }
+          );
     }
   }
   getMetrics() {
@@ -140,32 +159,27 @@ export class CodeEditorComponent implements OnInit {
         result => {
           this.metrics = result;
           this.ngOnInit();
-          console.log(result);
           this.alertify.success('Metryki zostały obliczone');
           this.openDialog(this.metrics);
         },
         error => {
-          console.log(error);
-          this.alertify.error(error);
+          this.alertify.error('Brak kodu żródłowego');
         }
       );
   }
   analyzeSourceCode() {
-    //this.openDiagramDialog();
     (this.sourceCFG = {
       source_code: this.code
     }),
       this.codeEditorService.analyze(this.sourceCFG).subscribe(
-        (data: CFG) => {
+        (data: CFG[]) => {
           this.controlFlowGraph = data;
           this.ngOnInit();
-          console.log(data);
           this.openDiagramDialog(this.controlFlowGraph);
           this.alertify.success('Graf przepływu sterowania został utworzony');
         },
         error => {
-          console.log(error);
-          this.alertify.error(error);
+          this.alertify.error('Brak kodu żródłowego');
         }
       );
   }
@@ -175,57 +189,43 @@ export class CodeEditorComponent implements OnInit {
   markTask() {}
   chooseProgrammingLanguage() {}
 
-  judge(){
-    (this.sourceWithInput = {
-      source_code: this.code,
-      language_id: 51,
-      stdin: this.input,
-      userId: +localStorage.getItem('userID'),
-      algorithmTaskId: this.algorithmTaskId
-    }),
-    console.log(this.sourceWithInput);
-    this.codeEditorService.JudgeCode(this.sourceWithInput).subscribe(
-      result => {
-        this.alertify.success('Algorytm został oceniony');
-        this.resultInformation = result;
-        console.log(result);
-        //this.ngOnInit();
-      }
-      
-      // error => {
-      //   console.log(error);
-      //   this.alertify.error(error);
-      // }
-    );
-    this.alertify.success('Algorytm został oceniony');
+  judge() {
+      (this.sourceWithInput = {
+        source_code: this.code,
+        language_id: 51,
+        algorithmTaskName: this.algorithmTaskName,
+        stdin: this.input,
+        userId: +localStorage.getItem('userID'),
+        algorithmTaskId: this.algorithmTaskId
+      }),
+        console.log(this.sourceWithInput);
+      this.codeEditorService.JudgeCode(this.sourceWithInput).subscribe(
+        result => {
+          this.showPreview(this.getImageForVerdict(result.verdict));
+          this.alertify.success('Algorytm został oceniony');
+        },
+        error => {
+          this.alertify.error('Brak kodu żródłowego');
+        }
+      );
   }
 
-  setVerdict() {
-    if (+this.resultInformation.time > this.algorithmTask.timeLimit) {
-      this.verdictName = 'Time Limit Exceeded Verdict';
-    } else if (this.resultInformation.memory > this.algorithmTask.memoryLimit) {
-      this.verdictName = 'Memory Limit Exceeded Verdict';
-    } else if (this.resultInformation.compile_output !== null) {
-      this.verdictName = 'Compilation Error Verdict';
-    } else if (this.resultInformation.stderr !== null) {
-      this.verdictName = 'Runtime Error Verdict';
-    } else if (
-      this.resultInformation.stdout !==
-      this.algorithmTask.verificationData.outputData
-    ) {
-      this.verdictName = 'Wrong Answer Verdict';
-    } else if (this.resultInformation.stdout === 'hel') {
-      this.verdictName = 'Correct Answer Verdict';
-      // another method that check this parameters
-      // } else if () {
-      // lines of code
-      // } else if () {
-      // elementary operation
-      // } else if () {
-    } else {
-      this.verdictName = 'Default Verdict';
-    }
-    console.log(this.verdictName);
+  getImageForVerdict(verdict: string) {
+    if (verdict === 'Accepted') {
+      return '../../../../assets/verdicts/ac.png';
+    } else if (verdict === 'NotAccepted') {
+      return '../../../../assets/verdicts/nac.png';
+    } else if (verdict === 'TimeLimitExceeded') {
+      return '../../../../assets/verdicts/TLE.png';
+    } else if (verdict === 'MemoryLimitExceeded') {
+      return '../../../../assets/verdicts/MLE.png';
+    } else if (verdict === 'CompilationError') {
+      return '../../../../assets/verdicts/ce.png';
+    } else if (verdict === 'RuntimeError') {
+      return '../../../../assets/verdicts/ce.png';
+    } else if (verdict === 'Plagiat') {
+    return '../../../../assets/verdicts/pl.png';
+  }
   }
 
   saveVerdict() {
@@ -249,12 +249,10 @@ export class CodeEditorComponent implements OnInit {
         this.alertify.success('Werdykt został dodany');
       },
       error => {
-        console.log(error);
-        this.alertify.error(error);
+        this.alertify.error('Brak kodu żródłowego');
       }
     );
   }
-
 
   setDark() {
     this.editorOptions = {
@@ -284,9 +282,26 @@ export class CodeEditorComponent implements OnInit {
       });
     }
   }
-  openDiagramDialog(controlFlowGraph: CFG): void {
+  openConfirmDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      // width: '350px',
+      data: {
+        message:
+          'Uwaga przesyłaj zadanie do oceny jeśli jesteś pewny rozwiązania. Czy w takim razie chcesz przesłać zadanie ?',
+        buttonYes: 'Tak',
+        buttonNo: 'Nie'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.confirm = result;
+      if (this.confirm === true) {
+        this.judge();
+      } 
+    });
+  }
+
+  openDiagramDialog(controlFlowGraph: CFG[]): void {
     if (this.controlFlowGraph) {
-      console.log(this.controlFlowGraph);
       const dialogRef = this.dialog.open(DiagramDialog, {
         data: { controlFlowGraph: this.controlFlowGraph }
       });

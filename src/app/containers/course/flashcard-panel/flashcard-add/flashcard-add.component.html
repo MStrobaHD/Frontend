@@ -1,0 +1,117 @@
+<section fxFlex fxLayoutAlign="center center">
+  <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+    <mat-toolbar>
+      Dodawanie fiszek
+      <!-- <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showCourseForm()">add_circle</mat-icon>
+      </div> -->
+    </mat-toolbar>
+    <div mat-elevation-z8 *ngIf="isVisibleCardForm">
+      <mat-card fxFlex.md="100%" fxFlex.lt-md="100%">
+
+        <form class="container" [formGroup]="addCardForm" (ngSubmit)="addCard()" autocomplete="on" fxLayoutGap="2rem">
+
+          <mat-form-field>
+            <input formControlName="frontSide" type="text" matInput placeholder="Pierwsza strona" class="form-cotrol">
+            <mat-error class="isValid-feedback">Wprowadż treść</mat-error>
+            <mat-label>
+              <mat-icon>title</mat-icon> Pierwsza strona
+            </mat-label>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="backSide" type="text" matInput placeholder="Droga strona" class="form-cotrol">
+            <mat-error class="isValid-feedback">Wprowadż treść</mat-error>
+            <mat-label>
+              <mat-icon>title</mat-icon> Druga strona
+            </mat-label>
+          </mat-form-field>
+
+          <mat-form-field hintLabel="At least 10 character">
+            <input formControlName="hint" type="text" class="form-cotrol" matInput placeholder="Wskazówka">
+            <mat-error class="isValid-feedback">
+              Wprowadż treść
+            </mat-error>
+            <mat-label>
+              <mat-icon>help</mat-icon> Wskazówka
+            </mat-label>
+          </mat-form-field>
+
+          <mat-form-field hintLabel="At least 10 character">
+            <input formControlName="imageUrl" type="text" class="form-cotrol" matInput placeholder="URL obrazka">
+            <mat-error class="isValid-feedback">
+              Wprowadz adres URL
+            </mat-error>
+            <mat-label>
+              <mat-icon>image</mat-icon> URL obrazka
+            </mat-label>
+          </mat-form-field>
+
+          <mat-card-actions fxLayout fxLayoutAlign="center center">
+            <button type="submit" mat-raised-button color="primary">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+            <button mat-raised-button color="warn" type="button" (click)="return()">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-card-actions>
+          <!-- <p>form value : {{addCourseForm.value | json}}</p>
+                    <p>form value : {{addCourseForm.status | json}}</p> -->
+        </form>
+      </mat-card>
+
+      <mat-form-field class="filter">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj interesujący kurs">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- Course name Column -->
+          <ng-container matColumnDef="firstSide">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pierwsza strona </th>
+            <td mat-cell *matCellDef="let row">  {{row.frontside}}</td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="backSide">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Druga strona </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.backside}}
+            </td>
+          </ng-container>
+
+          <!-- Description Column -->
+          <ng-container matColumnDef="hint">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Wskazówka </th>
+            <td mat-cell *matCellDef="let row">
+             {{row.hint}}
+            </td>
+          </ng-container>
+
+          <!-- Date Column -->
+          <ng-container matColumnDef="urlobrazka">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Obrazek </th>
+            <td mat-cell *matCellDef="let row"> <img src="{{row.imageUrl}}" alt="obrazek pomocniczy"> </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Czynności </th>
+            <td mat-cell *matCellDef="let row" [style.color]="row.color">
+
+              <mat-icon color="warn" (click)="deleteCard(row)">delete</mat-icon>
+            </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+  </mat-card>
+</section>

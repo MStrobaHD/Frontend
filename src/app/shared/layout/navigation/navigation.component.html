@@ -1,3 +1,4 @@
+
 <mat-sidenav-container>
   <mat-sidenav  #sidenav role="navigation">
     <app-navigation-side (closeSidenav)="sidenav.close()"></app-navigation-side>
@@ -5,6 +6,9 @@
   <mat-sidenav-content >
     <app-navigation-bar (sidenavToggle)="sidenav.toggle()"></app-navigation-bar>
     <main>
+      <div fxLayout fxLayoutAlign="center">
+        <app-tile-menu fxFlex.xs="100%" fxFlex="62.5%" class="example-card"></app-tile-menu>
+      </div>
       <router-outlet>
         
       </router-outlet>

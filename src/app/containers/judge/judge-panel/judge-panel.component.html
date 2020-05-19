@@ -1,4 +1,4 @@
-<section fxFlex fxLayoutAlign="center center">
+<section fxLayoutAlign="center center">
   <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
     <mat-toolbar>
@@ -6,7 +6,7 @@
         keyboard_arrow_left
 
       </mat-icon>
-      Algorytmy
+      ALGORYTMY
       <div fxFlex fxLayout fxLayoutAlign="flex-end">
         <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showAlgorithmForm()">add_circle</mat-icon>
       </div>
@@ -54,53 +54,6 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>
-                  <mat-icon>title</mat-icon> Limit Czasu
-                </mat-label>
-                <input matInput placeholder="Nazwa lekcji" formControlName="timeLimit" pattern="[0-9 ]*" required>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>
-                  <mat-icon>title</mat-icon> Limit Pamięci
-                </mat-label>
-                <input type="number" matInput placeholder="Ważność" formControlName="memoryLimit" required>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>
-                  <mat-icon>title</mat-icon> Limit Operacji Elementarnych
-                </mat-label>
-                <input type="number" matInput placeholder="Limit Operacji Elementarnych" formControlName="elementaryOperationLimit" required>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>
-                  <mat-icon>title</mat-icon> Limit Linii Kodu
-                </mat-label>
-                <input type="number" matInput placeholder="Limit Linii Kodu" formControlName="linesOfCodeLimit" required>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>
-                  <mat-icon>title</mat-icon> Czas na rozwiązanie zadania
-                </mat-label>
-                <input type="number" matInput placeholder="Czas na rozwiązanie zadania" formControlName="timeToSolve" required>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>
-                  <mat-icon>title</mat-icon> Złożoność
-                </mat-label>
-                <input type="number" matInput placeholder="Złożoność" formControlName="complexityOrder" required>
-              </mat-form-field>{{examTypeSelector}}
-            <div>
-              <!-- <p>form value : {{algorithmTaskAddForm.value | json}}</p>
-              <p>form value : {{algorithmTaskAddForm.status | json}}</p> -->
-              <button mat-raised-button color="primary" matStepperNext (click)="closeAlgorithmForm()">Anuluj</button>
-              <button mat-raised-button color="accent" (click)="addAlgorithmTaskData()" matStepperNext>Zatwierdź</button>
-            </div>
-          </form>
-        </mat-step>
-        <!-- <mat-step [stepControl]="restrictionAddForm">
-          <form [formGroup]="restrictionAddForm">
-            <ng-template matStepLabel>Ograniczenia Algorytmu</ng-template>
-            <mat-form-field>
               <mat-label>
                 <mat-icon>title</mat-icon> Limit Czasu
               </mat-label>
@@ -116,34 +69,34 @@
               <mat-label>
                 <mat-icon>title</mat-icon> Limit Operacji Elementarnych
               </mat-label>
-              <input type="number" matInput placeholder="Nazwa lekcji" formControlName="elementaryOperationLimit" required>
+              <input type="number" matInput placeholder="Limit Operacji Elementarnych" formControlName="elementaryOperationLimit" required>
             </mat-form-field>
             <mat-form-field>
               <mat-label>
                 <mat-icon>title</mat-icon> Limit Linii Kodu
               </mat-label>
-              <input type="number" matInput placeholder="Ważność" formControlName="linesOfCodeLimit" required>
+              <input type="number" matInput placeholder="Limit Linii Kodu" formControlName="linesOfCodeLimit" required>
             </mat-form-field>
             <mat-form-field>
               <mat-label>
-                <mat-icon>title</mat-icon> Limit Operacji Elementarnych
+                <mat-icon>title</mat-icon> Czas na rozwiązanie zadania
               </mat-label>
-              <input type="number" matInput placeholder="Nazwa lekcji" formControlName="timeToSolve" required>
+              <input type="number" matInput placeholder="Czas na rozwiązanie zadania" formControlName="timeToSolve" required>
             </mat-form-field>
             <mat-form-field>
               <mat-label>
-                <mat-icon>title</mat-icon> Limit Linii Kodu
+                <mat-icon>title</mat-icon> Złożoność
               </mat-label>
-              <input type="number" matInput placeholder="Ważność" formControlName="complexityOrder" required>
-            </mat-form-field>
+              <input type="number" matInput placeholder="Złożoność" formControlName="complexityOrder" required>
+            </mat-form-field>{{examTypeSelector}}
             <div>
-              <p>form value : {{restrictionAddForm.value | json}}</p>
-              <p>form value : {{restrictionAddForm.status | json}}</p>
-              <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
-              <button mat-raised-button color="accent" (click)="addRestriction()" matStepperNext>Zatwierdź</button>
+
+              <button mat-raised-button color="primary" matStepperNext (click)="closeAlgorithmForm()">Anuluj</button>
+              <button mat-raised-button color="accent" (click)="addAlgorithmTaskData()" matStepperNext>Zatwierdź</button>
             </div>
           </form>
-        </mat-step> -->
+        </mat-step>
+
         <mat-step [stepControl]="verificationDataAddForm">
           <form [formGroup]="verificationDataAddForm">
             <ng-template matStepLabel>Dane Testowe</ng-template>
@@ -160,7 +113,7 @@
               <input matInput placeholder="Ważność" formControlName="outputData" required>
             </mat-form-field>
             <div>
-             
+
               <button mat-raised-button color="primary" matStepperPrevious>Wróć</button>
               <button mat-raised-button color="accent" (click)="addVerificationData()" matStepperNext>Zatwierdź</button>
             </div>
@@ -182,54 +135,16 @@
       <mat-expansion-panel [expanded]="step === 0" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Wszystkie Algorytmy
+            ZBIÓR ZADAŃ IMPLEMENTACYJNYCH
           </mat-panel-title>
           <mat-panel-description>
-            Zawiera wszystkie dostępne algorytmy
-            <mat-icon>view_list</mat-icon>
+            
+            <!-- <mat-icon>view_list</mat-icon> -->
           </mat-panel-description>
         </mat-expansion-panel-header>
         <app-algorithm-list></app-algorithm-list>
       </mat-expansion-panel>
 
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Polecane Algorytmy
-          </mat-panel-title>
-          <mat-panel-description>
-            Algorytmy dopasowane do twoich preferencji
-            <mat-icon>star</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <!-- <app-algorithm-list></app-algorithm-list> -->
-      </mat-expansion-panel>
-
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Zadania Domowe
-          </mat-panel-title>
-          <mat-panel-description>
-            Algorytmy zlecone do wykonania
-            <mat-icon>home_work</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <!-- <app-algorithm-list></app-algorithm-list> -->
-      </mat-expansion-panel>
-
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Rozwiązane algorytmy
-          </mat-panel-title>
-          <mat-panel-description>
-            Poprawnie rozwiązane algorytmy
-            <mat-icon>insert_drive_file</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <!-- <app-algorithm-list></app-algorithm-list> -->
-      </mat-expansion-panel>
 
     </mat-accordion>
 

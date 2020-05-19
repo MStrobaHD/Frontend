@@ -20,22 +20,9 @@ export class UserAddedComponent implements OnInit {
 
   constructor(private authService: AuthService) {
 
-    // Assign the data to the data source for the table to render
-    // this.dataSource = new MatTableDataSource(users);
   }
 
   ngOnInit() {
-
-    // this.courseService
-    // .getEnroledCourses(+localStorage.getItem('userID'))
-    // .subscribe(result => {
-    //   this.courses = result;
-    //   this.dataSource = new MatTableDataSource(this.courses);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort = this.sort;
-    //   this.alertify.success('Data loaded correctly');
-    // });
-
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }

@@ -5,6 +5,7 @@ import { UserComponent } from './containers/user/user/user.component';
 import { AuthGuardService } from './core/guards/auth-guard.service';
 import { AlgorithmResultDetailsComponent } from './containers/user/user/result/algorithm-result/algorithm-result-details/algorithm-result-details.component';
 import { VerdictDetailsResolver } from './core/resolvers/judge/verdict-details/verdict-details.resolver';
+import { StatisticsComponent } from './containers/statistics/statistics.component';
 
 export const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -15,12 +16,16 @@ export const appRoutes: Routes = [
     path: 'algorithm_result_details/:id',
     component: AlgorithmResultDetailsComponent,
     canActivate: [AuthGuardService],
-    resolve: {verdict: VerdictDetailsResolver}
+    resolve: { verdict: VerdictDetailsResolver }
   },
   {
     path: 'home',
     loadChildren: () =>
       import('./containers/home/home.module').then(mod => mod.HomeModule)
+  },
+  {
+    path: 'stats',
+    component: StatisticsComponent
   },
   {
     path: 'courses',
@@ -32,6 +37,12 @@ export const appRoutes: Routes = [
     path: 'algorithms',
     loadChildren: () =>
       import('./containers/judge/judge.module').then(mod => mod.JudgeModule),
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'group',
+    loadChildren: () =>
+      import('./containers/group/group.module').then(mod => mod.GroupModule),
     canActivate: [AuthGuardService]
   }
 ];

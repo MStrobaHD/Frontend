@@ -5,6 +5,7 @@ import { CourseModel } from 'src/app/core/models/education/course/course.model';
 import { CourseAddModel } from 'src/app/core/models/education/course/courseAdd.model';
 import { EnlistParameter } from 'src/app/core/models/education/course/enlist-paramater.model';
 import { Subscription } from 'rxjs';
+import { CourseRatingModel } from 'src/app/core/models/education/course/course-rating.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,9 @@ export class CourseService {
 
   constructor(private http: HttpClient) {}
 
-  // getCourses() {
-  //   return this.http.get<CourseModel[]>(this.baseUrl + 'course');
-  // }
+  getAllCourses() {
+    return this.http.get<CourseModel[]>(this.baseUrl + 'course');
+  }
   getCourses(userId: number) {
     return this.http.get<CourseModel[]>(
       this.baseUrl + 'course/noenroled/' + userId
@@ -30,6 +31,11 @@ export class CourseService {
   getEnroledCourses(userId: number) {
     return this.http.get<CourseModel[]>(
       this.baseUrl + 'course/enroled/' + userId
+    );
+  }
+  getCreatedCourses(userId: number) {
+    return this.http.get<CourseModel[]>(
+      this.baseUrl + 'course/user/' + userId
     );
   }
   addCourse(course: CourseAddModel) {
@@ -59,5 +65,8 @@ export class CourseService {
     const url =
       this.baseUrl + `course/enrolment?userId=${userId}&courseId=${courseId}`;
     return this.http.delete(url);
+  }
+  markTask(rating: CourseRatingModel) {
+    return this.http.post<CourseRatingModel>(this.baseUrl + 'course/rating', rating);
   }
 }

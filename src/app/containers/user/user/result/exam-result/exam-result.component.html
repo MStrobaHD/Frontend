@@ -8,7 +8,7 @@
       
             <!-- ID Column -->
           <ng-container matColumnDef="icon">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
             <td mat-cell *matCellDef="let row"> 
                 <img *ngIf='row.mark === "Bardzo dobry" || row.mark === "Dobry" || row.mark === "Dostateczny"' src='../../../../../../assets/positive_mark.png'> 
                 <img *ngIf='row.mark === "Niezaliczone"' src='../../../../../../assets/negative_mark.png'>
@@ -18,22 +18,27 @@
           <!-- ID Column -->
           <ng-container matColumnDef="mark">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Ocena </th>
-            <td mat-cell *matCellDef="let row"> {{row.mark}} </td>
+            <td mat-cell *matCellDef="let row"> 
+              <img *ngIf="row.mark == 'Bardzo dobry'" src="../../../../../assets/5.png">
+              <img *ngIf="row.mark == 'Dobry'" src="../../../../../assets/4.png">
+              <img *ngIf="row.mark == 'Dostateczny'" src="../../../../../assets/3.png">
+              <img *ngIf="row.mark == 'Niezaliczone'" src="../../../../../assets/2.png">
+            </td>
           </ng-container>
       
           <!-- Progress Column -->
           <ng-container matColumnDef="points">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Liczba punktów </th>
             
-            <td  mat-cell *matCellDef="let row">{{row.points}} 
+            <td  mat-cell *matCellDef="let row">{{row.points}} / {{row.maxPoints}}
               </td>
           </ng-container>
       
           <!-- Name Column -->
-          <ng-container matColumnDef="progress">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Wynik </th>
+          <ng-container matColumnDef="examName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa egzaminu </th>
             <td mat-cell *matCellDef="let row">
-              <mat-progress-bar mode="determinate" value="{{row.percentage}}"></mat-progress-bar>
+              {{row.examName}}
              </td>
           </ng-container>
       

@@ -27,7 +27,7 @@ export class FlashcardService {
     return this.http.get<FlashcardSet>(this.baseUrl + 'flashcardSet/course/' + courseId);
   }
   AddFlashcardSet(set: FlashcardSetAdd) {
-    return this.http.post<FlashcardSetAdd[]>(this.baseUrl + 'flashcard/', set);
+    return this.http.post<FlashcardSetAdd[]>(this.baseUrl + 'flashcardSet/', set);
   }
   DeleteFlashcardSet(setId: number) {
     return this.http.delete(this.baseUrl + 'flashcardSet/' + setId);
@@ -43,5 +43,8 @@ export class FlashcardService {
   }
   getFlashcardList(setId: number) {
     return this.http.get<any>(this.baseUrl + 'flashcard/' + setId);
+  }
+  getFlashcardListBetterMapping(setId: number) {
+    return this.http.get<any>(this.baseUrl + 'flashcard/list/' + setId);
   }
 }

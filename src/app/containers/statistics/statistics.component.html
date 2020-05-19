@@ -1,0 +1,151 @@
+<section  fxLayoutAlign="center center">
+    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+      
+        <div  fxLayout="column" fxLayoutGap="5px">
+
+            <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column" fxLayoutGap="5px">
+              <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+                <mat-card-header>
+                  <mat-card-title>
+                    <mat-card-subtitle>
+                      MOJE WERDYKTY
+                    </mat-card-subtitle>
+                  </mat-card-title>
+                </mat-card-header>
+                <ngx-charts-bar-vertical
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="userVerdicts"
+                [gradient]="gradient"
+                [legendPosition]="legendPosition"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [legendTitle]="legendTitle"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [animations]="true"
+                [yAxisLabel]="yAxisLabel"
+                (select)="onSelect($event)">
+              </ngx-charts-bar-vertical>
+            </mat-card>
+                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <mat-card-subtitle>
+                        WSZYSTKIE WERDYKTY
+                      </mat-card-subtitle>
+                    </mat-card-title>
+                  </mat-card-header>
+                    <ngx-charts-bar-vertical
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="verdicts"
+                    [gradient]="gradient"
+                    [legendPosition]="legendPosition"
+                    [xAxis]="showXAxis"
+                    [yAxis]="showYAxis"
+                    [legend]="showLegend"
+                    [legendTitle]="legendTitle"
+                    [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel"
+                    [xAxisLabel]="xAxisLabel"
+                    [animations]="true"
+                    [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect($event)">
+                  </ngx-charts-bar-vertical>
+                </mat-card>
+                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <mat-card-subtitle>
+                        MOJE OCENY
+                      </mat-card-subtitle>
+                    </mat-card-title>
+                  </mat-card-header>
+                  <ngx-charts-pie-chart
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="userMark"
+                  [gradient]="gradient"
+                  [legend]="showLegend"
+                  [legendTitle]="legendTitle"
+                  [legendPosition]="legendPosition"
+                  [labels]="showLabels"
+                  [animations]="true"
+                  [doughnut]="isDoughnut"
+                  (select)="onSelect($event)"
+                  (activate)="onActivate($event)"
+                  (deactivate)="onDeactivate($event)"
+                  >
+                </ngx-charts-pie-chart>
+              </mat-card>
+              <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+                <mat-card-header>
+                  <mat-card-title>
+                    <mat-card-subtitle>
+                      WSZYSTKIE OCENY
+                    </mat-card-subtitle>
+                  </mat-card-title>
+                </mat-card-header>
+                <ngx-charts-pie-chart
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="mark"
+                [gradient]="gradient"
+                [legend]="showLegend"
+                [legendTitle]="legendTitle"
+                [legendPosition]="legendPosition"
+                [labels]="showLabels"
+                [animations]="true"
+                [doughnut]="isDoughnut"
+                (select)="onSelect($event)"
+                (activate)="onActivate($event)"
+                (deactivate)="onDeactivate($event)"
+                >
+              </ngx-charts-pie-chart>
+            </mat-card>
+                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <mat-card-subtitle>
+                        ZAREJESTROWANI UŻYTKOWNICY
+                      </mat-card-subtitle>
+                    </mat-card-title>
+                  </mat-card-header>
+                    <ngx-charts-pie-grid
+                    [view]="view"
+                    [scheme]="colorScheme"
+                    [results]="userStats"
+                    [animations]="animation"
+                    [label] = "label"
+                    (select)="onSelect($event)">
+                  </ngx-charts-pie-grid>
+                </mat-card>
+                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
+                  <mat-card-header>
+                    <mat-card-title>
+                      <mat-card-subtitle>
+                        MATERIAŁY
+                      </mat-card-subtitle>
+                    </mat-card-title>
+                  </mat-card-header>
+                  <ngx-charts-tree-map
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [results]="single"
+                  [gradient]="gradient"
+                  (select)="onSelect($event)">
+                </ngx-charts-tree-map>
+                </mat-card>
+                
+            </div> 
+
+    
+         
+        </div>
+
+
+    </mat-card>
+</section>

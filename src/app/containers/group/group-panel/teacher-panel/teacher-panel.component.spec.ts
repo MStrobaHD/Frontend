@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FloatingButtonComponent } from './floating-button.component';
+import { TeacherPanelComponent } from './teacher-panel.component';
 
-describe('FloatingButtonComponent', () => {
-  let component: FloatingButtonComponent;
-  let fixture: ComponentFixture<FloatingButtonComponent>;
+describe('TeacherPanelComponent', () => {
+  let component: TeacherPanelComponent;
+  let fixture: ComponentFixture<TeacherPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FloatingButtonComponent ]
+      declarations: [ TeacherPanelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FloatingButtonComponent);
+    fixture = TestBed.createComponent(TeacherPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

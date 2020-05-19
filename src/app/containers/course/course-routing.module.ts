@@ -15,8 +15,11 @@ import { LessonPanelResolver } from 'src/app/core/resolvers/education/lesson/les
 import { EducationMaterialComponent } from './education-material/education-material.component';
 import { FlashcardStudyingComponent } from './flashcard-panel/flashcard-studying/flashcard-studying.component';
 import { FlashcardPanelComponent } from './flashcard-panel/flashcard-panel.component';
-import { FlashcardSetResolver } from 'src/app/core/resolvers/education/flashcard/flashcard.resolver';
+import { FlashcardSetResolver, FlashcardListSetResolver } from 'src/app/core/resolvers/education/flashcard/flashcard.resolver';
 import { FlashcardListResolver } from 'src/app/core/resolvers/education/flashcard/flascard-list.resolver';
+import { FlashcardAddComponent } from './flashcard-panel/flashcard-add/flashcard-add.component';
+import { DragDropResolver } from 'src/app/core/resolvers/education/exam/dragdrop-exam.resolver';
+import { PreventUnfinishedExam } from 'src/app/core/guards/prevent-unfinished-exam.guard';
 
 
 const routes: Routes = [
@@ -45,6 +48,7 @@ const routes: Routes = [
     component: ExamComponent,
     resolve: {exam: ExamResolver,
               examProperties: ExamPropertiesResolver},
+              
   },
   {
     runGuardsAndResolvers: 'always',
@@ -53,8 +57,10 @@ const routes: Routes = [
   },
   {
     runGuardsAndResolvers: 'always',
-    path: 'dragdrop',
-    component: ExamDragDropComponent
+    path: 'dragdrop/:id',
+    component: ExamDragDropComponent,
+    resolve: {exam: DragDropResolver,
+      examProperties: ExamPropertiesResolver}
   },
   {
     runGuardsAndResolvers: 'always',
@@ -68,7 +74,13 @@ const routes: Routes = [
   },
   {
     runGuardsAndResolvers: 'always',
-    path: 'test_router/:cardId',
+    path: 'card-add/:cardId',
+    component: FlashcardAddComponent,
+    resolve: {cards: FlashcardListSetResolver}
+  },
+  {
+    runGuardsAndResolvers: 'always',
+    path: 'test_router/:kartId',
     component: FlashcardStudyingComponent,
     resolve: {cards: FlashcardListResolver}
   },

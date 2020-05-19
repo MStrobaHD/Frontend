@@ -2,9 +2,6 @@
     <div>
 
         <mat-card-title fxLayoutAlign="center">
-            <!-- <mat-icon class="icon-space" fxLayout fxLayoutAlign="center">
-                          person
-                        </mat-icon> -->
             <img src="../../../../../../assets/exam.png">
         </mat-card-title>
 
@@ -45,8 +42,7 @@
                     <div>
                         <button mat-raised-button color="accent" (click)="addExam()" matStepperNext><mat-icon>add_box</mat-icon> Utwórz</button>
                     </div>
-                    <!-- <p>form value : {{ExamAddForm.value | json}}</p>
-                    <p>form value : {{ExamAddForm.status | json}}</p> -->
+
                 </form>
             </mat-step>
 
@@ -56,7 +52,6 @@
                 <mat-chip-list aria-label="Fish selection">
 
                     <mat-basic-chip *ngFor="let question of questionList" class="chip" selected>
-                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
                         <span> Pytanie
                             {{question}}</span></mat-basic-chip>
 
@@ -82,7 +77,6 @@
                 <br>
                 <mat-chip-list aria-label="Fish selection">
                     <mat-basic-chip *ngFor="let question of questionList" class="chip" selected>
-                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
                         <span> Pytanie
                             {{question}}</span></mat-basic-chip>
                 </mat-chip-list>
@@ -123,8 +117,6 @@
                     <button mat-raised-button color="accent" (click)="addChooseQuestion()"> <mat-icon>add_box</mat-icon> Utwórz pytanie</button>
                     <button mat-raised-button color="primary" matStepperNext>Przejdź dalej <mat-icon>arrow_forward</mat-icon></button>
                 </div>
-                <!-- <p>form value : {{chooseQuestionAddForm.value | json}}</p>
-                <p>form value : {{chooseQuestionAddForm.status | json}}</p> -->
 
             </mat-step>
 
@@ -132,13 +124,13 @@
                 <br>
                 <mat-chip-list aria-label="Fish selection">
                     <mat-basic-chip *ngFor="let question of questionList" class="chip" selected>
-                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
                         <span> Pytanie
                             {{question}}</span></mat-basic-chip>
                 </mat-chip-list>
                 <br>
 
                 <ng-template matStepLabel>Ustalanie Poprawnej Kolejności</ng-template>
+    
                 <mat-form-field>
                     <input matInput placeholder="Treść Bloku" name="optionThree" [(ngModel)]="dragDropModel.content" required>
                 </mat-form-field>
@@ -150,8 +142,6 @@
                     <button mat-raised-button color="accent" (click)="addDragDrop()"> <mat-icon>add_box</mat-icon>Utwórz pytanie</button>
                     <button mat-raised-button color="primary" matStepperNext> <mat-icon>arrow_forward</mat-icon> Przejdź dalej</button>
                 </div>
-                <!-- <p>form value : {{dragDropAddForm.value | json}}</p>
-                <p>form value : {{dragDropAddForm.status | json}}</p> -->
 
             </mat-step>
 

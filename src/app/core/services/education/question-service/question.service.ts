@@ -4,6 +4,7 @@ import { QuestionAddModel } from 'src/app/core/models/education/question/questio
 import { HttpClient } from '@angular/common/http';
 import { ChooseQuestionAddModel } from 'src/app/core/models/education/question/choose-question-add.model';
 import { DragDropAddModel } from 'src/app/core/models/education/question/drag-drop-add-model';
+import { DragDropModel } from 'src/app/core/models/education/exam/dragdrop.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,9 @@ export class QuestionService {
   // }
   getExamChooseQuestions(examId: number) {
     return this.http.get<ChooseQuestionAddModel[]>(this.baseUrl + 'Question/multiSelectQuestion/' + examId);
+  }
+  getExamDragDrop(examId: number) {
+    return this.http.get<DragDropModel[]>(this.baseUrl + 'Question/orderedBlock/' + examId);
   }
   // deleteCourse(courseId: number) {
   //   const url = this.baseUrl + `course/` + courseId;

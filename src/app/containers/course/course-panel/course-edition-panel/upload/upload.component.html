@@ -1,12 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
-
     <div>
         <button type="button" mat-raised-button="primary" (click)="file.click()">Add content</button>
         <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
     </div>
-
-        <mat-progress-bar mode="determinate" value="3"> 3%</mat-progress-bar>
-
-
-
+    <mat-progress-bar mode="determinate" value="3"> 3%</mat-progress-bar>
 </div>

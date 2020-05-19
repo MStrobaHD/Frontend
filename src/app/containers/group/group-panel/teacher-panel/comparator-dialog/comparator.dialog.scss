@@ -1,0 +1,37 @@
+// mat-dialog-content{
+//     background-image: url("../../../../../../assets/bg_main.jpg");
+// }
+mat-form-field {
+    width: 100%;
+  }
+  mat-card{
+    font-size: 1.5rem;
+
+  }
+  .editor{
+    
+    background-image: url("../../../../../../assets/bg_main.jpg");
+}
+  mat-toolbar {
+    height: 3.5rem;
+    text-emphasis: none;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-family: "Raleway", sans-serif;
+    border-radius: 0.2rem;
+    // border: 1px solid rgb(62, 151, 253);
+    margin-bottom: 3rem;
+    -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+    -moz-box-shadow: 2px 2px 5px 0px #00000057;
+    box-shadow: 2px 2px 5px 0px #00000057;
+  }
+  img {
+    height: 3.5rem;
+    margin-right: 1rem;
+  }
+  button{
+    margin:.5rem;
+}
+.editor_title{
+  height: 3rem;
+}

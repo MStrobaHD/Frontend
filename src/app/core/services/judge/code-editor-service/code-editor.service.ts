@@ -33,7 +33,7 @@ export class CodeEditorService {
     return this.http.post<SourceCodeModel>(this.baseUrl + 'judge/input/', sourceCode);
   }
   JudgeCode(sourceCode: SourceCodeInputModel) {
-    return this.http.post<SourceCodeModel>(this.baseUrl + 'judge/judge/', sourceCode);
+    return this.http.post<any>(this.baseUrl + 'judge/judge/', sourceCode);
   }
   executeCompiledFile(sourceCode: any) {
     return this.http.get(this.baseUrl + 'judge/', sourceCode);

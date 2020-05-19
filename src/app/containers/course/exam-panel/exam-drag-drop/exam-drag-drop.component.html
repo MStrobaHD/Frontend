@@ -1,55 +1,17 @@
-<section fxFlex fxLayoutAlign="center center">
+<section fxFlex fxLayoutAlign="center center" *ngIf="dragdrop">
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
         <mat-toolbar>
-            <img src="../../../../../assets/course.png">
-            Ułóż w poprawnej kolejności
+            Znajdż poprawne ułożenie
         </mat-toolbar>
 
-        <!-- <div gdAreas="side content" gdGap="10px" gdRows="auto" gdAreas.lt-md="side | content" gdRows.lt-md="auto auto auto auto">
-
-            <div gdArea="side">
-                <mat-card>
-                    <div class="example-container">
-
-
-                        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="diagramElement" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
-
-                            <div class="example-box" *ngFor="let item of diagramElement" cdkDrag>
-                                <img src="../../../../../assets/algorithm_diagram_element/{{item}}">
-                            </div>
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-
-            <div gdArea="content">
-                <mat-card>
-                    <div class="example-container">
-
-
-                        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="diagramScheme" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
-
-                            <div class="example-box" [ngStyle]="{'background-color':setTrue == true ? '#00c853' : 'gold' }" [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of diagramScheme" cdkDrag>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-        </div> -->
-
         <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
-            <div class="item item-4" fxFlex="30%" >
+            <div class="item item-4" fxFlex="30%">
                 <mat-card>
                     <div class="example-container">
-
-
                         <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="diagramElement" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
-
                             <div class="example-box" *ngFor="let item of diagramElement" cdkDrag>
-                                <img src="../../../../../assets/algorithm_diagram_element/{{item}}">
+                                {{item.content}}
                             </div>
                         </div>
                     </div>
@@ -58,50 +20,30 @@
             <div class="item item-5" fxFlex="70%">
                 <mat-card>
                     <div class="example-container">
-
-
-                        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="diagramScheme" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
-
-                            <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of diagramScheme" cdkDrag>
-                                    <img src="../../../../../assets/algorithm_diagram_element/{{item}}">
-
+                        <div  cdkDropList #doneList="cdkDropList" [cdkDropListData]="diagramScheme" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                            <div [ngClass]="isCorrect == true ? 'example-box-second-after' : 'example-box-second'"  *ngFor="let item of diagramScheme; index as i" cdkDrag>
+                                <div fxFlex fxLayoutAlign="center center" fxLayoutGap="50px">
+                                    <div><b>{{i+1}}</b></div>
+                                    <div>{{item.content}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </mat-card>
             </div>
         </div>
-        <!-- <div class="example-container">
-            <div cdkDropList #test1="cdkDropList" [cdkDropListData]="test" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of test" cdkDrag>
-                    <mat-icon>{{item}}</mat-icon>
+        <br><br><br><br>
+            <!-- Czas na rozwiązanie egzaminu : <countdown [config]="{leftTime: 150}"></countdown> -->
+            <mat-card>
+                <div fxFlex fxLayoutAlign="center center" class="button-row">
+
+                    <button mat-raised-button color="primary" (click)="finishExam()">Zakoncz test</button>
+
                 </div>
-            </div>
-        </div>
-        <div class="example-container">
-            <div cdkDropList #test2="cdkDropList" [cdkDropListData]="test" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of test" cdkDrag>
-                    <mat-icon>{{item}}</mat-icon>
-                </div>
-            </div>
-        </div>
-        <div class="example-container">
-            <div cdkDropList #test3="cdkDropList" [cdkDropListData]="test" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box"  [style.color]="setTrue == true ? 'white':'black'" *ngFor="let item of test" cdkDrag>
-                    <mat-icon>{{item}}</mat-icon>
-                </div>
-            </div>
-        </div> -->
-
-        <mat-list>
-            <mat-list-item>Item 1</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Item 2</mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item>Item 3</mat-list-item>
-        </mat-list>
-
-
-
+            </mat-card>
+            Czas na ułożenie kart : {{timeleft}}
+            <!-- <p>Czas na wykonanie egzaminu {{timeLeft}}</p> -->
+            <mat-progress-bar mode="buffer" value="{{timeForProgresBar}}" [ngStyle]="{'color': 'gold'}"></mat-progress-bar>
+            <br><br>
     </mat-card>
 </section>

@@ -1,0 +1,113 @@
+<section fxLayoutAlign="center center">
+
+    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+        <mat-toolbar>
+            <img src="https://cdn4.iconfinder.com/data/icons/businessmen-set-1/512/32-512.png">
+            <!-- Panel Nauczyciela --> GRUPA <b> {{groupName}}</b>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end">
+                <!-- <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showAssigmentForm()">add_circle</mat-icon> -->
+                <button matTooltip="Utwórz grupę szkoleniową" mat-raised-button color='primary' (click)="showContent(1)">
+                    <mat-icon>add</mat-icon> Wyniki Studenta
+                </button>
+
+                <button matTooltip="Utwórz grupę szkoleniową" mat-raised-button color='primary' (click)="showContent(2)">
+                    <mat-icon>add</mat-icon> Wyniki Zadania
+                </button>
+
+            </div>
+        </mat-toolbar>
+        <mat-card-content *ngIf="showPerStudent">
+            <mat-form-field class="filter">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wpisz nazwę użytkownika aby wyszukać konkretnego studenta ">
+            </mat-form-field>
+
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+
+                    <ng-container matColumnDef="icon">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                        <td mat-cell *matCellDef="let row"><img src="https://cdn3.iconfinder.com/data/icons/education-2-2/256/Student_Reading-512.png"> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="username">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa użytkownika </th>
+                        <td mat-cell *matCellDef="let row">{{row.username}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Adres email</th>
+                        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Czynności </th>
+                        <td mat-cell *matCellDef="let row" [style.color]="row.color">
+
+                            <button (click)="expandedElement = expandedElement === row ? null : row" mat-raised-button color="primary" matTooltip="Zarządzaj studentami grupy">
+                                <mat-icon>list</mat-icon>
+                            </button>
+
+                            <button mat-raised-button color="warn" matTooltip="Usuń studenta z grupy" (click)="RemoveStudentFromGroup(row.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="expandedDetail">
+                        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+
+                            <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                <mat-grid-list class="item" cols="1" rowHeight="20:1">
+                                    <mat-grid-tile><b>Ocenione egzaminy</b></mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list class="item" cols="6" rowHeight="10:2" *ngFor="let item of element.examResultList">
+                                    <mat-grid-tile><b>Nazwa egzaminu</b></mat-grid-tile>
+                                    <mat-grid-tile>Podstawy C#</mat-grid-tile>
+                                    <mat-grid-tile><b>Uzyskana Ocena</b></mat-grid-tile>
+                                    <mat-grid-tile> {{item.mark}}</mat-grid-tile>
+                                    <mat-grid-tile><b>Liczba uzyskanych punktów</b></mat-grid-tile>
+                                    <mat-grid-tile>{{item.points}} / {{item.maxPoints}}</mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list class="item" cols="1" rowHeight="20:1">
+                                    <mat-grid-tile><b>Ocenione algorytmy</b></mat-grid-tile>
+                                </mat-grid-list>
+                                <mat-grid-list class="item" cols="4" rowHeight="10:1" *ngFor="let item of element.verdictList">
+                                    <mat-grid-tile><b>Nazwa zadania</b></mat-grid-tile>
+                                    <mat-grid-tile>{{item.algorithmTaskName}}</mat-grid-tile>
+                                    <mat-grid-tile><b>Otrzymany werdykt</b></mat-grid-tile>
+                                    <mat-grid-tile> {{item.verdictName}}</mat-grid-tile>
+                                </mat-grid-list>
+                            </div>
+                        </td>
+
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === element">
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+
+        </mat-card-content>
+        <!-- <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Personal data
+                </mat-panel-title>
+                <mat-panel-description>
+                  Type your name and age
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+        
+              <app-group-solution-list></app-group-solution-list>
+            </mat-expansion-panel>
+          </mat-accordion> -->
+        <mat-card-content *ngIf="showPerTask">
+            <app-group-solution-list></app-group-solution-list>
+        </mat-card-content>
+    </mat-card>
+</section>

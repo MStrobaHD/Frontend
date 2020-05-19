@@ -46,7 +46,7 @@ export class ExamPanelComponent implements OnInit {
 
   getCourseExams() {
     this.examService
-      .getCourseExams(+this.route.snapshot.paramMap.get('courseId'))
+      .getNotMarkedExams(+this.route.snapshot.paramMap.get('courseId'), + localStorage.getItem('userID'))
       .subscribe(result => {
         this.exams = result;
         this.dataSource = new MatTableDataSource(this.exams);
@@ -66,11 +66,11 @@ export class ExamPanelComponent implements OnInit {
 
   openExam(exam) {
     if (exam.examType === 1) {
-
+      
     } else if (exam.examType === 2) {
       this.router.navigate(['/courses/exam/' + exam.id]);
     } else {
-// dragdrop
+      this.router.navigate(['/courses/dragdrop/' + exam.id]);
     }
   }
 

@@ -9,6 +9,7 @@ import { DragDropAddModel } from 'src/app/core/models/education/question/drag-dr
 import { QuestionService } from 'src/app/core/services/education/question-service/question.service';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute } from '@angular/router';
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-exam-edit',
@@ -54,9 +55,8 @@ export class ExamEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log('kurs id', +params.courseId);
       this.courseId = +params.courseId;
-   }); 
+   });
     this.createAddExamForm();
     this.createAddQuestionForm();
     this.createAddChooseQuestionForm();
@@ -101,15 +101,10 @@ export class ExamEditComponent implements OnInit {
       this.ExamAddObject = Object.assign({}, this.ExamAddForm.value);
       this.examService.addExam(this.ExamAddObject).subscribe(
         response => {
-          // this.ngOnInit();
-          console.log(response);
-          console.log(this.examItemsLimit);
           this.examId = +response;
-          // localStorage.setItem('examId', String(this.examId));
           this.alertifyService.success('Egzamin został utworzony');
         },
         error => {
-          console.log(error);
           this.alertifyService.error(error);
         }
       );
@@ -118,17 +113,13 @@ export class ExamEditComponent implements OnInit {
   addQuestion() {
     if (this.examItemsCounter < this.examItemsLimit) {
       this.questionModel.examId = this.examId;
-      console.log(this.examId);
       this.questionService.addQuestion(this.questionModel).subscribe(
         response => {
-          // this.ngOnInit();
-          console.log(response);
           this.examItemsCounter++;
           this.questionList.push(this.examItemsCounter);
           this.alertifyService.success('Pytanie zostało dodane');
         },
         error => {
-          console.log(error);
           this.alertifyService.error(error);
         }
       );
@@ -139,17 +130,13 @@ export class ExamEditComponent implements OnInit {
   addChooseQuestion() {
     if (this.examItemsCounter < this.examItemsLimit) {
       this.chooseQuestionModel.examId = this.examId;
-      console.log(this.examId);
       this.questionService.addChooseQuestion(this.chooseQuestionModel).subscribe(
         response => {
-          // this.ngOnInit();
-          console.log(response);
           this.examItemsCounter++;
           this.questionList.push(this.examItemsCounter);
           this.alertifyService.success('Pytanie zostało dodane');
         },
         error => {
-          console.log(error);
           this.alertifyService.error(error);
         }
       );
@@ -158,19 +145,18 @@ export class ExamEditComponent implements OnInit {
     }
   }
   addDragDrop() {
+  // this.blocksList.push(this.dragDropModel);
+
+
     if (this.examItemsCounter < this.examItemsLimit) {
       this.dragDropModel.examId = this.examId;
-      console.log(this.examId);
       this.questionService.addDragDrop(this.dragDropModel).subscribe(
         response => {
-          // this.ngOnInit();
-          console.log(response);
           this.examItemsCounter++;
           this.questionList.push(this.examItemsCounter);
           this.alertifyService.success('Blok został dodany');
         },
         error => {
-          console.log(error);
           this.alertifyService.error(error);
         }
       );

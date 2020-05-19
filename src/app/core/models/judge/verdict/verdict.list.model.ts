@@ -1,3 +1,5 @@
+import { MetricsModel } from '../metrics.model';
+
 export class VerdictListModel {
         Id: number ;
         verdictName: string;
@@ -12,4 +14,5 @@ export class VerdictListModel {
         numberOfAssignment: number;
         userId: number;
         algorithmTaskId: number;
+        metrics: MetricsModel;
 }

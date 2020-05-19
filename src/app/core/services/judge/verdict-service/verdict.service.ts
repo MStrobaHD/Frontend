@@ -14,5 +14,8 @@ constructor(private http: HttpClient) { }
 getVerdictDetails(verdictId: number) {
     return this.http.get<VerdictListModel[]>(this.baseUrl + 'verdict/details/'+ verdictId);
   }
+  getVerdictWithMetrics(verdictId: number) {
+    return this.http.get<VerdictListModel>(this.baseUrl + 'verdict/withMetrics/' + verdictId);
+  }
 }
 

@@ -67,7 +67,6 @@ export class AlgorithmResultComponent implements OnInit {
     }
   }
   getDetails(row) {
-    console.log(row);
     this.router.navigate(['/algorithm_result_details', row.id]);
   }
   getVerdicts() {
@@ -78,7 +77,6 @@ export class AlgorithmResultComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.verdict);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        this.alertify.success('Lista werdyktów została wczytana');
       });
   }
 }

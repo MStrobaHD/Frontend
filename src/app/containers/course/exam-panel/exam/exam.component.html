@@ -1,20 +1,16 @@
 <section fxFlex fxLayoutAlign="center center">
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
-
+        <!-- <app-loading-indicator></app-loading-indicator> -->
         <mat-card *ngIf="!isExamResultVisible">
 
             <mat-chip-list aria-label="Fish selection">
 
                 <div *ngFor="let question of questionList">
                     <mat-basic-chip *ngIf="question===questionIterator" class="chip" id="active" (click)="openQuestion(question)" selected>
-                        <!-- <img class="chip-img" src="../../../../../assets/done_icon.png"> -->
-                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
                         <span> Pytanie
                             {{question+1}}</span>
                     </mat-basic-chip>
                     <mat-basic-chip *ngIf="question!==questionIterator" class="chip" (click)="openQuestion(question)" selected>
-                        <!-- <img class="chip-img" src="../../../../../assets/done_icon.png"> -->
-                        <!-- <img class="chip-img" src="../../../../../assets/wrong_icon.png"> -->
                         <span> Pytanie
                             {{question+1}}</span>
                     </mat-basic-chip>
@@ -27,7 +23,7 @@
             <mat-card class="question-title">
                 <mat-card class="light-bg">
                     {{questions[questionIterator].question}}
-                    
+
                 </mat-card>
 
             </mat-card>
@@ -49,7 +45,6 @@
                 </ng-container>
             </div>
             <br><br><br><br>
-            <!-- Czas na rozwiązanie egzaminu : <countdown [config]="{leftTime: 150}"></countdown> -->
 
             Czas na rozwiązanie egzaminu : {{timeLeft}}
             <!-- <p>Czas na wykonanie egzaminu {{timeLeft}}</p> -->
@@ -62,7 +57,7 @@
                     <button mat-raised-button [routerLink]="[ '/courses']">
                         <mat-icon>keyboard_arrow_left</mat-icon> Powrót
                     </button>
-                   
+
                     <button mat-raised-button (click)="previousQuestion()">
                         <mat-icon>keyboard_arrow_left</mat-icon> Poprzednie pytanie
                     </button>
@@ -79,41 +74,34 @@
 
         <mat-card *ngIf="isExamResultVisible" fxLayout fxLayoutAlign="center center">
 
-            <mat-list>
-                <mat-divider></mat-divider>
-                <mat-list-item>{{isPassed}}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Czas wykonania : {{timeLeft}}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Procent : {{percentage}} %</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Ocena : {{mark}}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Udzielono odpowiedzi na : {{answered}}</mat-list-item>
-                <mat-divider></mat-divider>
-            </mat-list>
 
-
+            <img *ngIf="mark == 'Bardzo dobry'" src="../../../../../assets/5.png">
+            <img *ngIf="mark == 'Dobry'" src="../../../../../assets/4.png">
+            <img *ngIf="mark == 'Dostateczny'" src="../../../../../assets/3.png">
+            <img *ngIf="mark == 'Niezaliczone'" src="../../../../../assets/nzal.png">
 
         </mat-card>
         <mat-card *ngIf="isExamResultVisible">
+            <mat-grid-list cols="3" rowHeight="25:2">
+                <mat-grid-tile> <b>Numer pytania</b> </mat-grid-tile>
+                <mat-grid-tile> <b>Udzielona odpowiedż</b> </mat-grid-tile>
+                <mat-grid-tile> <b>Czy odpowiedż poprawna</b></mat-grid-tile>
+            </mat-grid-list>
             <mat-grid-list cols="3" rowHeight="25:2" *ngFor="let answer of answersTemporaryDraft">
                 <mat-grid-tile>Pytanie {{answer.id+1}}</mat-grid-tile>
                 <mat-grid-tile>{{answer.answer}}</mat-grid-tile>
-                <mat-grid-tile>{{answer.isTrue}}</mat-grid-tile>
+                <mat-grid-tile>
+                    <span *ngIf="answer.isTrue === true"> Poprawnie</span>
+                    <span *ngIf="answer.isTrue === false"> Błędnie</span>
+                    </mat-grid-tile>
             </mat-grid-list>
 
         </mat-card>
         <mat-card *ngIf="isExamResultVisible">
             <div fxFlex fxLayoutAlign="center center" class="button-row">
-
-
                 <button mat-raised-button (click)="goToResult()"> Moje Wyniki</button>
-
             </div>
         </mat-card>
-        <!-- <p class="opis"> ___dodać podpowiedzi</p>
-        <p class="opis"> ___dodać panel zakończenia egzaminu -> poprawne || błedne</p>
-        <p class="opis"> ___zmienić wyglad pytania</p> -->
+
     </mat-card>
 </section>

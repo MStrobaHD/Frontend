@@ -29,7 +29,6 @@ export class InformationComponent implements OnInit {
   }
   updateUserData() {
     this.editable = false;
-    console.log(this.userId);
     this.authService.updateUserData( this.userId, this.model).subscribe(
       next => {
         this.alertifyService.success('Dane zostały zaktualizowane');

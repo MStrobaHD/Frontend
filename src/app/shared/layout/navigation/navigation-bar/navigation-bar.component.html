@@ -1,42 +1,42 @@
 <mat-toolbar color="primary">
+    <!-- <mat-slide-toggle [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)" color="accent"></mat-slide-toggle> -->
     <div fxHide.gt-sm>
         <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>menu</mat-icon>
         </button>
     </div>
-    <section fxFlex fxLayoutAlign="center center">
+    <span fxFlex fxLayoutAlign="center center">
         <div fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
-
-            <!-- <div fxLayoutAlign="flex-start" fxHide.sm fxHide.xs>
-                <img src="../../../../../assets/logo.PNG" alt="logo">
+            <div fxLayoutAlign="flex-start" fxHide.sm fxHide.xs>
+                <img src="../../../../../assets/logo.PNG" alt="logo" class="logo-icon">
             </div>
-
             <div fxFlex fxLayout fxLayoutAlign="center" fxHide.gt-sm>
-                <img src="../../../../../assets/logo.PNG">
-            </div> -->
-
+                <img src="../../../../../assets/logo.PNG" class="logo-icon">
+            </div>
             <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs fxHide.sm class="toolbar-content">
                 <ul fxLayout fxLayoutGap="5px">
                     <li>
-                        <a [matMenuTriggerFor]="menu" matBadge="11" matBadgeSize="small" matBadgeColor="warn">
-                            <img mat-card-avatar src="../../../../../assets/user_menu.png" alt="user menu icon">
+                        <a [matMenuTriggerFor]="menu">
+                            <img mat-card-avatar src="../../../../../assets/user_menu.png" alt="user menu icon" class="menu-icon">
                         </a>
                     </li>
-
                 </ul>
             </div>
         </div>
-    </section>
+    </span>
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">
+    <mat-toolbar class="user-menu-toolbar--section">Witaj ! <b>{{username}}</b></mat-toolbar>
+    <!-- <mat-toolbar class="user-menu-toolbar--section">Ranga</mat-toolbar> -->
+    <mat-divider></mat-divider>
     <mat-toolbar class="user-menu-toolbar--section">Ogólne</mat-toolbar>
     <mat-divider></mat-divider>
     <button mat-menu-item [routerLink]="['/user']">
         <mat-icon>person</mat-icon>
         <span>Profil</span>
     </button>
-    <button mat-menu-item (click)="logout()">
+    <button *ngIf="isLogged()" mat-menu-item (click)="logout()">
         <mat-icon>directions_run</mat-icon>
         <span>Wyloguj</span>
     </button>
@@ -49,16 +49,20 @@
         <span>Zarejestruj</span>
     </button>
     <mat-toolbar class="user-menu-toolbar--section">Menu</mat-toolbar>
-    <a mat-menu-item [routerLink]="['/courses']">
+    <button mat-menu-item [routerLink]="['/home']">
         <mat-icon>view_list</mat-icon>
-        <span>Kursy</span>
-    </a>
+        <span>Zestawienie statystyk</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/courses']">
+        <mat-icon>school</mat-icon>
+        <span>Kursy szkoleniowe</span>
+    </button>
     <button mat-menu-item routerLink="/algorithms">
         <mat-icon>view_list</mat-icon>
-        <span>Algorytmy</span>
+        <span>Zadania algorytmiczne</span>
     </button>
-    <a mat-menu-item [routerLink]="['/courses/education-material']">
+    <!-- <button mat-menu-item [routerLink]="['/courses/education-material']">
         <mat-icon>picture_as_pdf</mat-icon>
         <span>Materiały szkoleniowe</span>
-    </a>
+    </button> -->
 </mat-menu>

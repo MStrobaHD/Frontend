@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ThemeService } from './core/services/shared/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'EducationSupportApplication-spa';
+  isDarkTheme: Observable<boolean>;
+
+  constructor(private themeService: ThemeService) { }
+
+  ngOnInit() {
+    this.isDarkTheme = this.themeService.isDarkTheme;
+  }
 }

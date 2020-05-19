@@ -1,0 +1,55 @@
+<mat-card-content>
+    <mat-form-field>
+        <mat-label>Wybierz zadanie aby zobaczyć zbiorcze wyniki</mat-label>
+        <mat-select>
+            <mat-option (click)="getVerdictOfGroupByTaskId(task.id)" *ngFor="let task of taskList" [value]="task.id">
+                {{task.algorithmTaskName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="filter">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wpisz nazwę użytkownika aby wyszukać konkretnego studenta ">
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="verdictName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Werdykt </th>
+                <td mat-cell *matCellDef="let row">
+                    <img *ngIf="row.verdictName == 'Plagiat'" src="../../../../../../assets/verdicts/plagiat_angular.png">
+                    <img *ngIf="row.verdictName == 'Accepted'" src="../../../../../../assets/verdicts/accepted.png">
+                    <!-- <img *ngIf="row.verdictName == 'MemoryLimitExceeded'" src="../../../../../../assets/verdicts/plagiat_angular.png"> -->
+                    <!-- <img *ngIf="row.verdictName == 'Plagiat'" src="../../../../../../assets/verdicts/plagiat_angular.png">
+                    <img *ngIf="row.verdictName == 'Plagiat'" src="../../../../../../assets/verdicts/plagiat_angular.png">
+                    <img *ngIf="row.verdictName == 'Plagiat'" src="../../../../../../assets/verdicts/plagiat_angular.png"> -->
+                    {{row.verdictName}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="studentName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa użytkownika</th>
+                <td mat-cell *matCellDef="let row"> {{row.studentName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="isCopied">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Czy kopia</th>
+                <td mat-cell *matCellDef="let row"> {{row.isCopied}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="algorithmTaskId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Czynności </th>
+                <td mat-cell *matCellDef="let row" [style.color]="row.color">
+                    <button mat-raised-button color="primary" matTooltip="Porównaj rozwiązania" (click)="getCopies(row.verdictId)">
+                        <mat-icon>compare</mat-icon>
+                    </button>
+                    <button mat-raised-button color="accent" matTooltip="Porównaj rozwiązania" (click)="getActualVerdictWithMetrics(row.verdictId)">
+                        Sprawdź rozwiązanie<mat-icon>zoom_in</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</mat-card-content>

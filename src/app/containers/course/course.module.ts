@@ -42,10 +42,20 @@ import { UserAddedComponent } from './education-material/user-added/user-added.c
 import { FlashcardPanelComponent } from './flashcard-panel/flashcard-panel.component';
 import { FlashcardStudyingComponent } from './flashcard-panel/flashcard-studying/flashcard-studying.component';
 import { FlashcardService } from 'src/app/core/services/education/flashcard-service/flashcard.service';
-import { FlashcardSetResolver } from 'src/app/core/resolvers/education/flashcard/flashcard.resolver';
+import { FlashcardSetResolver, FlashcardListSetResolver } from 'src/app/core/resolvers/education/flashcard/flashcard.resolver';
 import { FlashcardListResolver } from 'src/app/core/resolvers/education/flashcard/flascard-list.resolver';
+import { FlashcardAddComponent } from './flashcard-panel/flashcard-add/flashcard-add.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DragDropResolver } from 'src/app/core/resolvers/education/exam/dragdrop-exam.resolver';
+import { PreventUnfinishedExam } from 'src/app/core/guards/prevent-unfinished-exam.guard';
+import { PreventDialogComponent } from './exam-panel/exam/prevent-dialog/prevent-dialog';
 // import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 // import { MatFileUploadModule } from 'angular-material-fileupload';
+import {VgCoreModule} from 'videogular2/compiled/core';
+import {VgControlsModule} from 'videogular2/compiled/controls';
+import {VgOverlayPlayModule} from 'videogular2/compiled/overlay-play';
+import {VgBufferingModule} from 'videogular2/compiled/buffering';
+import { LoadingIndicatorComponent } from 'src/app/shared/layout/loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +80,10 @@ import { FlashcardListResolver } from 'src/app/core/resolvers/education/flashcar
     EducationMaterialComponent,
     UserAddedComponent,
     FlashcardPanelComponent,
-    FlashcardStudyingComponent 
+    FlashcardStudyingComponent,
+    FlashcardAddComponent,
+    PreventDialogComponent,
+    LoadingIndicatorComponent
     // FileSelectDirective,
     // FileDropDirective
   ],
@@ -83,9 +96,16 @@ import { FlashcardListResolver } from 'src/app/core/resolvers/education/flashcar
     FormsModule,
     NgbModule,
     UploadModule,
-    CountdownModule
+    CountdownModule,
+    DragDropModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
+    
     // MatFileUploadModule
   ],
+  entryComponents: [PreventDialogComponent],
   providers: [
     CourseListResolver,
     CourseEnroledListResolver,
@@ -98,7 +118,10 @@ import { FlashcardListResolver } from 'src/app/core/resolvers/education/flashcar
     LessonPanelResolver,
     FlashcardService,
     FlashcardSetResolver,
-    FlashcardListResolver
+    FlashcardListResolver,
+    FlashcardListSetResolver,
+    DragDropResolver,
+    PreventUnfinishedExam
   ]
 })
 export class CourseModule {}

@@ -1,93 +1,44 @@
-<section fxFlex fxLayoutAlign="center center">
-    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+<section fxLayoutAlign="center center">
+  <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>ŚRODOWISKO LABORATORYJNE DO WSPOMAGANIA DYDAKTYKI Z PROGRAMOWANIA W C#</mat-card-title>
+      
+        <mat-card-subtitle>
+          <br>
+          Aplikacja wykonana w ramach pracy magisterskiej plut. pchor. inż Mateusza Stroby pod opieką dr inż Dariusza Pierzchały
+          <br>  <br>
+          Celem jaki przyświecał tworzeniu aplikacji było wsparcie procesu dydaktyczengo poprzez automatyzacje wybranych procesów laboratoryjnego nauczania programowania w C#. 
+          Wykonana aplikacja usprawnia pracę nauczyciela oraz ułatwia naukę studentom.
+          <br><br>
+          Nauczyciel w ramach aplikacji może tworzyć kursy szkoleniowe zawierające lekcje w postaci filmów wideo i prezentacji, tworzyć zestawy fiszek edukacyjnych,
+          tworzyć sprawdziany w postaci quizów oraz opracowywać zadania implementacyjne. Z perspektywy organizacyjnej istnieje możliwość tworzenia grup szkoleniowych
+          do których może przydzielać studentów oraz wcześniej utworzone kursy i zadania implementacyjne.
+          <br>  <br>
+          Z kolei student zobowiązany jest do korzystania z przygotowanych materiałów dydaktycznych oraz rozwiązywania sprawdzianów i zadań implementacyjnych dostępnych 
+          w ramach kursu do którego jest zapisany.
+          <br><br>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../../assets/home_image.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
 
-        <div fxFlex fxLayout="column" fxLayoutGap="5px">
-
-            <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column" fxLayoutGap="5px">
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-                    <ngx-charts-pie-chart
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="single"
-                    [gradient]="gradient"
-                    [legend]="showLegend"
-                    [legendPosition]="legendPosition"
-                    [labels]="showLabels"
-                    [animations]="true"
-                    [doughnut]="isDoughnut"
-                    (select)="onSelect($event)"
-                    (activate)="onActivate($event)"
-                    (deactivate)="onDeactivate($event)"
-                    >
-                  </ngx-charts-pie-chart>
-                </mat-card>
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-                    <ngx-charts-bar-vertical
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="single"
-                    [gradient]="gradient"
-                    [legendPosition]="legendPosition"
-                    [xAxis]="showXAxis"
-                    [yAxis]="showYAxis"
-                    [legend]="showLegend"
-                    [showXAxisLabel]="showXAxisLabel"
-                    [showYAxisLabel]="showYAxisLabel"
-                    [xAxisLabel]="xAxisLabel"
-                    [animations]="true"
-                    [yAxisLabel]="yAxisLabel"
-                    (select)="onSelect($event)">
-                  </ngx-charts-bar-vertical>
-                </mat-card>
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-                    <ngx-charts-number-card
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="single"
-                    [cardColor]="cardColor"
-                    (select)="onSelect($event)">
-                  </ngx-charts-number-card>
-                </mat-card>
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-                    <ngx-charts-number-card
-                    [view]="view"
-                    [scheme]="colorScheme"
-                    [results]="single"
-                    [cardColor]="cardColor"
-                    (select)="onSelect($event)">
-                  </ngx-charts-number-card>
-                </mat-card>
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
-                </mat-card>
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
-                </mat-card>
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
-                </mat-card>
-                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49%)">
-
-                </mat-card>
-            </div>
-
-            <!-- chart -->
-            <!-- <div fxFlex fxLayout="row">
-                <div class="chart" style="display: block;">
-                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
-                    </canvas>
-                </div>
-
-                <div class="chart" style="display: block;">
-                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
-                    </canvas>
-                </div>
-
-                <div class="chart" style="display: block;">
-                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
-                    </canvas>
-                </div>
-            </div> -->
-        </div>
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/login']" *ngIf="!isLogged()">
+          <!-- Zaloguj  -->
+          <mat-icon>person</mat-icon></button>
+        <button mat-raised-button color="primary" [routerLink]="['/register']" *ngIf="!isLogged()">
+          <!-- Zarejestruj  -->
+          <mat-icon>person_add</mat-icon></button>
+        <button mat-raised-button color="accent" (click)="logout()" *ngIf="isLogged()">
+          <!-- Wyloguj -->
+          <mat-icon>directions_run</mat-icon>
+        </button>
+      </mat-card-actions>
     </mat-card>
+  </mat-card>
 </section>

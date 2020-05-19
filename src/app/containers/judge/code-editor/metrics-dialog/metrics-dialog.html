@@ -21,10 +21,72 @@
         <div class="item item-1" fxFlex="80%">Liczba przypisań :</div>
         <div class="item item-3" fxFlex>{{data.metrics.numberOfAssignment}}</div>
     </div>
-
- 
+     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Złożoność cyklomatyczna  :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.cyclomaticComplexity }}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba wszystkich tokenów :</div>
+        <div class="item item-3" fxFlex> {{data.metrics.numberOfTokens}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba unikalnych tokenów :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.numberOfUniqueTokens}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba unikalnych operatorów :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.numberOfUniqueOperators}} </div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba wszystkich operatorów :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.numberOfOperators}}</div>
+    </div>
+     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba unikalnych operandów  :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.numberOfUniqueOperands }}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Liczba wszystkich operandów :</div>
+        <div class="item item-3" fxFlex> {{data.metrics.numberOfOperands}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Długość programu wg Halstead'a :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.halsteadProgramLenght}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Słownictwo wg. Halstead'a :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.halsteadVocabulary | number}} </div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Rozmiar Programu wg. Halstead'a :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.programVolume | number}} bitów</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Złożoność programu :</div>
+        <div class="item item-3" fxFlex> {{data.metrics.programDifficulty | number}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Poziom programu :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.programLevel | number}}</div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Wysiłek włożony w napisanie programu :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.programmingEffort | number}} </div>
+    </div>
+    <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Poziom języka :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.languageLevel | number}}</div>
+    </div>
+     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Złożoność programu bez względu na wykorzystany język  :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.inteligenceContent | number}}</div>
+    </div>
+     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+        <div class="item item-1" fxFlex="80%">Praca włożona w wykonanie programu w konkretnym języku  :</div>
+        <div class="item item-3" fxFlex>{{data.metrics.programmingTime | number}} sekund</div>
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <!-- <button mat-button mat-dialog-close>Cancel</button> -->
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
 </mat-dialog-actions>

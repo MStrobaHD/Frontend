@@ -37,7 +37,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/theme.scss"
+              "src/theme.scss",
+              "node_modules/videogular2/fonts/videogular.css"
             ],
             "scripts": [
               "node_modules/alertifyjs/build/alertify.min.js"

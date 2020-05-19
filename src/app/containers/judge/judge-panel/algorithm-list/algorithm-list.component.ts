@@ -61,9 +61,8 @@ export class AlgorithmListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  solveAlgorithm(row) {
-    console.log(row);
-    this.router.navigate(['/algorithms/editor/', row.id]);
+  solveAlgorithm(task) {
+    this.router.navigate(['/algorithms/editor/' + task.id + '/' + task.algorithmTaskName ]);
   }
   getAlgorithmTask() {
     this.algorithmTaskService
@@ -73,7 +72,6 @@ export class AlgorithmListComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.algorithmTask);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        this.alertify.success('Data loaded correctly');
       });
   }
   mark(id: number){
@@ -86,12 +84,8 @@ export class AlgorithmListComponent implements OnInit {
     this.algorithmTaskService.markTask(this.rating).subscribe(
       () => {
         this.ngOnInit();
-       // console.log(data);
-        //this.openDiagramDialog(this.controlFlowGraph);
-        //this.alertify.success('Graf przepływu sterowania został utworzony');
       },
       error => {
-        console.log(error);
         this.alertify.error(error);
       }
     );

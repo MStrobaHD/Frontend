@@ -28,10 +28,10 @@ export class FlashcardListResolver implements Resolve<FlashcardSet[]> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<FlashcardSet[]> {
     return this.flashcardService
-      .getFlashcardList(+route.paramMap.get('cardId'))
+      .getFlashcardList(+route.paramMap.get('kartId'))
       .pipe(
         catchError(error => {
-          console.log(+route.paramMap.get('setId'));
+          console.log(+route.paramMap.get('kartId'));
           this.alertify.error('Problem retrieving data');
           this.router.navigate(['/home']);
           return of(null);

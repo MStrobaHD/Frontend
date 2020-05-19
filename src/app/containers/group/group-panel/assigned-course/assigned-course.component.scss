@@ -1,0 +1,137 @@
+mat-form-field {
+  width: 100%;
+}
+section {
+  margin-top: 2rem;
+  mat-card {
+    mat-toolbar {
+      height: 4rem;
+      text-emphasis: none;
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-family: "Raleway", sans-serif;
+      border-radius: 0.2rem;
+      // border: 1px solid rgb(62, 151, 253);
+      margin-bottom: 3rem;
+      -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+      -moz-box-shadow: 2px 2px 5px 0px #00000057;
+      box-shadow: 2px 2px 5px 0px #00000057;
+    }
+  }
+}
+.item{
+    font-size: 1.2rem;
+}
+table {
+  width: 100%;
+}
+img {
+  height: 3.5rem;
+  margin-right: 1rem;
+}
+b{
+    margin-left: 1rem;
+}
+mat-grid-tile {
+  background: rgb(238, 238, 238);
+  padding: .5rem;
+  border-style: solid;
+  border-width: .1rem;
+  border-color: rgb(255, 255, 255);
+ 
+}
+mat-grid-list{
+  margin-bottom: 1rem;
+}
+mat-icon {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+    &:active {
+      opacity: 0.5;
+    }
+  }
+}
+
+table {
+  text-align: center !important;
+  width: 100%;
+}
+.table{
+  margin-bottom: 1rem;
+}
+.mat-header-cell {
+  text-align: center;
+}
+:host ::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
+.add-logo {
+  height: 3rem;
+}
+.icon-add {
+  &.neutral{
+    color: orange
+  }
+  &.positive{
+    color: #00e676;
+  }
+  img {
+    height: 2rem;
+    color: lightskyblue;
+  }
+}
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  //background: #fafafa;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  //background: #e2e2e2;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  align-self: start;
+  // display: flex;
+  //background: #fafafa;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+button{
+    margin:.5rem;
+}

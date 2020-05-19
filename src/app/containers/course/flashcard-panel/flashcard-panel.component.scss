@@ -19,15 +19,35 @@ section {
 table {
     width: 100%;
   }
-  
+  .filter{
+    width: 100%;
+  }
   .mat-form-field {
     font-size: 14px;
-    width: 100%;
+    // width: 100%;
   }
   
   td, th {
     width: 25%;
   }
+  button{
+    margin-right: .5rem;
+  }
   mat-icon{
     cursor: pointer;
+  }
+  .icon-add {
+    &.neutral {
+      color: orange;
+    }
+    &.positive {
+      color: #00e676;
+    }
+    img {
+      height: 2rem;
+      color: lightskyblue;
+    }
+  }
+  mat-form-field {
+    width: 33rem;
   }

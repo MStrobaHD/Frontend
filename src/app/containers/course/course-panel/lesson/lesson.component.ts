@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { CourseModel } from 'src/app/core/models/education/course/course.model';
 import { CourseService } from 'src/app/core/services/education/course-service/course.service';
 import { LessonModel } from 'src/app/core/models/education/lesson/lesson.model';
 import { ActivatedRoute } from '@angular/router';
+import { VgAPI } from 'videogular2/compiled/core';
 
 @Component({
   selector: 'app-lesson',
@@ -11,18 +12,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./lesson.component.scss']
 })
 export class LessonComponent implements OnInit {
+  preload = 'auto';
+  api: VgAPI;
   isLessonListVisible = true;
   displayedColumns: string[] = [ 'isWatched', 
                                  'courseIconUrl',
                                  'name',
-                                 'description',
-                                 'date',
                                  'action',
                                  ];
-  // dataSource: MatTableDataSource<UserData>;
   dataSource = new MatTableDataSource();
-
   lessonList: LessonModel[];
+  url: string;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -31,18 +31,29 @@ export class LessonComponent implements OnInit {
               private route: ActivatedRoute) {
 
   }
-
   ngOnInit() {
       this.lessonList = this.route.snapshot.data.lessonList;
-      console.log(this.lessonList);
       this.dataSource = new MatTableDataSource(this.lessonList);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
   }
-
-  hideLessonList(){ 
+  onPlayerReady(api: VgAPI) {
+    this.api = api;
+    this.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
+      // Set the video to the beginning
+      this.api.getDefaultMedia().currentTime = 0;
+    });
+  }
+  hideLessonList() { 
     this.isLessonListVisible = false;
   }
+  passURL(url: string){
+    this.url = null;
+    this.url = url;
+    this.hideLessonList();
+    this.ngOnInit();
+  }
+  openAsset() {}
   expandLessonList(){
     this.isLessonListVisible = true;
   }

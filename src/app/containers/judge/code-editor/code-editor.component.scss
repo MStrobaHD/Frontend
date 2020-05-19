@@ -32,7 +32,7 @@ section {
   background-color: white;
   height: 5rem;
   margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 mat-form-field {
   font-size: 1.3rem;
@@ -49,7 +49,7 @@ div {
     margin-bottom: 1rem;
   }
   mat-icon {
-    margin-bottom: 1rem;
+    margin-left: 1rem;
   }
 }
 .menu-button {
@@ -61,10 +61,10 @@ div {
   color: white;
 }
 .compile-execute-button{
-  background-color: #78909c;
-  align-content: center;
-  height: 3rem;
-  color: white;
+  // background-color: #78909c;
+  // align-content: center;
+  // height: 3rem;
+  // color: white;
  
 }
 .task-label{
@@ -76,6 +76,7 @@ mat-grid-tile {
 mat-card{
   font-size: 1.5rem;
 }
+
 .item{
   background-color: #fdfafa;
   border-radius: 0.2rem;

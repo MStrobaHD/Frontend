@@ -1,25 +1,35 @@
 <section  fxLayout fxLayoutAlign="center center">
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
-
-        <!-- <section fxLayout fxLayoutAlign="center center">
-            <mat-card fxFlex.xs="100%" fxFlex="55rem" class="card-center"> -->
-
         <mat-tab-group>
-            <mat-tab>
+            <mat-tab *ngIf="role === 'Student'">
+                <ng-template mat-tab-label >
+                    <mat-icon class="example-tab-icon">emoji_events</mat-icon>
+                    Odznaki
+                </ng-template>
+                <app-badges></app-badges>
+            </mat-tab>
+            <mat-tab *ngIf="role === 'Nauczyciel'" >
                 <ng-template mat-tab-label>
+                    <mat-icon class="example-tab-icon">emoji_events</mat-icon>
+                    Dodaj odznaki
+                </ng-template>
+                <app-add-badge></app-add-badge>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label >
                     <mat-icon class="example-tab-icon">person_outline</mat-icon>
                     Dane użytkownika
                 </ng-template>
                 <app-information></app-information>
             </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
+            <mat-tab *ngIf="role === 'Student'">
+                <ng-template mat-tab-label  >
                     <mat-icon class="example-tab-icon">view_list</mat-icon>
                     Wyniki
                 </ng-template>
                 <app-result></app-result>
             </mat-tab>
-            <mat-tab>
+            <mat-tab *ngIf="role === 'Administrator'">
                 <ng-template mat-tab-label>
                     <mat-icon class="example-tab-icon">people</mat-icon>
                     Uprawnienia

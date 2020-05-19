@@ -1,5 +1,4 @@
-
-<section fxFlex fxLayoutAlign="center center">
+<section fxLayoutAlign="center center">
     <mat-card class="editor-wrapper" fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
         <mat-toolbar>
@@ -43,7 +42,7 @@
             </mat-expansion-panel>
         </mat-accordion>
         <mat-toolbar id="menu">
-            <div>
+            <div class="example-button-row" fxFlex fxLayoutAlign="flex-end center">
                 <mat-form-field>
                     <mat-label>Motyw edytora</mat-label>
                     <mat-select selected="" [(ngModel)]="mode">
@@ -55,6 +54,20 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="compileSourceCode()" matTooltip="Kompiluj i uruchom rozwiązanie">
+                    Testuj rozwiązanie <mat-icon>play_circle_filled</mat-icon>
+                </button>
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="getMetrics()" matTooltip="Uruchom analizę statyczną">
+                    Uruchom analizę statyczną<mat-icon>equalizer</mat-icon>
+                </button>
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="analyzeSourceCode()" matTooltip="Przeprowadż analizę rozwiązania">
+                    Generuj graf przepływu sterowania <mat-icon>emoji_objects</mat-icon>
+                </button>
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="openConfirmDialog()" matTooltip="Oceń rozwiązanie">
+                    <span>Oceń rozwiązanie </span>
+                    <mat-icon>check_circle_</mat-icon>
+                </button>
+
                 <!-- <mat-form-field>
                     <mat-label>Język programowania</mat-label>
                     <mat-select>
@@ -78,7 +91,7 @@
                 (onProgress)="handleProgress($event)" (onAbort)="handleAbort($event)" #fileInput> -->
                 <!-- <button mat-raised-button class="menu-button"  ><img src="../../../../assets/var_icon.png"/></button> -->
 
-                <!-- <input type="file" mat-raised-button class="menu-button" hidden><img src="../../../../assets/var_icon.png"/> --> 
+                <!-- <input type="file" mat-raised-button class="menu-button" hidden><img src="../../../../assets/var_icon.png"/> -->
                 <!-- <button mat-raised-button class="menu-button">
                     <mat-icon>cloud_upload</mat-icon>
                 </button>
@@ -95,40 +108,36 @@
         </mat-card>
         <mat-toolbar id="menu">
             <div class="example-button-row" fxFlex fxLayoutAlign="flex-end center">
-                    <mat-form-field class="input">
-                        <input matInput placeholder="Dane wejściowe" [(ngModel)]="input">
-                    </mat-form-field>
-
-                <!-- <button mat-raised-button class="menu-button" (click)="compileSourceCode()">
-                    <mat-icon>translate</mat-icon>
-                </button>
-                <button mat-raised-button class="menu-button">
-                    <mat-icon>play_circle_filled</mat-icon>
-                </button> -->
-                <button mat-raised-button class="compile-execute-button" (click)="compileSourceCode()" matTooltip="Kompiluj i uruchom rozwiązanie">
-                    <mat-icon>play_circle_filled</mat-icon>
-                </button>
-                <button mat-raised-button class="compile-execute-button" (click)="getMetrics()" matTooltip="Uruchom analizę statyczną">
-                    <mat-icon>equalizer</mat-icon>
-                </button>
-                <button mat-raised-button class="compile-execute-button" (click)="analyzeSourceCode()" matTooltip="Przeprowadż analizę rozwiązania">
-                    <mat-icon>emoji_objects</mat-icon>
-                </button>
-                <button mat-raised-button class="compile-execute-button" (click)="judge()" matTooltip="Oceń rozwiązanie">
-                    <mat-icon>check_circle_</mat-icon>
-                </button>
-                <!-- <button mat-raised-button class="compile-execute-button" (click)="saveVerdict()" matTooltip="Zapisz Werdykt">
-                    <mat-icon>save</mat-icon>   
-                </button> -->
+                <mat-form-field class="input">
+                    <input matInput placeholder="Dane wejściowe" [(ngModel)]="input">
+                </mat-form-field>
             </div>
         </mat-toolbar>
+        <!-- <mat-toolbar id="menu">
+            <div class="example-button-row" fxFlex fxLayoutAlign="flex-end center">
+ 
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="compileSourceCode()" matTooltip="Kompiluj i uruchom rozwiązanie">
+                   Testuj rozwiązanie <mat-icon>play_circle_filled</mat-icon>
+                </button>
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="getMetrics()" matTooltip="Uruchom analizę statyczną">
+                    Uruchom analizę statyczną<mat-icon>equalizer</mat-icon>
+                </button>
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="analyzeSourceCode()" matTooltip="Przeprowadż analizę rozwiązania">
+                    Generuj graf przepływu sterowania <mat-icon>emoji_objects</mat-icon>
+                </button>
+                <button mat-raised-button class="compile-execute-button" color="primary" (click)="judge()" matTooltip="Oceń rozwiązanie">
+                  <span>Oceń rozwiązanie </span>  <mat-icon>check_circle_</mat-icon>
+                </button>
+
+            </div>
+        </mat-toolbar> -->
         <mat-accordion>
             <mat-expansion-panel (opened)="false">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         Konsola
                     </mat-panel-title>
-                    
+
                 </mat-expansion-panel-header>
                 <mat-card *ngIf="resultInformation">
                     <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">

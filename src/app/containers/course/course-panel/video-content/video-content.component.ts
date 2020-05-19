@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { VgAPI } from 'videogular2/compiled/core';
 
 @Component({
   selector: 'app-video-content',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-content.component.scss']
 })
 export class VideoContentComponent implements OnInit {
+  @Input() videoURL: string;
+  preload = 'auto';
+  api: VgAPI;
 
-  constructor() { }
+  constructor() {}
+
+  onPlayerReady(api: VgAPI) {
+    this.api = api;
+    this.api.getDefaultMedia().subscriptions.ended.subscribe(() => {
+      this.api.getDefaultMedia().currentTime = 0;
+    });
+  }
 
   ngOnInit() {
   }
-
 }

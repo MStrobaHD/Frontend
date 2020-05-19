@@ -1,0 +1,40 @@
+<mat-dialog-content>
+    <mat-card class="editor">
+        <mat-toolbar>
+            <img src="https://cdn4.iconfinder.com/data/icons/businessmen-set-1/512/32-512.png">
+            <!-- Panel Nauczyciela --> Weryfikacja rozwiązania <b> </b>
+
+        </mat-toolbar>
+        <mat-form-field>
+            <mat-label>Wybierz rozwiązanie i porównaj z plagiatem</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let solution of data.solutionList" [value]="solution.Id" (click)="changeSolutionInEditor(solution.Id)">
+                    {{solution.verdictName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div fxLayout="column" fxLayoutGap="5px">
+
+            <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayout.lt-sm="column" fxLayoutGap="5px">
+                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49.7%)">
+                    <mat-toolbar class="editor_title"> Podobne rozwiązanie
+                    </mat-toolbar>
+                    <div style="height: 400px">
+                        <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="code" id="codeeditor"></ngx-monaco-editor>
+                    </div>
+                </mat-card>
+                <mat-card class="header-info" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%" fxFlex="0 1 calc(49.7%)">
+                    <mat-toolbar class="editor_title"> Porównywane rozwiązanie
+                    </mat-toolbar>
+                    <div style="height: 400px">
+                        <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="data.actualSolution.solution" id="codeeditor"></ngx-monaco-editor>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card>
+</mat-dialog-content>
+<div mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="onConfirm()" tabindex="1">Zatwierdż rozwiązanie</button>
+    <button mat-raised-button color="warn" mat-dialog-close tabindex="-1" (click)="onNoClick()">Anuluj</button>
+</div>>

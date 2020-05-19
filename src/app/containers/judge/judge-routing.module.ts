@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     runGuardsAndResolvers: 'always',
-    path: 'editor/:id',
+    path: 'editor/:id/:taskName',
     component: CodeEditorComponent,
     resolve: {algorithmTask: CodeEditorResolver},
   },

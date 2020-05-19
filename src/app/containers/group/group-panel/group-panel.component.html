@@ -1,0 +1,202 @@
+<section fxLayoutAlign="center center">
+
+    <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+        <mat-toolbar>
+            <!-- <img src="../../../../assets/unnamed.png"> -->
+            <!-- Grupa I8B1S4 -->
+            GRUPA SZKOLENIOWA - PANEL GŁÓWNY
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" *ngIf="role === 'Nauczyciel' || role === 'Administrator'">
+                <!-- <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showAssigmentForm()">add_circle</mat-icon> -->
+                <button matTooltip="Utwórz grupę szkoleniową" mat-raised-button color='primary' (click)="showContent(1)">
+                    <mat-icon>add</mat-icon> Utwórz Grupę
+                </button>
+
+                <button matTooltip="Utwórz grupę szkoleniową" mat-raised-button color='primary' (click)="showContent(4)">
+                    <mat-icon>add</mat-icon> Zapisz studentów do grupy
+                </button>
+
+                <button matTooltip="Przydziel kurs do grupy szkoleniowej" mat-raised-button color='primary' (click)="showContent(2)">
+                    <mat-icon>group_add</mat-icon> Przydziel Kursy
+                </button>
+
+                <button matTooltip="Utwórz grupę szkoleniową" mat-raised-button color='primary' (click)="showContent(3)">
+                    <mat-icon>group_add</mat-icon> Przydziel Zadania
+                </button>
+
+            </div>
+        </mat-toolbar>
+        <mat-card-content>
+
+
+            <mat-card *ngIf="showAssignmentForm">
+                <mat-card>
+                    <form [formGroup]="ctgAssignmentForm" (ngSubmit)="AssignCTG()" autocomplete="on" fxLayoutGap="2rem">
+                        <mat-toolbar>PRZYDZIEL KURSY DO GRUP SZKOLENIOWYCH</mat-toolbar>
+                        <mat-form-field>
+                            <mat-label>List grup szkoleniowych</mat-label>
+                            <mat-select formControlName="groupIds" multiple>
+                                <mat-option *ngFor="let group of groupList" [value]="group.id">{{group.groupName}} - Grupa {{group.groupType}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Lista kursów szkoleniowych</mat-label>
+                            <mat-select formControlName="courseIds" multiple>
+                                <mat-option *ngFor="let course of coursesList" [value]="course.id">{{course.courseName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="button-row" fxLayoutGap="5px">
+                            <button type="submit" mat-raised-button color="primary" (click)="AssignCTG()">Przydziel kursy</button>
+                            <button mat-raised-button color="accent" (click)="showContent(5)">Anuluj</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </mat-card>
+
+            <mat-card *ngIf="showTaskAssignmentForm">
+                <mat-card>
+                    <form [formGroup]="ttgAssignmentForm" (ngSubmit)="AssignTTG()" autocomplete="on" fxLayoutGap="2rem">
+                        <mat-toolbar>PRZYDZIEL ZADANIA IMPLEMENTACYJNE DO GRUP SZKOLENIOWYCH</mat-toolbar>
+                        <mat-form-field>
+                            <mat-label>List grup szkoleniowych</mat-label>
+                            <mat-select formControlName="groupIds" multiple>
+                                <mat-option *ngFor="let group of groupList" [value]="group.id">{{group.groupName}} - Grupa {{group.groupType}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Lista zadań algorytmicznych</mat-label>
+                            <mat-select formControlName="algorithmTaskIds" multiple>
+                                <mat-option *ngFor="let task of algorithmList" [value]="task.id">{{task.algorithmTaskName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div class="button-row" fxLayoutGap="5px">
+                            <button type="submit" mat-raised-button color="primary" (click)="AssignTTG()">Przydziel zadania</button>
+                            <button mat-raised-button color="accent" (click)="showContent(5)">Anuluj</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </mat-card>
+
+            <mat-card *ngIf="showStudentToGroupAssignmentForm">
+                <mat-card>
+                    <form [formGroup]="stgAssignmentForm" (ngSubmit)="AssignSTG()" autocomplete="on" fxLayoutGap="2rem">
+                        <mat-toolbar>PRZYDZIEL STUDENTÓW DO GRUP SZKOLENIOWYCH</mat-toolbar>
+                        <mat-form-field>
+                            <mat-label>List grup szkoleniowych</mat-label>
+                            <mat-select formControlName="groupIds" multiple>
+                                <mat-option *ngFor="let group of groupList" [value]="group.id">{{group.groupName}} - Grupa {{group.groupType}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Lista studentów</mat-label>
+                            <mat-select formControlName="studentIds" multiple>
+                                <mat-option *ngFor="let user of users" [value]="user.id">{{user.username}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="button-row" fxLayoutGap="5px">
+                            <button type="submit" mat-raised-button color="primary" (click)="AssignSTG()">Zapisz do grupy</button>
+                            <button mat-raised-button color="accent" (click)="showContent(5)">Anuluj</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </mat-card>
+
+            <mat-card *ngIf="showGroupCreationForm">
+                <mat-card>
+                    <form [formGroup]="addGroupForm" (ngSubmit)="addGroup()" autocomplete="on" fxLayoutGap="2rem">
+                        <mat-toolbar>UTWÓRZ GRUPĘ SZKOLENIOWĄ</mat-toolbar>
+                        <mat-form-field>
+                            <mat-label>Nazwa grupy</mat-label>
+                            <input matInput placeholder="I8B1S4" formControlName="groupName">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Wybierz typ grupy</mat-label>
+                            <mat-select formControlName="groupType">
+                                <mat-option value="Wojskowa">
+                                    Wojskowa
+                                </mat-option>
+                                <mat-option value="Cywilna">
+                                    Cywilna
+                                </mat-option>
+                                <mat-option value="Pościgowa">
+                                    Pościgowa
+                                </mat-option>
+                            </mat-select>
+                            <!-- <mat-label>Typ grupy</mat-label>
+                            <input matInput placeholder="Wojskowa" formControlName="groupType"> -->
+                        </mat-form-field>
+
+                        <div class="button-row" fxLayoutGap="5px">
+                            <button mat-raised-button color="primary" type="submit" (click)="addGroup()">Utwórz grupę</button>
+                            <button mat-raised-button color="accent" (click)="showContent(5)">Anuluj</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </mat-card>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="step === 0" *ngIf="role === 'Student' || role === 'Administrator'">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            PRZYDZIELONE KURSY SZKOLENIOWE
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!-- Kursy przydzielone przez nauczyciela -->
+                        </mat-panel-description>
+
+                    </mat-expansion-panel-header>
+
+                    <app-assigned-course></app-assigned-course>
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="role === 'Student' || role === 'Administrator'">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            PRZYDZIELONE ZADANIA IMPLEMENTACYJNE
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <!-- Zadania algorytmiczne przydzielone do danej grupy -->
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-assigned-task></app-assigned-task>
+                </mat-expansion-panel>
+
+                <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="role === 'Student' || role === 'Administrator'">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Rozwiązane algorytmy
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    content here
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="role === 'Student' || role === 'Administrator'">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Ukończone kursy
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    content here
+                </mat-expansion-panel> -->
+
+                <mat-expansion-panel [expanded]="step === 0" (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="role === 'Nauczyciel' || role === 'Administrator'">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            GRUPY SZKOLENIOWE - PANEL NAUCZYCIELA
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <app-my-groups></app-my-groups>
+                </mat-expansion-panel>
+
+            </mat-accordion>
+        </mat-card-content>
+    </mat-card>
+</section>

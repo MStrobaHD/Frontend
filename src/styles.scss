@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/alertifyjs/build/css/alertify.css';
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 html,
 body {
   font-family: "Raleway", sans-serif;
@@ -70,4 +72,10 @@ $gutter-horizontal: 6rem; // space beetwen cols
 }
 div.progress{
   background-color: rgba(0, 0, 0, 0) !important;
+}
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  &.dark-backdrop {
+    background: #000;
+    opacity: 0.85 !important;
+  }
 }

@@ -11,8 +11,7 @@ import { CourseModel } from 'src/app/core/models/education/course/course.model';
 })
 export class CoursePanelComponent implements OnInit {
   isLessonListVisible = true;
-  displayedColumns: string[] = [ 'courseIconUrl','name', 'description', 'date', 'action'];
-  // dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = [ 'courseIconUrl', 'name', 'description', 'date', 'action'];
   dataSource = new MatTableDataSource();
 
   courses: CourseModel[];
@@ -20,22 +19,16 @@ export class CoursePanelComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor( private courseService: CourseService) {
-
-  }
+  constructor( private courseService: CourseService) {}
 
   ngOnInit() {
-
     this.courseService.getCourses(+localStorage.getItem('userID'))
     .subscribe(result => {
-
       this.courses = result;
       this.dataSource = new MatTableDataSource(this.courses);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-    console.log(this.courses);
-
   }
   hideLessonList() { 
     this.isLessonListVisible = false;

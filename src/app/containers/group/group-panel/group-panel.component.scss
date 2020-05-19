@@ -1,0 +1,44 @@
+section {
+    margin-top: 2rem;
+    mat-card {
+      mat-toolbar {
+        height: 4rem;
+        text-emphasis: none;
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-family: "Raleway", sans-serif;
+        border-radius: 0.2rem;
+        // border: 1px solid rgb(62, 151, 253);
+        margin-bottom: 2rem;
+        padding: 1rem;
+        -webkit-box-shadow: 2px 2px 5px 0px #00000057;
+        -moz-box-shadow: 2px 2px 5px 0px #00000057;
+        box-shadow: 2px 2px 5px 0px #00000057;
+      }
+    }
+  }
+  mat-expansion-panel{
+    margin-top: 1rem;
+    background-color: #ffffff;
+  }
+  img{
+      height:3rem;
+      margin-right: 1rem;
+  }
+  mat-form-field{
+    width:100%;
+}
+.button-row{
+    margin-top: 1rem;
+}
+mat-icon{
+    cursor: pointer;
+}
+button {
+    margin-left: 0.5rem;
+    height: 3.5rem;
+    background-color: green($color: #942e2ed0);
+  }
+  mat-panel-title{
+    font-size: 1.3rem;
+  }

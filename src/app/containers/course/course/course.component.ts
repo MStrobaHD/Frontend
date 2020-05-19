@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { CourseModel } from 'src/app/core/models/education/course/course.model';
 import { CourseService } from 'src/app/core/services/education/course-service/course.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,6 +9,8 @@ import { CategoryService } from 'src/app/core/services/common/category/category.
 import { CategoryModel } from 'src/app/core/models/common/category/category.model';
 import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
 import { EnlistParameter } from 'src/app/core/models/education/course/enlist-paramater.model';
+import { CourseRatingModel } from 'src/app/core/models/education/course/course-rating.model';
+import { ConfirmDialogComponent } from 'src/app/shared/layout/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-course',
@@ -20,17 +22,19 @@ export class CourseComponent implements OnInit {
   isVisibleCourseForm = false;
   displayedColumns: string[] = [
     'courseIconUrl',
-    'progress',
     'name',
     'description',
     'date',
     'action'
   ];
-
+  selected = 0;
+  hovered = 0;
+  readonly = false;
+  rating: CourseRatingModel;
+  
   addCourseForm: FormGroup;
   addCourseObject: CourseAddModel;
   step = 0;
-  // dataSource: MatTableDataSource<UserData>;
   dataSource = new MatTableDataSource();
 
   courses: CourseModel[];
@@ -41,9 +45,7 @@ export class CourseComponent implements OnInit {
   contain: boolean;
 
   iterator = 0;
-  selected = 0;
-  hovered = 0;
-  readonly = false;
+  confirm = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -54,7 +56,8 @@ export class CourseComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private dialog: MatDialog
   ) {
     if (this.courseService.subsVarSecond === undefined) {
       this.courseService.subsVarSecond = this.courseService.invokeSecondComponentFunction.subscribe(
@@ -66,11 +69,8 @@ export class CourseComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     this.createAddCourseForm();
-    // this.getCourses();
     this.getCategories();
-    // this.getEnroledCourses();
     this.enroledCourses = this.route.snapshot.data.enroledCourses;
     this.courses = this.route.snapshot.data.courses;
     this.dataSource = new MatTableDataSource(this.courses);
@@ -82,8 +82,8 @@ export class CourseComponent implements OnInit {
       courseName: ['', Validators.required],
       courseIconUrl: ['', Validators.required],
       description: ['', Validators.required],
-      userId: [1, Validators.required],
-      categoryId: [1, Validators.required]
+      userId: [+localStorage.getItem('userID'), Validators.required],
+      categoryId: [, Validators.required]
     });
   }
   getCourses() {
@@ -100,20 +100,16 @@ export class CourseComponent implements OnInit {
       .getEnroledCourses(+localStorage.getItem('userID'))
       .subscribe(result => {
         this.enroledCourses = result;
-        console.log(result);
         this.alertify.success('Data loaded correctly');
       });
   }
   checkIfEnlisted(course) {
-    // if (this.enroledCourses.length > 0) {
 
     this.enroledCourses.some(element => {
       if (element.id === course.id) {
-        console.log(true);
         this.contain = true;
         return true;
       } else {
-        console.log(false);
         this.contain = false;
       }
     });
@@ -133,10 +129,9 @@ export class CourseComponent implements OnInit {
       this.courseService.addCourse(this.addCourseObject).subscribe(
         () => {
           this.getCourses();
-          this.alertify.success('Course was added');
+          this.alertify.success('Kurs został dodany');
         },
         error => {
-          console.log(error);
           this.alertify.error(error);
         }
       );
@@ -149,12 +144,6 @@ export class CourseComponent implements OnInit {
     });
   }
 
-  calculateProgress() {
-    // get lessons
-    // get completed lessons
-    // calculate progress
-    // return progress
-  }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -174,6 +163,35 @@ export class CourseComponent implements OnInit {
   editCourse(course) {
     this.router.navigate(['/courses/course_edition_panel/'  + course.id]);
   }
+  deleteCourse(course) {
+    this.openConfirmDialog();
+    if (this.confirm === true) {
+      this.courseService.deleteCourse(course.id).subscribe(
+        () => {
+          this.alertify.success('Kurs został usuniety');
+          this.getCourses();
+        },
+        error => {
+          this.alertify.error(error);
+        }
+      );
+    }
+   
+  }
+  openConfirmDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: {
+        message:
+          'Uwaga przesyłaj zadanie do oceny jeśli jesteś pewny rozwiązania. Czy w takim razie chcesz przesłać zadanie ?',
+        buttonYes: 'Tak',
+        buttonNo: 'Nie'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.confirm = result;
+    });
+  }
   showCourseForm() {
     this.isVisibleCourseForm = true;
   }
@@ -187,12 +205,10 @@ export class CourseComponent implements OnInit {
       () => {
         this.alertify.success('Zostałeś zapisany na kurs');
         this.getCourses();
-        this.courseService.onFirstComponentButtonClick();    
-        // this.router.navigate(['/users']);
+        this.courseService.onFirstComponentButtonClick();
       },
       error => {
         this.alertify.error(error.error);
-        console.log(error.error);
       }
     );
   }
@@ -206,24 +222,10 @@ export class CourseComponent implements OnInit {
       () => {
         this.alertify.success('Zostałeś wypisany z kursu');
         this.getCourses();
-        this.courseService.onFirstComponentButtonClick(); 
-        // this.router.navigate(['/users']);
+        this.courseService.onFirstComponentButtonClick();
       },
       error => {
         this.alertify.error(error.error);
-      }
-    );
-  }
-
-  deleteCourse(course) {
-    this.courseService.deleteCourse(course.id).subscribe(
-      () => {
-        this.alertify.success('Course was deleted');
-        this.getCourses();
-        // this.router.navigate(['/users']);
-      },
-      error => {
-        this.alertify.error(error);
       }
     );
   }

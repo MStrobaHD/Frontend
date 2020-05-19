@@ -12,7 +12,7 @@ import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.
   styleUrls: ['./exam-result.component.scss']
 })
 export class ExamResultComponent implements OnInit {
-  displayedColumns: string[] = ['icon','mark', 'points', 'progress'];
+  displayedColumns: string[] = ['icon','mark', 'points', 'examName'];
   dataSource = new MatTableDataSource();
   results: ExamResultAddModel[];
 
@@ -38,7 +38,6 @@ export class ExamResultComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.results);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.alertify.success('Data loaded correctly');
     });
   }
   applyFilter(filterValue: string) {

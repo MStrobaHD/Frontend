@@ -8,6 +8,7 @@ import { LoginModel } from '../../models/auth/login.model';
 import { UserModel } from '../../models/user/user.model';
 import { CloudAssetModel } from '../../models/user/cloud-asset.model';
 import { UserListModel } from '../../models/user/userlist.model';
+import { BadgeModel, BadgeAddModel } from '../../models/user/badge.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,7 @@ export class AuthService {
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           localStorage.setItem('userID', this.decodedToken.nameid);
           localStorage.setItem('role', this.decodedToken.role);
+          localStorage.setItem('login',this.decodedToken.unique_name); 
           // this.decodedId = this.decodedToken.nameid;
           console.log(this.decodedToken);
         }
@@ -61,6 +63,24 @@ export class AuthService {
     return this.http.get<CloudAssetModel[]>(this.baseUrlNoAuth + 'standarduser/addedbyuser/' + userId);
   }
   updateUserData(userId: number, user: any){
-    return this.http.put(this.baseUrlNoAuth + 'standardUser/'+ userId, user);
+    return this.http.put(this.baseUrlNoAuth + 'standardUser/' + userId, user);
+  }
+  updateUserRole(user: UserModel){
+    return this.http.put(this.baseUrlNoAuth + 'standardUser/role/', user);
+  }
+  updateUserGroupRole(user: UserModel[]){
+    return this.http.put(this.baseUrlNoAuth + 'standardUser/grouprole/', user);
+  }
+  addBadge(badge: BadgeAddModel) {
+    return this.http.post<BadgeAddModel[]>(this.baseUrlNoAuth + 'user/addBadge/', badge);
+  }
+  deleteBadge(badgeId: number){
+    return this.http.delete(this.baseUrlNoAuth + 'user/deleteBadge/' + badgeId);
+  }
+  getAllBadges() {
+    return this.http.get<BadgeModel[]>(this.baseUrlNoAuth + 'user/allBadges/');
+  }
+  getUserBadges(userId: number) {
+    return this.http.get<BadgeModel[]>(this.baseUrlNoAuth + 'user/userBadges/' + userId);
   }
 }
