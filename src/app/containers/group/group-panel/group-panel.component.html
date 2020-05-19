@@ -125,8 +125,6 @@
                                     Pościgowa
                                 </mat-option>
                             </mat-select>
-                            <!-- <mat-label>Typ grupy</mat-label>
-                            <input matInput placeholder="Wojskowa" formControlName="groupType"> -->
                         </mat-form-field>
 
                         <div class="button-row" fxLayoutGap="5px">
@@ -161,28 +159,6 @@
                     </mat-expansion-panel-header>
                     <app-assigned-task></app-assigned-task>
                 </mat-expansion-panel>
-
-                <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="role === 'Student' || role === 'Administrator'">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Rozwiązane algorytmy
-                        </mat-panel-title>
-                        <mat-panel-description>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    content here
-                </mat-expansion-panel>
-
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="role === 'Student' || role === 'Administrator'">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Ukończone kursy
-                        </mat-panel-title>
-                        <mat-panel-description>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    content here
-                </mat-expansion-panel> -->
 
                 <mat-expansion-panel [expanded]="step === 0" (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngIf="role === 'Nauczyciel' || role === 'Administrator'">
                     <mat-expansion-panel-header>
