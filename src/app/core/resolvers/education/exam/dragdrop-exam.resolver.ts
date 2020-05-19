@@ -25,7 +25,7 @@ export class DragDropResolver implements Resolve<DragDropModel[]> {
 
         return this.questionService.getExamDragDrop(+ route.paramMap.get('id')).pipe(
             catchError(error => {
-                this.alertify.error('Problem z załadowaniem pytań');
+                this.alertify.error('Wystąpił problem podczas ładowania danych');
                 this.router.navigate(['/home']);
                 return of(null);
             })

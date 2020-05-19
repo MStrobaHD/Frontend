@@ -21,7 +21,7 @@ export class ExamResolver implements Resolve<ChooseQuestionAddModel[]> {
 
         return this.questionService.getExamChooseQuestions(+ route.paramMap.get('id')).pipe(
             catchError(error => {
-                this.alertify.error('Problem retrieving data');
+                this.alertify.error('Wystąpił problem podczas ładowania danych');
                 this.router.navigate(['/home']);
                 return of(null);
             })

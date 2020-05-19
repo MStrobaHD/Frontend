@@ -17,7 +17,7 @@ export class CourseEnroledListResolver implements Resolve<CourseModel[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<CourseModel[]> {
     return this.courseService.getEnroledCourses(+ localStorage.getItem('userID')).pipe(
       catchError(error => {
-        this.alertify.error('Problem retrieving data');
+        this.alertify.error('Wystąpił problem podczas ładowania danych');
         this.router.navigate(['/home']);
         return of(null);
       })

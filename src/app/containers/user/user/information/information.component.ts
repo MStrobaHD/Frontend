@@ -46,7 +46,6 @@ export class InformationComponent implements OnInit {
       .getUserData(+localStorage.getItem('userID'))
       .subscribe(result => {
         this.user = result;
-        this.alertifyService.success('Data loaded correctly');
       });
   }
 }

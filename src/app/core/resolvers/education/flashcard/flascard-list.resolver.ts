@@ -32,7 +32,7 @@ export class FlashcardListResolver implements Resolve<FlashcardSet[]> {
       .pipe(
         catchError(error => {
           console.log(+route.paramMap.get('kartId'));
-          this.alertify.error('Problem retrieving data');
+          this.alertify.error('Wystąpił problem podczas ładowania danych');
           this.router.navigate(['/home']);
           return of(null);
         })

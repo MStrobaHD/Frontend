@@ -24,13 +24,10 @@ export class FlashcardSetResolver implements Resolve<FlashcardSet[]> {
                 private route: ActivatedRoute) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<FlashcardSet[]> {
-
-        
         return this.flashcardService.getFlashcardSetsOfCourse(+ route.paramMap.get('courseId')).pipe(
-            
             catchError(error => {
                 console.log(+ route.paramMap.get('courseId'));
-                this.alertify.error('Problem retrieving data');
+                this.alertify.error('Wystąpił problem podczas ładowania danych');
                 this.router.navigate(['/home']);
                 return of(null);
             })
@@ -52,14 +49,12 @@ export class FlashcardListSetResolver implements Resolve<Flashcard[]> {
 
         console.log(+ route.paramMap.get('cardId'));
         return this.flashcardService.getFlashcardListBetterMapping(+ route.paramMap.get('cardId')).pipe(
-            
             catchError(error => {
                 console.log(+ route.paramMap.get('cardId'));
                 this.alertify.error(error);
                 this.router.navigate(['/home']);
                 return of(null);
-            }) 
-            
+            })
         );
     }
 }
