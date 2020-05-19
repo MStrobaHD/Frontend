@@ -51,7 +51,7 @@
     <mat-toolbar class="user-menu-toolbar--section">Menu</mat-toolbar>
     <button mat-menu-item [routerLink]="['/home']">
         <mat-icon>view_list</mat-icon>
-        <span>Zestawienie statystyk</span>
+        <span>Strona główna</span>
     </button>
     <button mat-menu-item [routerLink]="['/courses']">
         <mat-icon>school</mat-icon>
@@ -60,6 +60,10 @@
     <button mat-menu-item routerLink="/algorithms">
         <mat-icon>view_list</mat-icon>
         <span>Zadania algorytmiczne</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/stats']">
+        <mat-icon>view_list</mat-icon>
+        <span>Statystyki</span>
     </button>
     <!-- <button mat-menu-item [routerLink]="['/courses/education-material']">
         <mat-icon>picture_as_pdf</mat-icon>
