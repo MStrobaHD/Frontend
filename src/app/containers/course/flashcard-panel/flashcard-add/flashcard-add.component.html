@@ -7,8 +7,8 @@
       </div> -->
     </mat-toolbar>
     <div mat-elevation-z8 *ngIf="isVisibleCardForm">
-      <mat-card fxFlex.md="100%" fxFlex.lt-md="100%">
 
+      <mat-card fxFlex.md="100%" fxFlex.lt-md="100%">
         <form class="container" [formGroup]="addCardForm" (ngSubmit)="addCard()" autocomplete="on" fxLayoutGap="2rem">
 
           <mat-form-field>
@@ -27,7 +27,7 @@
             </mat-label>
           </mat-form-field>
 
-          <mat-form-field hintLabel="At least 10 character">
+          <mat-form-field>
             <input formControlName="hint" type="text" class="form-cotrol" matInput placeholder="Wskazówka">
             <mat-error class="isValid-feedback">
               Wprowadż treść
@@ -37,7 +37,7 @@
             </mat-label>
           </mat-form-field>
 
-          <mat-form-field hintLabel="At least 10 character">
+          <mat-form-field>
             <input formControlName="imageUrl" type="text" class="form-cotrol" matInput placeholder="URL obrazka">
             <mat-error class="isValid-feedback">
               Wprowadz adres URL
@@ -55,8 +55,7 @@
               <mat-icon>cancel</mat-icon>
             </button>
           </mat-card-actions>
-          <!-- <p>form value : {{addCourseForm.value | json}}</p>
-                    <p>form value : {{addCourseForm.status | json}}</p> -->
+
         </form>
       </mat-card>
 
@@ -70,7 +69,7 @@
           <!-- Course name Column -->
           <ng-container matColumnDef="firstSide">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Pierwsza strona </th>
-            <td mat-cell *matCellDef="let row">  {{row.frontside}}</td>
+            <td mat-cell *matCellDef="let row"> {{row.frontside}}</td>
           </ng-container>
 
           <!-- Progress Column -->
@@ -85,7 +84,7 @@
           <ng-container matColumnDef="hint">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Wskazówka </th>
             <td mat-cell *matCellDef="let row">
-             {{row.hint}}
+              {{row.hint}}
             </td>
           </ng-container>
 

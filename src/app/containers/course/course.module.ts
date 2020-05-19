@@ -84,8 +84,6 @@ import { LoadingIndicatorComponent } from 'src/app/shared/layout/loading-indicat
     FlashcardAddComponent,
     PreventDialogComponent,
     LoadingIndicatorComponent
-    // FileSelectDirective,
-    // FileDropDirective
   ],
   imports: [
     CommonModule,
@@ -102,8 +100,6 @@ import { LoadingIndicatorComponent } from 'src/app/shared/layout/loading-indicat
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule
-    
-    // MatFileUploadModule
   ],
   entryComponents: [PreventDialogComponent],
   providers: [

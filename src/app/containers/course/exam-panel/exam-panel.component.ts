@@ -66,7 +66,7 @@ export class ExamPanelComponent implements OnInit {
 
   openExam(exam) {
     if (exam.examType === 1) {
-      
+
     } else if (exam.examType === 2) {
       this.router.navigate(['/courses/exam/' + exam.id]);
     } else {

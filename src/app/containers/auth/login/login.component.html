@@ -1,13 +1,10 @@
 <app-image-overlay></app-image-overlay>
 <section fxLayout fxLayoutAlign="center center">
   <mat-card fxFlex.xs="100%" fxFlex="55rem" class="card-center">
-
     <mat-card-title fxLayoutAlign="center">
       <img src="../../../../assets/student_login.jpg">
     </mat-card-title>
-
     <form [formGroup]="loginForm" class="container">
-
       <mat-form-field hintLabel="Wprowadż nazwę użytkownika">
         <input formControlName="username" type="text" matInput name="username" placeholder="Mateusz" login required [ngClass]="{'isValid': loginForm.get('username').errors && loginForm.get('username').touched}">
         <mat-error *ngIf="loginForm.get('username').hasError('required') && loginForm.get('username').touched">
@@ -17,7 +14,6 @@
           <mat-icon>account_circle</mat-icon> Nazwa użytkownika
         </mat-label>
       </mat-form-field>
-
       <mat-form-field hintLabel="Wprowadż hasło">
         <input formControlName="password" type="password" matInput name="password" placeholder="*********" required [ngClass]="{'isValid': loginForm.get('password').errors && loginForm.get('password').touched}">
         <mat-error *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
@@ -27,18 +23,14 @@
           <mat-icon>vpn_key</mat-icon> Hasło
         </mat-label>
       </mat-form-field>
-
       <mat-card-actions fxLayout fxLayoutAlign="center">
         <button (click)="login()" class="login-button" type="submit" mat-raised-button color="primary">Zaloguj</button>
         <button [routerLink]="['/register']" class="register-button" type="submit" mat-raised-button color="accent">
           <mat-icon>person_add</mat-icon>
         </button>
       </mat-card-actions>
-
     </form>
     <div *ngIf="isLoaded" class="relative">
-      
     </div>
-    
   </mat-card>
 </section>

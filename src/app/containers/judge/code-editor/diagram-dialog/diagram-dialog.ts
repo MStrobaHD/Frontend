@@ -19,7 +19,7 @@ export class DiagramDialog {
 
   links: Edge[];
 
-  layout: String | Layout = 'dagreCluster';
+  layout: string | Layout = 'dagreCluster';
   layouts: any[] = [
     {
       label: 'Dagre',
