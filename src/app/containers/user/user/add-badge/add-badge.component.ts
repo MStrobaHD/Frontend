@@ -53,7 +53,6 @@ export class AddBadgeComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.badges);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.alertifyService.success('Data loaded correctly');
     });
   }
   applyFilter(filterValue: string) {
