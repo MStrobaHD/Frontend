@@ -64,3 +64,68 @@ mat-expansion-panel {
   }
 
 }
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  //background: #fafafa;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  //background: #e2e2e2;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  align-self: start;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+button{
+    margin:.5rem;
+}
+mat-grid-tile {
+  background: rgb(238, 238, 238);
+  padding: .5rem;
+  border-style: solid;
+  border-width: .1rem;
+  border-color: rgb(255, 255, 255);
+  height: .5rem;
+ 
+}
+mat-grid-list{
+  margin-bottom: 1rem;
+}
+.item{
+  font-size: 1.2rem;
+}

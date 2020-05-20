@@ -49,13 +49,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DragDropResolver } from 'src/app/core/resolvers/education/exam/dragdrop-exam.resolver';
 import { PreventUnfinishedExam } from 'src/app/core/guards/prevent-unfinished-exam.guard';
 import { PreventDialogComponent } from './exam-panel/exam/prevent-dialog/prevent-dialog';
-// import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
-// import { MatFileUploadModule } from 'angular-material-fileupload';
 import {VgCoreModule} from 'videogular2/compiled/core';
 import {VgControlsModule} from 'videogular2/compiled/controls';
 import {VgOverlayPlayModule} from 'videogular2/compiled/overlay-play';
 import {VgBufferingModule} from 'videogular2/compiled/buffering';
 import { LoadingIndicatorComponent } from 'src/app/shared/layout/loading-indicator/loading-indicator.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -99,7 +98,8 @@ import { LoadingIndicatorComponent } from 'src/app/shared/layout/loading-indicat
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    NgxExtendedPdfViewerModule
   ],
   entryComponents: [PreventDialogComponent],
   providers: [
