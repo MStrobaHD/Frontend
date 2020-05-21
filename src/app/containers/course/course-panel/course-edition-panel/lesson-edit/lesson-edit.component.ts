@@ -74,9 +74,9 @@ export class LessonEditComponent implements OnInit {
 
   initializeUploader(lessonId: number) {
     console.log(localStorage.getItem('lessonId'));
-    console.log('ja jebe',lessonId);
+    console.log('id',lessonId);
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'cloudupload/' + this.userID + '/' + lessonId,
+      url: this.baseUrl + 'cloudupload/' + 123321 + '/122121',
       authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image', 'pdf', 'video'],

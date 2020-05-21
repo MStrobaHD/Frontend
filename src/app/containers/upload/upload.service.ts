@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 export class UploadService {
 
   baseUrl = environment.apiUrl;
-  url = this.baseUrl + 'cloudupload/' + localStorage.getItem('userID') + '/';
 
   constructor(private http: HttpClient) { }
 
@@ -27,8 +26,8 @@ export class UploadService {
       // create a http-post request and pass the form
       // tell it to report the upload progress
 
-      this.url = this.url + + localStorage.getItem('lessonId');
-      const req = new HttpRequest('POST', this.url, formData, {
+      let url = this.baseUrl + 'cloudupload/' + localStorage.getItem('userID') + '/' + parseInt(localStorage.getItem('lessonId')) ;;
+      const req = new HttpRequest('POST', url, formData, {
         reportProgress: true
       });
 

@@ -107,13 +107,15 @@
                                     <mat-grid-tile><b>Materiały wideo</b></mat-grid-tile>
                                 </mat-grid-list>
                                 <mat-grid-list class="item" cols="4" rowHeight="15:2" *ngFor="let item of element.cloudAsset">
-                                    <mat-grid-tile *ngIf="item.type != 'application/pdf'"  ><b>Nazwa materiału</b></mat-grid-tile>
+                                    <mat-grid-tile *ngIf="item.type != 'application/pdf'">
+                                        <mat-icon >picture_as_pdf</mat-icon>
+                                    </mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type != 'application/pdf'">{{item.assetName}}</mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type != 'application/pdf'"><b>Akcja</b></mat-grid-tile>
-                                    <mat-grid-tile *ngIf="item.type != 'application/pdf'"> 
+                                    <mat-grid-tile *ngIf="item.type != 'application/pdf'">
                                         <button mat-raised-button color="primary" (click)="passURL(item.url, item.type)" target="_blank" matTooltip="Przejdż do panelu nauczania">
-                                            <mat-icon >play_circle_outline</mat-icon>
-                                          </button>
+                                            <mat-icon>play_circle_outline</mat-icon>
+                                        </button>
                                     </mat-grid-tile>
                                 </mat-grid-list>
                                 <mat-grid-list class="item" cols="1" rowHeight="25:1">
@@ -123,10 +125,10 @@
                                     <mat-grid-tile *ngIf="item.type == 'application/pdf'"><b>Nazwa materiału</b></mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type == 'application/pdf'">{{item.assetName}}</mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type == 'application/pdf'"><b>Akcja</b></mat-grid-tile>
-                                    <mat-grid-tile *ngIf="item.type == 'application/pdf'"> 
+                                    <mat-grid-tile *ngIf="item.type == 'application/pdf'">
                                         <button mat-raised-button color="primary" (click)="passURL(item.url, item.type)" target="_blank" matTooltip="Przejdż do panelu nauczania">
-                                            <mat-icon >play_circle_outline</mat-icon>
-                                          </button>
+                                            <mat-icon>play_circle_outline</mat-icon>
+                                        </button>
                                     </mat-grid-tile>
                                 </mat-grid-list>
                             </div>
@@ -186,6 +188,6 @@
         </vg-player>
     </mat-card-content>
 
-    <ngx-extended-pdf-viewer *ngIf="url && isPDF == true" [src]="'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'" useBrowserLocale="true" height="80vh"></ngx-extended-pdf-viewer>
+    <ngx-extended-pdf-viewer *ngIf="url && isPDF == true" [src]=url useBrowserLocale="true" height="80vh"></ngx-extended-pdf-viewer>
 
 </mat-card>
