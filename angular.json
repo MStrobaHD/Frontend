@@ -27,6 +27,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/assets",
+              "src/web.config",
               {
                 "glob": "**/*",
                 "input": "node_modules/ngx-monaco-editor/assets/monaco",
