@@ -84,6 +84,18 @@ export class GroupPanelComponent implements OnInit {
     console.log(this.toppingListForm);
     this.role = localStorage.getItem('role');
   }
+  checkErrorAddGroupForm = (controlName: string, errorName: string) => {
+    return this.addGroupForm.controls[controlName].hasError(errorName);
+  }
+  checkErrorStgAssignmentForm = (controlName: string, errorName: string) => {
+    return this.stgAssignmentForm.controls[controlName].hasError(errorName);
+  }
+  checkErrorCtgAssignmentForm = (controlName: string, errorName: string) => {
+    return this.ctgAssignmentForm.controls[controlName].hasError(errorName);
+  }
+  checkErrorTtgAssignmentForm = (controlName: string, errorName: string) => {
+    return this.ttgAssignmentForm.controls[controlName].hasError(errorName);
+  }
   createAddGroupForm() {
     this.addGroupForm = this.fb.group({
       groupName: ['', Validators.required],

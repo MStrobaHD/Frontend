@@ -24,7 +24,7 @@ export class FlashcardService {
     return this.http.get<FlashcardSet>(this.baseUrl + 'flashcardSet/' + setId);
   }
   getFlashcardSetsOfCourse(courseId: number) {
-    return this.http.get<FlashcardSet>(this.baseUrl + 'flashcardSet/course/' + courseId);
+    return this.http.get<FlashcardSet[]>(this.baseUrl + 'flashcardSet/course/' + courseId);
   }
   AddFlashcardSet(set: FlashcardSetAdd) {
     return this.http.post<FlashcardSetAdd[]>(this.baseUrl + 'flashcardSet/', set);

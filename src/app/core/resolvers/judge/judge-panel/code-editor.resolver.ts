@@ -24,7 +24,7 @@ export class CodeEditorResolver implements Resolve<AlgorithmTaskListModel[]> {
 
         return this.algorithmTaskService.getAlgorithmTaskForSolveAsync(+ route.paramMap.get('id')).pipe(
             catchError(error => {
-                this.alertify.error('Problem retrieving data');
+                this.alertify.error('Wystąpił błąd podczas ładowania parametrów zadania');
                 this.router.navigate(['/home']);
                 return of(null);
             })

@@ -20,7 +20,7 @@ export class JudgePanelResolver implements Resolve<CourseModel[]> {
     resolve(route: ActivatedRouteSnapshot): Observable<CourseModel[]> {
         return this.algorithmTaskService.getAlgorithmTaskForListAsync().pipe(
             catchError(error => {
-                this.alertify.error('Problem retrieving data');
+                this.alertify.error('Wystąpił błąd podczas ładowania listy zadań');
                 this.router.navigate(['/home']);
                 return of(null);
             })

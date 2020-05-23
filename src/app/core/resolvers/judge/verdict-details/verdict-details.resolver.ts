@@ -22,7 +22,7 @@ export class VerdictDetailsResolver implements Resolve<VerdictListModel[]> {
 
         return this.verdictService.getVerdictWithMetrics(+ route.paramMap.get('id')).pipe(
             catchError(error => {
-                this.alertify.error('Wystąpił błąd przy wczytywaniu szczegołów rozwiązania');
+                this.alertify.error('Wystąpił błąd podczas ładowania szczegółów rozwiązania');
                 this.router.navigate(['/home']);
                 return of(null);
             })

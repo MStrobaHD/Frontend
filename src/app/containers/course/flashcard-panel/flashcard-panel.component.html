@@ -9,51 +9,47 @@
             <div mat-elevation-z8>
                 <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" >
 
-                    <form class="container" [formGroup]="addCourseForm" (ngSubmit)="addCourse()" autocomplete="on" fxLayoutGap="2rem">
+                    <form class="container" [formGroup]="addSetForm" (ngSubmit)="addCourse()" autocomplete="on" fxLayoutGap="2rem">
 
                         <mat-form-field>
-                            <input formControlName="flashcardSetName" type="text" matInput placeholder="CourseName" class="form-cotrol">
-                            <mat-error class="isValid-feedback">Wprowadż nazwę kursu</mat-error>
+                            <input formControlName="flashcardSetName" type="text" matInput placeholder="Podstawy języka C#" class="form-cotrol" [(ngModel)]="value">
+                            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                                <mat-icon>close</mat-icon>
+                              </button>
+                            <mat-error *ngIf="checkError('flashcardSetName', 'required')">Wprowadź nazwę zestawu</mat-error>
                             <mat-label>
                                 <mat-icon>title</mat-icon> Nazwa zestawu
                             </mat-label>
                         </mat-form-field>
 
-                        <mat-form-field>
-                            <input formControlName="level" type="text" matInput placeholder="Course icon url" class="form-cotrol">
-                            <mat-error class="isValid-feedback">Enter a valid url</mat-error>
+                        <mat-form-field > 
+                            <input formControlName="level" type="number" matInput placeholder="1">
+                            <mat-error *ngIf="checkError('level', 'required')">Wprowadź poziom trudności </mat-error>
+                            <mat-error *ngIf="checkError('level', 'minlength')">Wartość musi być nie mniejsza od 1 </mat-error>
+                            <mat-error *ngIf="checkError('level', 'maxlength')">Wartość musi być nie większa od 5</mat-error>
                             <mat-label>
                                 <mat-icon>image</mat-icon> Poziom trudności
                             </mat-label>
                         </mat-form-field>
 
-                        <mat-form-field hintLabel="At least 10 character">
-                            <input formControlName="description" type="text" class="form-cotrol" matInput placeholder="Description">
+                        <mat-form-field>
+                            <input formControlName="description" type="text" class="form-cotrol" matInput placeholder="Zestaw zawiera podstawowe pojęcia z języka C#">
                             <mat-error class="isValid-feedback">
-                                Enter a valid description
+                                Wprowadź opis zestawu
                             </mat-error>
                             <mat-label>
                                 <mat-icon>font_download</mat-icon> Opis
                             </mat-label>
                         </mat-form-field>
 
-                        <!-- <mat-form-field hintLabel="At least 10 character">
-                        <input formControlName="courseId" type="text" class="form-cotrol" matInput placeholder="Description">
-                      <mat-error class="isValid-feedback">
-                        Select category
-                      </mat-error>
-                      <mat-label>
-                        <mat-icon>category</mat-icon> Category
-                      </mat-label>
-                    </mat-form-field> -->
 
                         <mat-card-actions fxLayout fxLayoutAlign="center center">
-                            <button type="submit" mat-raised-button color="primary" matTooltip="Dodaj zestaw">
-                                <mat-icon>add_circle</mat-icon>
+                            <button type="submit" [disabled]="!addSetForm.valid" mat-raised-button color="primary" matTooltip="Dodaj zestaw">
+                                <mat-icon>add_circle</mat-icon> Utwórz zestaw
                             </button>
-                            <button mat-raised-button color="warn" type="button"  matTooltip="Zamknij">
+                            <!-- <button mat-raised-button color="warn" type="button"  matTooltip="Zamknij">
                                 <mat-icon>cancel</mat-icon>
-                            </button>
+                            </button> -->
                         </mat-card-actions>
 
                     </form>
@@ -102,7 +98,7 @@
                         <button mat-raised-button color="primary" (click)="openCardPanel(row)" matTooltip="Otwórz zestaw">
                             <mat-icon >sync_alt</mat-icon>
                         </button>
-                        <button *ngIf="isStudent==='Nauczyciel'" mat-raised-button color="primary" (click)="openCardForm(row)" matTooltip="Edytij zestaw">
+                        <button *ngIf="isStudent==='Nauczyciel'" mat-raised-button color="primary" (click)="openCardForm(row)" matTooltip="Edytuj zestaw">
                             <mat-icon >add_circle</mat-icon>
                         </button>
                         <button *ngIf="isStudent==='Nauczyciel'" mat-raised-button color="warn" (click)="deleteCourse(row)"matTooltip="Usuń zestaw">

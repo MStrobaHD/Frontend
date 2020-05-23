@@ -108,7 +108,7 @@
                                 </mat-grid-list>
                                 <mat-grid-list class="item" cols="4" rowHeight="15:2" *ngFor="let item of element.cloudAsset">
                                     <mat-grid-tile *ngIf="item.type != 'application/pdf'">
-                                        <mat-icon >picture_as_pdf</mat-icon>
+                                        <mat-icon >movie</mat-icon>
                                     </mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type != 'application/pdf'">{{item.assetName}}</mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type != 'application/pdf'"><b>Akcja</b></mat-grid-tile>
@@ -122,12 +122,13 @@
                                     <mat-grid-tile><b>Materiały PDF</b></mat-grid-tile>
                                 </mat-grid-list>
                                 <mat-grid-list class="item" cols="4" rowHeight="15:2" *ngFor="let item of element.cloudAsset">
-                                    <mat-grid-tile *ngIf="item.type == 'application/pdf'"><b>Nazwa materiału</b></mat-grid-tile>
+                                    <mat-grid-tile *ngIf="item.type == 'application/pdf'">
+                                        <mat-icon >picture_as_pdf</mat-icon></mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type == 'application/pdf'">{{item.assetName}}</mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type == 'application/pdf'"><b>Akcja</b></mat-grid-tile>
                                     <mat-grid-tile *ngIf="item.type == 'application/pdf'">
                                         <button mat-raised-button color="primary" (click)="passURL(item.url, item.type)" target="_blank" matTooltip="Przejdż do panelu nauczania">
-                                            <mat-icon>play_circle_outline</mat-icon>
+                                            <mat-icon>local_library</mat-icon>
                                         </button>
                                     </mat-grid-tile>
                                 </mat-grid-list>
@@ -150,8 +151,8 @@
     <mat-toolbar>
         Zawartość
         <div fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap=".5rem">
-            <mat-icon>movie</mat-icon>
-            <mat-icon>picture_as_pdf</mat-icon>
+            <mat-icon *ngIf="url && isPDF == false">movie</mat-icon>
+            <mat-icon *ngIf="url && isPDF != false">picture_as_pdf</mat-icon>
         </div>
 
     </mat-toolbar>
