@@ -3,9 +3,14 @@
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
         <mat-card-content>
-            <button mat-raised-button [routerLink]="[ '/courses']">
-                <mat-icon>keyboard_arrow_left</mat-icon>
-            </button>
+            <mat-toolbar>
+                <mat-chip-list class="header-button-return">
+                    <mat-chip>
+                        <mat-icon (click)="return()">keyboard_return</mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+                LISTA EGZAMINÓW
+            </mat-toolbar>
             <br><br>
             <mat-form-field class="filter">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj egzamin">

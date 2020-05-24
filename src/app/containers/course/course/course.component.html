@@ -2,7 +2,6 @@
 
   <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
     <mat-toolbar>
-      <!-- <mat-icon>local_library</mat-icon> -->
       KURSY SZKOLENIOWE
       <div fxFlex fxLayout fxLayoutAlign="flex-end">
         <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showCourseForm()">add_circle</mat-icon>
@@ -16,49 +15,49 @@
           <form class="container" [formGroup]="addCourseForm" (ngSubmit)="addCourse()" autocomplete="on" fxLayoutGap="2rem">
 
             <mat-form-field>
-              <input formControlName="courseName" type="text" matInput placeholder="CourseName" class="form-cotrol">
-              <mat-error class="isValid-feedback">Wprowadż nazwę kursu</mat-error>
+              <input formControlName="courseName" type="text" matInput placeholder="Nazwa Kursu">
+              <mat-error>Wprowadż nazwę kursu</mat-error>
               <mat-label>
                 <mat-icon>title</mat-icon> Nazwa Kursu
               </mat-label>
             </mat-form-field>
 
             <mat-form-field>
-              <input formControlName="courseIconUrl" type="text" matInput placeholder="Course icon url" class="form-cotrol">
-              <mat-error class="isValid-feedback">Enter a valid url</mat-error>
+              <input formControlName="courseIconUrl" type="text" matInput placeholder="Url ikony kursu">
+              <mat-error>Wprowadź url obrazka</mat-error>
               <mat-label>
-                <mat-icon>image</mat-icon> Course icon url
+                <mat-icon>image</mat-icon> Url ikony kursu
               </mat-label>
             </mat-form-field>
 
-            <mat-form-field hintLabel="At least 10 character">
-              <input formControlName="description" type="text" class="form-cotrol" matInput placeholder="Description">
+            <mat-form-field>
+              <input formControlName="description" type="text" matInput placeholder="Opis">
               <mat-error class="isValid-feedback">
-                Enter a valid description
+                Wprowadź opis
               </mat-error>
               <mat-label>
-                <mat-icon>font_download</mat-icon> Description
+                <mat-icon>font_download</mat-icon> Opis
               </mat-label>
             </mat-form-field>
 
-            <mat-form-field hintLabel="At least 10 character">
+            <mat-form-field>
               <mat-select formControlName="categoryId">
                 <mat-option *ngFor="let category of categories" value='{{category.id}}'>{{category.categoryName}}</mat-option>
               </mat-select>
-              <mat-error class="isValid-feedback">
-                Select category
+              <mat-error>
+                Wybierz kategorię
               </mat-error>
               <mat-label>
-                <mat-icon>category</mat-icon> Category
+                <mat-icon>category</mat-icon> Kategoria
               </mat-label>
             </mat-form-field>
 
             <mat-card-actions fxLayout fxLayoutAlign="center center">
-              <button type="submit" mat-raised-button color="primary">
-                <mat-icon>add_circle</mat-icon>
+              <button type="submit" [disabled]="!addCourseForm.valid" mat-raised-button color="primary" matTooltip="Dodaj zestaw">
+                <mat-icon>add_circle</mat-icon> Utwórz kurs
               </button>
               <button mat-raised-button color="warn" type="button" (click)="closeCourse()">
-                <mat-icon>cancel</mat-icon>
+                <mat-icon>cancel</mat-icon> Ukryj
               </button>
             </mat-card-actions>
 
@@ -69,11 +68,9 @@
         <mat-expansion-panel [expanded]="step === 0" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <!-- <mat-icon>view_list</mat-icon> -->
               WSZYSTKIE KURSY
             </mat-panel-title>
             <mat-panel-description>
-
             </mat-panel-description>
           </mat-expansion-panel-header>
           <mat-form-field class="filter">
@@ -110,7 +107,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Czynności </th>
                 <td mat-cell *matCellDef="let row" [style.color]="row.color">
                   <button mat-raised-button color="primary" (click)="enlistCourse(row)">
-                    <mat-icon >add_circle</mat-icon>
+                    <mat-icon>add_circle</mat-icon>
                   </button>
                 </td>
               </ng-container>
@@ -123,24 +120,18 @@
 
             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
           </div>
-
           <mat-toolbar *ngIf="isVisibleCourseForm">
             <img src="../../../../assets/course.png">
             Add new course
           </mat-toolbar>
-
-         
-
-
         </mat-expansion-panel>
+
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <!-- <mat-icon>view_list</mat-icon>  -->
               PRZYPISANE KURSY
             </mat-panel-title>
             <mat-panel-description>
-
             </mat-panel-description>
           </mat-expansion-panel-header>
           <app-course-enlisted></app-course-enlisted>
@@ -149,18 +140,15 @@
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <!-- <mat-icon>view_list</mat-icon> -->
               MOJE KURSY
             </mat-panel-title>
             <mat-panel-description>
-
             </mat-panel-description>
           </mat-expansion-panel-header>
           <app-course-created></app-course-created>
         </mat-expansion-panel>
+
       </mat-accordion>
-
     </mat-card-content>
-
   </mat-card>
 </section>

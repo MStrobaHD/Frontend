@@ -74,7 +74,6 @@ export class CourseEnlistedComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.courses);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        this.alertify.success('Data loaded correctly');
       });
   }
   dislistCourse(course) {
@@ -87,8 +86,7 @@ export class CourseEnlistedComponent implements OnInit {
       () => {
         this.alertify.success('Zostałeś wypisany z kursu');
         this.getEnlistedCourses();
-        this.courseService.onSecondComponentButtonClick(); 
-        // this.router.navigate(['/users']);
+        this.courseService.onSecondComponentButtonClick();
       },
       error => {
         this.alertify.error(error.error);

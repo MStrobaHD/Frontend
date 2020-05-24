@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { FlashcardService } from 'src/app/core/services/education/flashcard-service/flashcard.service';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-flashcard-studying',
   templateUrl: './flashcard-studying.component.html',
@@ -26,7 +26,8 @@ export class FlashcardStudyingComponent implements OnInit {
   private sub: any;
   constructor(
     private flashcardService: FlashcardService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -34,7 +35,9 @@ export class FlashcardStudyingComponent implements OnInit {
     this.origin = this.flashcardLists;
     this.getFlashcards();
   }
-
+  return() {
+    this.location.back();
+  }
   iterate() {
     if (this.i < this.counter - 1) {
       this.i++;

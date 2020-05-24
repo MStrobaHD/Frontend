@@ -3,7 +3,11 @@
         <mat-expansion-panel [expanded]="isLessonListVisible">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    <mat-icon>view_list</mat-icon>
+                    <mat-chip-list class="header-button-return">
+                        <mat-chip>
+                            <mat-icon (click)="return()">keyboard_return</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
                     <span>Lista Lekcji</span>
                 </mat-panel-title>
                 <mat-panel-description>

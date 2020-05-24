@@ -7,6 +7,7 @@ import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ConfirmDialogComponent } from 'src/app/shared/layout/confirm-dialog/confirm-dialog';
 import { AlgorithmTaskService } from 'src/app/core/services/judge/algorithm-task-service/algorithm-task.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-teacher-panel',
@@ -48,7 +49,8 @@ export class TeacherPanelComponent implements OnInit {
               private alertifyService: AlertifyService,
               private groupService: GroupService,
               private dialog: MatDialog,
-              private taskService: AlgorithmTaskService) { }
+              private taskService: AlgorithmTaskService,
+              private location: Location) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -57,6 +59,9 @@ export class TeacherPanelComponent implements OnInit {
     });
     localStorage.setItem('groupId', this.groupId.toString())
     this.getResultOfGroup(this.groupId);
+  }
+  return() {
+    this.location.back();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

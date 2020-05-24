@@ -2,6 +2,11 @@
 
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
         <mat-toolbar>
+            <mat-chip-list class="header-button-return">
+                <mat-chip>
+                    <mat-icon (click)="return()">keyboard_return</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
             <img src="https://cdn4.iconfinder.com/data/icons/businessmen-set-1/512/32-512.png">
             <!-- Panel Nauczyciela --> GRUPA <b> {{groupName}}</b>
             <div fxFlex fxLayout fxLayoutAlign="flex-end">

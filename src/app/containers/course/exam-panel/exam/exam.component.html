@@ -4,7 +4,9 @@
         <mat-card *ngIf="!isExamResultVisible">
 
             <mat-chip-list aria-label="Fish selection">
-
+                <mat-chip>
+                    <mat-icon (click)="return()">keyboard_return</mat-icon>
+                </mat-chip>
                 <div *ngFor="let question of questionList">
                     <mat-basic-chip *ngIf="question===questionIterator" class="chip" id="active" (click)="openQuestion(question)" selected>
                         <span> Pytanie

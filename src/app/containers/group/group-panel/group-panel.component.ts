@@ -18,6 +18,7 @@ import {
 import { GroupService } from 'src/app/core/services/education/group-service/group.service';
 import { CourseService } from 'src/app/core/services/education/course-service/course.service';
 import { CourseModel } from 'src/app/core/models/education/course/course.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-group-panel',
@@ -64,7 +65,8 @@ export class GroupPanelComponent implements OnInit {
     private alertifyService: AlertifyService,
     private fb: FormBuilder,
     private groupService: GroupService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private location: Location
   ) {
     // Set the minimum to January 1st 20 years in the past and December 31st a year in the future.
     const currentYear = new Date().getFullYear();
@@ -83,6 +85,9 @@ export class GroupPanelComponent implements OnInit {
     this.getCourses();
     console.log(this.toppingListForm);
     this.role = localStorage.getItem('role');
+  }
+  return() {
+    this.location.back();
   }
   checkErrorAddGroupForm = (controlName: string, errorName: string) => {
     return this.addGroupForm.controls[controlName].hasError(errorName);

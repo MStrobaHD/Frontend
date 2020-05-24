@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CourseRoutingModule } from './course-routing.module';
 import { CourseComponent } from './course/course.component';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
@@ -18,7 +17,6 @@ import { ExamEditComponent } from './course-panel/course-edition-panel/exam-edit
 import { UploadComponent } from './course-panel/course-edition-panel/upload/upload.component';
 import { ExamComponent } from './exam-panel/exam/exam.component';
 import { ExamDragDropComponent } from './exam-panel/exam-drag-drop/exam-drag-drop.component';
-// import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddServerAssetComponent } from './course-panel/course-edition-panel/add-server-asset/add-server-asset.component';
 import { LessonService } from 'src/app/core/services/education/lesson-service/lesson.service';
@@ -27,10 +25,8 @@ import { UploadModule } from '../upload/upload.module';
 import { ExamPanelComponent } from './exam-panel/exam-panel.component';
 import { ExamResolver } from 'src/app/core/resolvers/education/course/exam.resolver';
 import { QuestionService } from 'src/app/core/services/education/question-service/question.service';
-
 import { CountdownModule } from 'ngx-countdown';
 import { CourseEnlistedComponent } from './course/course-enlisted/course-enlisted.component';
-import { CourseRecommendedComponent } from './course/course-recommended/course-recommended.component';
 import { CourseCreatedComponent } from './course/course-created/course-created.component';
 import { CourseEnroledListResolver } from 'src/app/core/resolvers/education/course/course-enroled.resolver';
 import { ExamWriteAnswerComponent } from './exam-panel/exam-write-answer/exam-write-answer.component';
@@ -72,7 +68,6 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     ServerAssetComponent,
     ExamPanelComponent,
     CourseEnlistedComponent,
-    CourseRecommendedComponent,
     CourseCreatedComponent,
     ExamWriteAnswerComponent,
     ExamMatchItemComponent,

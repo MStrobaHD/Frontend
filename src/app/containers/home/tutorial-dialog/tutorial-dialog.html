@@ -1,0 +1,10 @@
+<mat-dialog-content >
+    <p>
+        <ngx-extended-pdf-viewer *ngIf="data.message" [src]=data.message useBrowserLocale="true" height="80vh"></ngx-extended-pdf-viewer>
+        
+    </p>
+</mat-dialog-content>
+<div mat-dialog-actions align="center">
+    <!-- <button mat-raised-button color="primary" (click)="onConfirm()" tabindex="1">{{data.buttonYes}}</button> -->
+    <button mat-raised-button color="primary" mat-dialog-close tabindex="-1" (click)="onNoClick()">Zamknij</button>
+</div>

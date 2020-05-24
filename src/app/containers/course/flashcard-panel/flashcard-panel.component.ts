@@ -8,6 +8,7 @@ import { FlashcardService } from 'src/app/core/services/education/flashcard-serv
 import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-flashcard-panel',
   templateUrl: './flashcard-panel.component.html',
@@ -35,7 +36,8 @@ export class FlashcardPanelComponent implements OnInit {
     private flashcardService: FlashcardService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -48,6 +50,9 @@ export class FlashcardPanelComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.createAddSetForm();
+  }
+  return() {
+    this.location.back();
   }
   deleteCourse(row: any) {
     this.flashcardService.DeleteFlashcardSet(row.id).subscribe(

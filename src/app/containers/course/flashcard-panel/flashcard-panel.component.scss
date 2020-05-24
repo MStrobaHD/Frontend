@@ -13,6 +13,9 @@ section {
         -webkit-box-shadow: 2px 2px 5px 0px #00000057;
         -moz-box-shadow: 2px 2px 5px 0px #00000057;
         box-shadow: 2px 2px 5px 0px #00000057;
+        div.header {
+          text-align: center;
+        }
       }
     }
   }
@@ -51,3 +54,12 @@ table {
   mat-form-field {
     width: 33rem;
   }
+  .toolbar-content {
+    margin-top: 0.5rem;
+    a {
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+  }
+ 

@@ -7,10 +7,11 @@ import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TileMenuComponent } from 'src/app/shared/layout/tile-menu/tile-menu.component';
-
+import { TutorialDialogComponent } from './tutorial-dialog/tutorial-dialog';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
-  declarations: [ LandingPageComponent],
+  declarations: [LandingPageComponent, TutorialDialogComponent],
   imports: [
     MaterialModule,
     FormsModule,
@@ -18,15 +19,17 @@ import { TileMenuComponent } from 'src/app/shared/layout/tile-menu/tile-menu.com
     MaterialModule,
     FormsModule,
     CommonModule,
-    SharedModule
-
-  ]
+    SharedModule,
+    NgxExtendedPdfViewerModule
+  ],
+  entryComponents: [TutorialDialogComponent],
 })
 export class HomeModule {
-    constructor(@Optional() @SkipSelf() parentModule: HomeModule) {
-        if (parentModule) {
-          throw new Error(
-            'HomeModule is already loaded. Import it in the AppModule only');
-        }
-      }
- }
+  constructor(@Optional() @SkipSelf() parentModule: HomeModule) {
+    if (parentModule) {
+      throw new Error(
+        'HomeModule is already loaded. Import it in the AppModule only'
+      );
+    }
+  }
+}

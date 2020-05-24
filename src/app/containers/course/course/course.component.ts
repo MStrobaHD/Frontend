@@ -92,7 +92,6 @@ export class CourseComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.courses);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.alertify.success('Data loaded correctly');
     });
   }
   getEnroledCourses() {
@@ -100,7 +99,6 @@ export class CourseComponent implements OnInit {
       .getEnroledCourses(+localStorage.getItem('userID'))
       .subscribe(result => {
         this.enroledCourses = result;
-        this.alertify.success('Data loaded correctly');
       });
   }
   checkIfEnlisted(course) {

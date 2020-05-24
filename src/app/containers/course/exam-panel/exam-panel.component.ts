@@ -5,6 +5,7 @@ import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.
 import { FormBuilder } from '@angular/forms';
 import { ExamService } from 'src/app/core/services/education/exam-service/exam.service';
 import { ExamModel } from 'src/app/core/models/education/exam/exam.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-exam-panel',
@@ -37,13 +38,16 @@ export class ExamPanelComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private alertify: AlertifyService,
-    private examService: ExamService
+    private examService: ExamService,
+    private location: Location
   ) {}
 
   ngOnInit() {
     this.getCourseExams();
   }
-
+  return() {
+    this.location.back();
+  }
   getCourseExams() {
     this.examService
       .getNotMarkedExams(+this.route.snapshot.paramMap.get('courseId'), + localStorage.getItem('userID'))

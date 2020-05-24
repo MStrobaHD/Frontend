@@ -1,7 +1,11 @@
 <section fxLayoutAlign="center center">
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
         <mat-toolbar>
-            Szczegóły rozwiązania
+            <mat-chip-list class="header-button-return">
+                <mat-chip>
+                    <mat-icon (click)="return()">keyboard_return</mat-icon>
+                </mat-chip>
+            </mat-chip-list> SZCZEGÓŁY ROZWIĄZANIA
         </mat-toolbar>
         <mat-accordion>
             <mat-expansion-panel expanded = true>

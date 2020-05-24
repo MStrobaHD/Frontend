@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { VgAPI } from 'videogular2/compiled/core';
 import { VerdictListModel } from 'src/app/core/models/judge/verdict/verdict.list.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-lesson',
@@ -39,7 +40,8 @@ export class LessonComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private courseService: CourseService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private location: Location) {
 
   }
   ngOnInit() {
@@ -47,6 +49,9 @@ export class LessonComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.lessonList);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+  }
+  return() {
+    this.location.back();
   }
   onPlayerReady(api: VgAPI) {
     this.api = api;

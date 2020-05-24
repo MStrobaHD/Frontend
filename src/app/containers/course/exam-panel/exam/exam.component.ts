@@ -31,6 +31,8 @@ import {
 import { ImagePreviewService } from 'src/app/shared/layout/image-preview-overlay/image-preview.service';
 import { ImagePreviewOverlayRef } from 'src/app/shared/layout/image-preview-overlay/image-preview-ref';
 import { BadgeModel } from 'src/app/core/models/user/badge.model';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -109,7 +111,8 @@ export class ExamComponent implements OnInit {
     private router: Router,
     public overlay: Overlay,
     public viewContainerRef: ViewContainerRef,
-    private previewService: ImagePreviewService
+    private previewService: ImagePreviewService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -129,6 +132,9 @@ export class ExamComponent implements OnInit {
       this.questionList.push(this.questionTopIterator);
       this.questionTopIterator++;
     }
+  }
+  return() {
+    this.location.back();
   }
   showPreview(file) {
     const dialogRef: ImagePreviewOverlayRef = this.previewService.open({

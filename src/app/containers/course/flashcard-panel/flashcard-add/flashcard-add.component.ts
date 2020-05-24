@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FlashcardService } from 'src/app/core/services/education/flashcard-service/flashcard.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Flashcard } from 'src/app/core/models/education/flashcard/flashcard.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-flashcard-add',
@@ -32,11 +33,13 @@ export class FlashcardAddComponent implements OnInit {
 
   id: number;
   private sub: any;
+
   constructor(private fb: FormBuilder,
               private alertify: AlertifyService,
               private route: ActivatedRoute,
               private flashcardService: FlashcardService,
-              private router: Router) { }
+              private router: Router,
+              private location: Location) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -48,6 +51,9 @@ export class FlashcardAddComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.createAddCardForm();
     this.getCards();
+  }
+  return() {
+    this.location.back();
   }
   getCards(){
     this.flashcardService
@@ -82,9 +88,7 @@ export class FlashcardAddComponent implements OnInit {
   closeCardForm() {
     this.isVisibleCardForm = false;
   }
-  return() {
-    this.router.navigate(['/courses/']);
-  }
+ 
   deleteCard(set) {
     this.flashcardService.deleteFlashcard(set.id).subscribe(
       () => {

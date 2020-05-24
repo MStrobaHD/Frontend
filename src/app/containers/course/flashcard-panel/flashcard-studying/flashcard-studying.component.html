@@ -1,6 +1,15 @@
 <section fxFlex fxLayoutAlign="center center">
-
+  
     <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
+        <mat-toolbar>
+            <mat-chip-list class="header-button-return">
+                <mat-chip>
+                    <mat-icon (click)="return()">keyboard_return</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+
+            FISZKI
+        </mat-toolbar>
         <div class="flip-container" (click)="flip()" [class.flipped]="flipped">
             <mat-card class="karta">
                 <h3>Zestaw : Wiedza ogólna</h3>

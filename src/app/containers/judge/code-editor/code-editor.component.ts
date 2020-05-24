@@ -26,7 +26,7 @@ import {
 import { VerdictService } from 'src/app/shared/layout/verdict-displayer/verdict.service';
 import { VerdictRef } from 'src/app/shared/layout/verdict-displayer/verdict-ref';
 import { ConfirmDialogComponent } from 'src/app/shared/layout/confirm-dialog/confirm-dialog';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-code-editor',
   templateUrl: './code-editor.component.html',
@@ -80,7 +80,8 @@ export class CodeEditorComponent implements OnInit {
               private alertify: AlertifyService,
               private codeEditorService: CodeEditorService,
               public dialog: MatDialog,
-              private verdictService: VerdictService)
+              private verdictService: VerdictService,
+              private location: Location)
   {
     this.code;
     this.algorithmTask = this.route.snapshot.data.algorithmTask;
@@ -93,6 +94,9 @@ export class CodeEditorComponent implements OnInit {
       this.algorithmTaskId = +params.id;
       this.algorithmTaskName = params.taskName;
     });
+  }
+  return() {
+    this.location.back();
   }
   getAlgorithmTask() {
     this.algorithmTaskService

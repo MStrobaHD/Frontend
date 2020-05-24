@@ -4,7 +4,12 @@
         <mat-toolbar>
             <!-- <img src="../../../../assets/unnamed.png"> -->
             <!-- Grupa I8B1S4 -->
-            GRUPA SZKOLENIOWA - PANEL GŁÓWNY
+            <mat-chip-list class="header-button-return">
+                <mat-chip>
+                    <mat-icon (click)="return()">keyboard_return</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+            GRUPA - PANEL GŁÓWNY
             <div fxFlex fxLayout fxLayoutAlign="flex-end" *ngIf="role === 'Nauczyciel' || role === 'Administrator'">
                 <!-- <mat-icon fxFlex fxLayout fxLayoutAlign="flex-end" (click)="showAssigmentForm()">add_circle</mat-icon> -->
                 <button matTooltip="Utwórz grupę szkoleniową" mat-raised-button color='primary' (click)="showContent(1)">

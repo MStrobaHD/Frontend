@@ -8,7 +8,7 @@ import { AlertifyService } from 'src/app/core/services/shared/alertify/alertify.
 import { LevelModel } from 'src/app/core/models/judge/level.model';
 import { AlgorithmCategoryModel } from 'src/app/core/models/judge/algorithm-category.model';
 import { ComplexityModel } from 'src/app/core/models/judge/complexity.model';
-import { stringify } from 'querystring';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-judge-panel',
@@ -48,7 +48,8 @@ export class JudgePanelComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private algorithmTaskService: AlgorithmTaskService,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -66,7 +67,9 @@ export class JudgePanelComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
   }
-
+  return() {
+    this.location.back();
+  }
   createAddAlgorithmTaskForm() {
     this.algorithmTaskAddForm = this.formBuilder.group({
       algorithmTaskName: [''],

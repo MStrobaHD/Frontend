@@ -2,10 +2,11 @@
     <mat-card class="editor-wrapper" fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
 
         <mat-toolbar>
-            <mat-icon [routerLink]="[ '/algorithms']">
-                keyboard_arrow_left
-
-            </mat-icon> Edytor kodu
+            <mat-chip-list class="header-button-return">
+                <mat-chip>
+                    <mat-icon (click)="return()">keyboard_return</mat-icon>
+                </mat-chip>
+            </mat-chip-list> Edytor kodu
         </mat-toolbar>
         <mat-accordion>
             <mat-expansion-panel (opened)="false">

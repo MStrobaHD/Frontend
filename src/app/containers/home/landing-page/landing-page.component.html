@@ -1,27 +1,48 @@
 <section fxLayoutAlign="center center">
   <mat-card fxFlex.md="100%" fxFlex.lt-md="100%" fxFlex="120rem">
     <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>ŚRODOWISKO LABORATORYJNE DO WSPOMAGANIA DYDAKTYKI Z PROGRAMOWANIA W C#</mat-card-title>
-      
-        <mat-card-subtitle>
+      <mat-card>
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        <mat-card-title>
+          <div> 
+            <div  fxLayoutAlign="flex-start">
+              ŚRODOWISKO LABORATORYJNE DO WSPOMAGANIA DYDAKTYKI Z PROGRAMOWANIA W C#
+            </div>
+            <div  fxFlex fxLayout fxLayoutAlign="flex-end">
+              <mat-chip-list>
+                <mat-chip (click)="openTutorialDialog()" color="accent" selected>
+                  <mat-icon>
+                    help
+                  </mat-icon > Instrukcja
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+        </div>
+
+        </mat-card-title>
+
+        <!-- <mat-card-subtitle> -->
+          <mat-card-subtitle><p>
           <br>
-          Aplikacja wykonana w ramach pracy magisterskiej sierż. pchor. inż Mateusza Stroby pod opieką dr inż Dariusza Pierzchały
-          <br>  <br>
-          Celem jaki przyświecał tworzeniu aplikacji było wsparcie procesu dydaktyczengo poprzez automatyzacje wybranych procesów laboratoryjnego nauczania programowania w C#. 
+         Aplikacja wykonana w ramach pracy magisterskiej sierż. pchor. inż Mateusza Stroby pod opieką dr inż Dariusza Pierzchały
+          <br> <br>
+          Celem jaki przyświecał tworzeniu aplikacji było wsparcie procesu dydaktyczengo poprzez automatyzacje wybranych procesów laboratoryjnego nauczania programowania w C#.
           Wykonana aplikacja usprawnia pracę nauczyciela oraz ułatwia naukę studentom.
-          <br><br>
+          <!-- <br><br> -->
           Nauczyciel w ramach aplikacji może tworzyć kursy szkoleniowe zawierające lekcje w postaci filmów wideo i prezentacji, tworzyć zestawy fiszek edukacyjnych,
           tworzyć sprawdziany w postaci quizów oraz opracowywać zadania implementacyjne. Z perspektywy organizacyjnej istnieje możliwość tworzenia grup szkoleniowych
           do których może przydzielać studentów oraz wcześniej utworzone kursy i zadania implementacyjne.
-          <br>  <br>
-          Z kolei student zobowiązany jest do korzystania z przygotowanych materiałów dydaktycznych oraz rozwiązywania sprawdzianów i zadań implementacyjnych dostępnych 
+          <!-- <br> <br> -->
+          Z kolei student zobowiązany jest do korzystania z przygotowanych materiałów dydaktycznych oraz rozwiązywania sprawdzianów i zadań implementacyjnych dostępnych
           w ramach kursu do którego jest zapisany.
-          <br><br>
-        </mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="../../../../assets/home_image.jpg" alt="Photo of a Shiba Inu">
+        </p>
+      </mat-card-subtitle>
+        <!-- </mat-card-subtitle> -->
+      </mat-card>
+      <mat-card>
+        <img mat-card-image src="../../../../assets/home_image.jpg" alt="Photo of a Shiba Inu">
+      </mat-card>
+
       <mat-card-content>
         <p>
 
@@ -30,10 +51,12 @@
       <mat-card-actions>
         <button mat-raised-button color="primary" [routerLink]="['/login']" *ngIf="!isLogged()">
           <!-- Zaloguj  -->
-          <mat-icon>person</mat-icon></button>
+          <mat-icon>person</mat-icon>
+        </button>
         <button mat-raised-button color="primary" [routerLink]="['/register']" *ngIf="!isLogged()">
           <!-- Zarejestruj  -->
-          <mat-icon>person_add</mat-icon></button>
+          <mat-icon>person_add</mat-icon>
+        </button>
         <button mat-raised-button color="accent" (click)="logout()" *ngIf="isLogged()">
           <!-- Wyloguj -->
           <mat-icon>directions_run</mat-icon>
